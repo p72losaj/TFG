@@ -1,0 +1,5 @@
+## Version de python para la ejecucion de la interfaz grafica
+Python 3.8.10
+### Necesidades de instalacion para la ejecucion de la interfaz grafica
+
+1- Tener instalado tkinter. Comando de instalacion: udo apt install python3-tk
