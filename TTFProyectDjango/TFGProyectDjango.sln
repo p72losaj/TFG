@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33423.256
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TTFProyectDjango", "TTFProyectDjango\TTFProyectDjango.pyproj", "{74CD5346-0BA0-4471-9270-BEA4D8FB5291}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TFGProyectDjango", "TTFProyectDjango\TFGProyectDjango.pyproj", "{74CD5346-0BA0-4471-9270-BEA4D8FB5291}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
