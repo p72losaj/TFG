@@ -14,7 +14,7 @@ def home(request):
         'app/index.html',
         {
             'title':'Inicio',
-            'message':'Descripcion de la aplicacion web TUTMINING',
+            'message':'Descripcion de la aplicacion web NETTLAERER',
         }
     )
 
