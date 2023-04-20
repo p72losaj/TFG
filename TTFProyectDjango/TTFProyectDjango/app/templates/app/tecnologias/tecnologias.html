@@ -1,0 +1,16 @@
+﻿{% extends "app/plantillaBase.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h2>{{message }}.</h2>
+
+<li><a href="{% url 'Django' %}">DJANGO</a></li>
+<li><a href="{% url 'html' %}">HTML</a></li>
+<li><a href="{% url 'JavaScript' %}">JAVASCRIPT</a></li>
+<li><a href="{% url 'CSS' %}">CSS</a></li>
+<li><a href="{% url 'Python' %}">Python</a></li>
+<li><a href="{% url 'Bash' %}">Bash</a></li>
+
+
+{% endblock %}

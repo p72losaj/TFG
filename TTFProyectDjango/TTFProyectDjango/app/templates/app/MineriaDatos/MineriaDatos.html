@@ -1,0 +1,12 @@
+﻿{% extends "app/plantillaBase.html" %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<h2>{{ message }}</h2>
+<li><a href="{% url 'ObtencionDatos' %}">ObtencionDatos</a></li>
+<li><a href="{% url 'LimpiezaDatos' %}">LimpiezaDatos</a></li>
+<li><a href="{% url 'Algoritmos' %}">Algoritmos</a></li>
+<li><a href="{% url 'TransformacionDatos' %}">TransformacionDatos</a></li>
+<li><a href="{% url 'EvaluacionResultados' %}">EvaluacionResultados</a></li>
+
+{% endblock %}
