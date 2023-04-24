@@ -13,7 +13,7 @@ def home(request):
         request,
         'app/index.html',
         {
-            'title':'Inicio',
+            'title':'Bienvenido a Nettlaer',
             'message':'Descripcion de la aplicacion web NETTLAERER',
         }
     )
@@ -119,10 +119,34 @@ def ObtencionDatos(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/ObtencionDatos.html',
+        'app/MineriaDatos/ObtencionDatos/ObtencionDatos.html',
         {
-            'title':'Mineria de datos-Obtencion de Datos',
+            'title':'Obtencion de Datos',
             'message':'Pagina de descripcion de obtención de datos en mineria de datos',
+        }
+    )
+
+def ArchivosCSV(request):
+    "Renders the MiningData/ObtencionDatos/ArchivosCSV page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/ObtencionDatos/ArchivosCSV.html',
+        {
+            'title':'Archivos CSV',
+            'message':'Pagina de descripcion de archivos CSV en minería de datos',
+        }
+    )
+
+def ArchivosARFF(request):
+    "Renders the MiningData/ObtencionDatos/ArchivosARFF page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/ObtencionDatos/ArchivosARFF.html',
+        {
+            'title':'Archivos ARFF',
+            'message':'Pagina de descripcion de archivos ARFF en minería de datos',
         }
     )
 
@@ -173,4 +197,6 @@ def EvaluacionResultados(request):
             'message':'Pagina de descripcion de evaluacion de los resultados obtenidos al aplicar algoritmos de mineria de datos',
         }
     )
+
+
 

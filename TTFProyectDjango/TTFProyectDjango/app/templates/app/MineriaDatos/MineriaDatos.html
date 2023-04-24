@@ -3,10 +3,28 @@
 {% block content %}
 <h2>{{ title }}</h2>
 <h2>{{ message }}</h2>
-<li><a href="{% url 'ObtencionDatos' %}">ObtencionDatos</a></li>
-<li><a href="{% url 'LimpiezaDatos' %}">LimpiezaDatos</a></li>
-<li><a href="{% url 'Algoritmos' %}">Algoritmos</a></li>
-<li><a href="{% url 'TransformacionDatos' %}">TransformacionDatos</a></li>
-<li><a href="{% url 'EvaluacionResultados' %}">EvaluacionResultados</a></li>
+
+<div class="jumbotron">
+    <h1>¿Qué es la minería de datos?</h1>
+    <p class="lead">
+        Se define la minería de datos como el conjunto de técnicas y tecnologías que permiten explorar grandes bases de datos
+        de manera automática o semiautomática.
+        El objetivo de la minería de datos es encontrar patrones repetitivos, tendencias o reglas que expliquen el comportamiento
+        de los datos en un determinado contexto.
+    </p>
+</div>
+
+<div class="col-md">
+    <h1>Etapas del proceso de minería de datos</h1>
+    <ul>
+        <li><a href="{% url 'ObtencionDatos' %}">ObtencionDatos</a></li>
+        <li><a href="{% url 'LimpiezaDatos' %}">LimpiezaDatos</a></li>
+        <li><a href="{% url 'Algoritmos' %}">Algoritmos</a></li>
+        <li><a href="{% url 'TransformacionDatos' %}">TransformacionDatos</a></li>
+        <li><a href="{% url 'EvaluacionResultados' %}">EvaluacionResultados</a></li>
+    </ul>
+    
+</div>
+
 
 {% endblock %}

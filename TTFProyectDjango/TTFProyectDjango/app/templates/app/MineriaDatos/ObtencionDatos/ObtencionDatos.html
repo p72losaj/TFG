@@ -1,0 +1,23 @@
+﻿{% extends "app/MineriaDatos/MineriaDatos.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<div class="jumbotron">
+    <h1>Obtencion de Datos</h1>
+    <p class="lead">Esta fase de la minería de datos se refiere a obtener los datos o conjuntos de datos que se desean predecir,
+    calcular o inferir. Dichos datos sirven para determinar los cálculos o los procesos.</p>
+</div>
+
+<div class="col-md">
+    <h1>Tipos de archivos de datos</h1>
+    <ul>
+        <li><a href="{% url 'ArchivosCSV' %}">Archivos CSV</a></li>
+        <li><a href="{% url 'ArchivosARFF' %}">Archivos ARFF</a></li>
+    </ul>
+</div>
+
+
+{% endblock %}
