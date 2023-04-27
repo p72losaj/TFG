@@ -2,4 +2,33 @@
 
 {% block content %}
 <h2>{{title}}</h2>
+<ul>
+    <li>
+        <h3>Cargar fichero csv</h3>
+        <ul>
+            <li>import pandas as pd</li>
+            <li>from pyodide.http import open_url</li>
+            <li>dataset = pd.read_csv(open_url(url_dataset), header=None, names=[])</li>
+        </ul>
+    </li>
+    <li>
+        <h3>Cargar fichero biblioteca datasets</h3>
+        <ul>
+            <li>from sklearn import datasets</li>
+            <li>dataset = datasets.load_</li>
+        </ul>
+    </li>
+    <li>
+        <h3>Cargar fichero arff</h3>
+        <ul>
+            <li>import pandas as pd</li>
+            <li>from scipy.io import arff</li>
+            <li>from pyodide.http import open_url</li>
+            <li>data_arff = arff.loadarff(open_url(url_dataset))</li>
+            <li>data_csv = pd.DataFrame(data_arff[0])</li>
+            <li>data_csv.to_csv('dataset.csv', index=None)</li>
+            <li>dataset = pd.read_csv('dataset.csv')</li>
+        </ul>
+    </li>
+</ul>
 {% endblock %}

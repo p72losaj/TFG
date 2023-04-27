@@ -27,7 +27,7 @@ urlpatterns = [
     path('MineriaDatos/TransformacionDatos/', views.TransformacionDatos, name='TransformacionDatos'),
     path('MineriaDatos/EvaluacionResultados/', views.EvaluacionResultados, name='EvaluacionResultados'),
     path('simuladorPython/', views.simuladorPython, name='simuladorPython'),
-    path('simuladorPython/Datasets', views.Datasets, name='Datasets'),
-    path('simuladorPython/comandosPython', views.comandosPython, name='comandosPython'),
+    path('simuladorPython/Datasets/', views.Datasets, name='Datasets'),
+    path('simuladorPython/comandosPython/', views.comandosPython, name='comandosPython'),
     #path('admin/', admin.site.urls),
 ]
