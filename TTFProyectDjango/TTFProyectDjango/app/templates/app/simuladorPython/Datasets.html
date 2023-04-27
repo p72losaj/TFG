@@ -1,0 +1,82 @@
+﻿{% extends "app/plantillaBase.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+
+<table border="1" style="border-collapse:collapse; text-align:center;">
+    <tr>
+        <th>Dataset</th>
+        <th>ObtencionDataset</th>
+        <th>CaracteristicasDataset</th>
+    </tr>
+    <tr>
+        <td>IRIS</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/iris.data">IrisDataset</a></td>
+        <td>["sepal length","sepal width","petal length","petal width","class"]</td>
+    </tr>
+    <tr>
+        <td>WINE</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/wine.data">WineDataset</a></td>
+        <td>['class', 'Alcohol', 'Malic_acid', 'Ash', 'Alcalinity_of_ash', 'Magnesium', 'Total_phenols','Flavanoids', 'Nonflavanoid_phenols', 'Proanthocyanins', 'Color_intensity', 'Hue', 'OD280/OD315','Proline']</td>
+    </tr>
+    <tr>
+        <td>DIABETES</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/diabetes.csv">DiabetesDataset</a></td>
+        <td>['preg', 'plas','pres','skin','insu','mass','pedi','age','class']</td>
+    </tr>
+    <tr>
+        <td>BREAST CANCER</td>
+        <td>datasets.load_breast_cancer()</td>
+    </tr>
+    <tr>
+        <td>TITANIC</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/titanic.csv">TitanicDataset</a></td>
+    </tr>
+    <tr>
+        <td>ABALONE</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/abalone.data">AbaloneDataset</a></td>
+        <td>['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight', 'Rings/Class']</td>
+    </tr>
+    <tr>
+        <td>ILDP</td>
+        <td>
+            <a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/train_ildp.csv">IldpTrainDataset</a>
+            <br />
+            <a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/test_ildp.csv">IldpTestDataset</a>
+        </td>
+    </tr>
+    <tr>
+        <td>DIGITS</td>
+        <td>datasets.load_digits()</td>
+    </tr>
+    <tr>
+        <td>SEGMENT CHALLENGE</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/segment-challenge.arff">SegmentChallengeDataset</a></td>
+    </tr>
+    <tr>
+        <td>GLASS</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/glass.arff">GlassDataset</a></td>
+    </tr>
+    <tr>
+        <td>DRY BEAN</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/Dry_Bean_Dataset.arff">DryBeanDataset</a></td>
+    </tr>
+    <tr>
+        <td>CAR</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/car.data">CarDataset</a></td>
+        <td>['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class']</td>
+    </tr>
+    <tr>
+        <td>ZOO</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/zoo.data">ZooDataset</a></td>
+        <td>['animal_name', 'hair', 'feathers', 'eggs', 'milk', 'airzorne', 'aquatic', 'predator', 'toothed', 'backbone', 'breathes', 'venomous', 'fins', 'legs', 'tail', 'domestic', 'catsize', 'class']</td>
+    </tr>
+    <tr>
+        <td>BALANCE SCALE</td>
+        <td><a href="https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/balance-scale.data">BalanceScaleDataset</a></td>
+        <td>['class', 'left_weight', 'left_distance', 'right_weight', 'right_distance']</td>
+    </tr>
+</table>
+
+{% endblock %}

@@ -198,5 +198,35 @@ def EvaluacionResultados(request):
         }
     )
 
+def simuladorPython(request):
+    "Renders the simuladorPython/ page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/simuladorPython/simuladorPython.html',
+        {
+            'title':'Simulador de Python',
+        }
+    )
 
+def Datasets(request):
+    "Renders the informationInteres/ page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/simuladorPython/Datasets.html',
+        {
+            'title': 'Datasets'
+        }
+    )
 
+def comandosPython(request):
+    "Renders the comandosPython/ page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/simuladorPython/comandosPython.html',
+        {
+            'title': 'Comandos de python'
+        }
+    )
