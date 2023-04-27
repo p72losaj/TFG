@@ -20,8 +20,8 @@ urlpatterns = [
     path('tecnologias/Bash/', views.Bash, name='Bash'),
     path('MineriaDatos/', views.MineriaDatos, name='MineriaDatos'),
     path('MineriaDatos/ObtencionDatos/', views.ObtencionDatos, name='ObtencionDatos'),
-    path('MineriaDatos/ObtencionDatos/ArchivosCSV', views.ArchivosCSV, name='ArchivosCSV'),
-    path('MineriaDatos/ObtencionDatos/ArchivosARFF', views.ArchivosARFF, name='ArchivosARFF'),
+    path('MineriaDatos/ObtencionDatos/ArchivosCSV/', views.ArchivosCSV, name='ArchivosCSV'),
+    path('MineriaDatos/ObtencionDatos/ArchivosARFF/', views.ArchivosARFF, name='ArchivosARFF'),
     path('MineriaDatos/LimpiezaDatos/', views.LimpiezaDatos, name='LimpiezaDatos'),
     path('MineriaDatos/Algoritmos/', views.AlgoritmosMiningData, name='Algoritmos'),
     path('MineriaDatos/TransformacionDatos/', views.TransformacionDatos, name='TransformacionDatos'),
@@ -29,5 +29,6 @@ urlpatterns = [
     path('simuladorPython/', views.simuladorPython, name='simuladorPython'),
     path('simuladorPython/Datasets/', views.Datasets, name='Datasets'),
     path('simuladorPython/comandosPython/', views.comandosPython, name='comandosPython'),
+    path('MineriaDatos/ObtencionDatos/ArchivosCSV/Ejercicios/', views.EjerciciosCSV, name='EjerciciosCSV'),
     #path('admin/', admin.site.urls),
 ]

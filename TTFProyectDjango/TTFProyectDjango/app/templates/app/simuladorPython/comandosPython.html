@@ -2,33 +2,40 @@
 
 {% block content %}
 <h2>{{title}}</h2>
-<ul>
-    <li>
-        <h3>Cargar fichero csv</h3>
-        <ul>
-            <li>import pandas as pd</li>
-            <li>from pyodide.http import open_url</li>
-            <li>dataset = pd.read_csv(open_url(url_dataset), header=None, names=[])</li>
-        </ul>
-    </li>
-    <li>
-        <h3>Cargar fichero biblioteca datasets</h3>
-        <ul>
-            <li>from sklearn import datasets</li>
-            <li>dataset = datasets.load_</li>
-        </ul>
-    </li>
-    <li>
-        <h3>Cargar fichero arff</h3>
-        <ul>
-            <li>import pandas as pd</li>
-            <li>from scipy.io import arff</li>
-            <li>from pyodide.http import open_url</li>
-            <li>data_arff = arff.loadarff(open_url(url_dataset))</li>
-            <li>data_csv = pd.DataFrame(data_arff[0])</li>
-            <li>data_csv.to_csv('dataset.csv', index=None)</li>
-            <li>dataset = pd.read_csv('dataset.csv')</li>
-        </ul>
-    </li>
-</ul>
+
+<section class="pyscript">
+    <h3>Fecha de ultima actualizacion: </h3>
+
+    <py-tutor>
+        <py-config>
+            packages = [
+                "pandas"
+            ]
+            plugins = [
+            "https://pyscript.net/latest/plugins/python/py_tutor.py"
+            ]
+        </py-config>
+        <py-script>
+            # Importamos las bibliotecas
+            from datetime import datetime # Fecha actual
+            import pandas as pd # Lectura ficheros CSV
+            from pyodide.http import open_url # Lectura url
+            # Fecha actual
+            now = datetime.now()
+            display(now.strftime("%m/%d/%Y, %H:%M:%S"))
+            # Dataset iris
+            iris = pd.read_csv(
+                open_url("https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/iris.data"),
+                header = None,
+                names=["sepal length","sepal width","petal length","petal width","class"]
+            )
+            display("DATASET IRIS")
+            display(iris)
+            display(iris.describe())
+            display(iris.corr())
+        </py-script>
+    </py-tutor>
+    <h3>Mostrando codigo empleado</h3>
+</section>
+
 {% endblock %}

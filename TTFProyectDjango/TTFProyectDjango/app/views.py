@@ -138,6 +138,18 @@ def ArchivosCSV(request):
         }
     )
 
+def EjerciciosCSV(request):
+    "Renders the MiningData/ObtencionDatos/ArchivosCSV/Ejercicios page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/Ejercicios/EjerciciosCSV.html',
+        {
+            'title':'Ejercicios CSV',
+            'message':'Obtenga al menos 5 conjuntos de datos en formato CSV'
+        }
+    )
+
 def ArchivosARFF(request):
     "Renders the MiningData/ObtencionDatos/ArchivosARFF page"
     assert isinstance(request, HttpRequest)
