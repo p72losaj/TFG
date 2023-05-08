@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>CROQUIS TFG</title>
+</head>
+<body>
+    <h1>Obtencion de datos</h1>
+    <h2>Archivos CSV</h2>
+    <table border="1" style="border-collapse:collapse; text-align:center;">
+        <tr>
+            <th>Importamos bibliotecas</th>
+            <th>Obtencion Dataset</th>
+            <th>Mostramos el dataset</th>
+            <th>Relacion entre las columnas del dataset</th>
+        </tr>
+        <tr>
+            <td>import pandas as pd <br />from pyodide.http import open_url</td>
+            <td>
+                iris = pd.read_csv(
+                open_url("https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/iris.data"),
+                header = None,
+                names=["sepal length","sepal width","petal length","petal width","class"]
+                )
+            </td>
+            <td>iris.describe()</td>
+            <td>iris.corr()</td>
+        </tr>
+    </table>
+
+    <h2>Archivos ARFF </h2>
+    <table border="1" style="border-collapse:collapse; text-align:center;">
+        <tr>
+            <th>Importamos bibliotecas</th>
+            <th>Obtencion Dataset</th>
+            <th>Mostramos el dataset</th>
+            <th>Relacion entre las columnas del dataset</th>
+        </tr>
+        <tr>
+            <td>from scipy.io import arff<br />from pyodide.http import open_url</td>
+            <td>
+                dataset_arff = arff.loadarff(open_url('https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/segment-challenge.arff'))
+                df = pd.DataFrame(dataset_arff[0])
+                print(df)
+            </td>
+            
+        </tr>
+    </table>
+    <h1>Limpieza de Datos</h1>
+    
+    <h2>Outliers</h2>
+        <table border="1" style="border-collapse:collapse; text-align:center;">
+            <tr>
+                <th>Deteccion de outliers</th>
+            </tr>
+            <tr>
+                <td>Metodo interquartil <br />
+                Metodo boxplot <br />
+                Usando describe -> datos.describe() <br />
+                Usando un histograma -> datos.hist()</td>
+            </tr>
+        </table>
+    
+    <h2>Datos Nulos</h2>
+        <table border="1" style="border-collapse:collapse; text-align:center;">
+            <tr>
+                <th>Deteccion de datos nulos</th>
+                <th>Limpieza de datos</th>
+            </tr>
+            <tr>
+                <td>
+                    datos.isnull() -> Nos permite detectar datos nulos <br />
+                    datos.notnull() -> Nos permite detectar datos no nulos
+                </td>
+                <td>
+                    datos.dropna() -> Elimina las filas con datos nulos. <br />
+                    datos.fillna(value=x) -> Rellena los valores nulos con un valor predeterminado (x). <br />
+                    datos.fillna(value="bfill") -> Rellena los valores nulos en base al valor de la siguiente fila.
+                </td>
+            </tr>
+        </table>
+        <h2>Datos erróneos e irrelevantes</h2>
+
+        <table border="1" style="border-collapse:collapse; text-align:center;">
+            <tr>
+                <th>Creamos una nueva columna con los datos ya reemplazados</th>
+                <th>Eliminamos la columna antigua</th>
+            </tr>
+            <tr>
+                <td>
+                    for dias in dataset.iterrows(): <br />
+                    index_value, column_values=dias <br />
+                    arreglo=int(column_values['Columna'].replace('##','22')) <br />
+                    dataset.at[index_value,'Columna Corregida']=arreglo <br />
+                </td>
+                <td>
+                    dataset.drop(axis=1, columns="Columna")
+                </td>
+            </tr>
+        </table>
+        <h1>Algoritmos</h1>
+        <h1>Transformacion de datos</h1>
+        <h1>Evaluacion de resultados</h1>
+</body>
+<py-env>
+    - bokeh
+    - numpy
+    - pandas
+    - scikit-learn
+    - scipy
+</py-env>
+</html>
+
+
+
