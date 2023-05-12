@@ -29,6 +29,5 @@ urlpatterns = [
     path('simuladorPython/', views.simuladorPython, name='simuladorPython'),
     path('simuladorPython/Datasets/', views.Datasets, name='Datasets'),
     path('simuladorPython/comandosPython/', views.comandosPython, name='comandosPython'),
-    path('MineriaDatos/ObtencionDatos/ArchivosCSV/Ejercicios/', views.EjerciciosCSV, name='EjerciciosCSV'),
     #path('admin/', admin.site.urls),
 ]
