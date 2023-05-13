@@ -11,7 +11,8 @@
             packages = [
                 "pandas",
                 "scipy",
-                "matplotlib"
+                "matplotlib",
+                "seaborn"
             ]
             plugins = [
             "https://pyscript.net/latest/plugins/python/py_tutor.py"
@@ -19,14 +20,10 @@
         </py-config>
         <py-script>
             # Importamos las bibliotecas
-            from datetime import datetime
             import pandas as pd
             from pyodide.http import open_url
-            from scipy.io import arff
             import matplotlib.pyplot as plt
-            # Fecha actual
-            now = datetime.now()
-            display(now.strftime("%m/%d/%Y, %H:%M:%S"))
+            import seaborn as sns
 
             # Dataset CSV
             iris = pd.read_csv(
@@ -42,7 +39,9 @@
             display(iris.info)
 
             display("DISTRIBUCION CLASES")
-            display(iris.groupby('Species').size())
+            sns.countplot(x='Species', data=iris, )
+
+            display(plt); plt.clf()
 
             display("MOSTRANDO LA DESCRIPCION DEL DATASET IRIS")
             display(iris.describe())
@@ -50,24 +49,14 @@
             display("MOSTRANDO LA RELACION ENTRE LAS COLUMNAS DEL DATASET")
             display(iris.corr())
 
+            display("Comparación de la longitud y el ancho de los pétalos")
 
-            display("Sepal -Longitud vs Ancho")
-            
-            plt.figure(figsize = (10, 7))
-            x = iris["sepal length"]
-            plt.hist(x, bins = 20, color = "green")
-            plt.title("Sepal Length in cm")
-            plt.xlabel("Sepal_Length_cm")
-            plt.ylabel("Count")
+            sns.scatterplot(x='sepal length', y='sepal width', hue='Species', data=iris )
 
-            display(plt)
+            display(plt); plt.clf()
 
-            # Dataset ARFF
-            dataset_arff = arff.loadarff(open_url('https://raw.githubusercontent.com/p72losaj/Introduccion_Mineria_Datos/main/PRACTICAS/misDatasets/segment-challenge.arff'))
-            df = pd.DataFrame(dataset_arff[0])
-            # Mostramos el dataset arff
-            display("MOSTRANDO EL DATASET ARFF")
-            display(df)
+
+
         </py-script>
     </py-tutor>
     <h3>Mostrando codigo empleado</h3>
