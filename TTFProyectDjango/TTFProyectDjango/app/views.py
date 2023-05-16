@@ -138,6 +138,17 @@ def ArchivosCSV(request):
         }
     )
 
+def EjercicioCSV(request):
+    "Renders the ejercicioCSV/ page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/ObtencionDatos/ArchivosCSV/EjercicioCSV.html',
+        {
+            'title':'Ejercicio propuesto de obtencion de datos CSV'    
+        }
+    )
+
 def ArchivosARFF(request):
     "Renders the MiningData/ObtencionDatos/ArchivosARFF page"
     assert isinstance(request, HttpRequest)
@@ -195,17 +206,6 @@ def EvaluacionResultados(request):
         {
             'title':'Mineria de datos-Evaluacion de Resultados',
             'message':'Pagina de descripcion de evaluacion de los resultados obtenidos al aplicar algoritmos de mineria de datos',
-        }
-    )
-
-def simuladorPython(request):
-    "Renders the simuladorPython/ page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/simuladorPython/simuladorPython.html',
-        {
-            'title':'Simulador de Python',
         }
     )
 

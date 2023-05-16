@@ -22,6 +22,7 @@ urlpatterns = [
     path('MineriaDatos/Datasets/', views.Datasets, name='Datasets'),
     path('MineriaDatos/ObtencionDatos/', views.ObtencionDatos, name='ObtencionDatos'),
     path('MineriaDatos/ObtencionDatos/ArchivosCSV/', views.ArchivosCSV, name='ArchivosCSV'),
+    path('MineriaDatos/ObtencionDatos/ArchivosCSV/Ejercicio', views.EjercicioCSV, name='EjercicioCSV'),
     path('MineriaDatos/ObtencionDatos/ArchivosARFF/', views.ArchivosARFF, name='ArchivosARFF'),
     path('MineriaDatos/LimpiezaDatos/', views.LimpiezaDatos, name='LimpiezaDatos'),
     path('MineriaDatos/Algoritmos/', views.AlgoritmosMiningData, name='Algoritmos'),

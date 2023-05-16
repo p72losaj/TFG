@@ -7,7 +7,9 @@
     <py-tutor>
         <py-config>
             packages = [
-                
+                "pandas",
+                "seaborn", 
+                "matplotlib"
             ]
             plugins = [
             "https://pyscript.net/latest/plugins/python/py_tutor.py"
@@ -15,6 +17,29 @@
         </py-config>
         <py-script>
             
+            # Importamos las bibliotecas
+            import pandas as pd
+            from pyodide.http import open_url
+            import seaborn as sns
+            import matplotlib.pyplot as plt
+            
+            # Obtencion archivo CSV
+            iris = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),header=None, names=["sepal length","sepal width","petal length","petal width","Species"])
+            
+            # display(iris)
+            
+            # Analisis de datos
+            
+            # display(iris.info())
+
+            # display(iris.describe())
+
+            # display(iris.corr())
+
+            # sns.countplot(x="Species", data=iris); display(plt)
+
+            sns.scatterplot(x="sepal length", y="sepal width", hue="Species", data = iris); display(plt); plt.clf()
+
             display("##### FIN ###############")
         </py-script>
     </py-tutor>
