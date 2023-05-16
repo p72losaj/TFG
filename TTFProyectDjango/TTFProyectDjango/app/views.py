@@ -131,7 +131,7 @@ def ArchivosCSV(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/ObtencionDatos/ArchivosCSV.html',
+        'app/MineriaDatos/ObtencionDatos/ArchivosCSV/ArchivosCSV.html',
         {
             'title':'Archivos CSV',
             'message':'Pagina de descripcion de archivos CSV en minería de datos',
@@ -214,7 +214,7 @@ def Datasets(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/simuladorPython/Datasets.html',
+        'app/MineriaDatos/Datasets.html',
         {
             'title': 'Datasets'
         }
@@ -225,7 +225,7 @@ def comandosPython(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/simuladorPython/comandosPython.html',
+        'app/MineriaDatos/comandosPython.html',
         {
             'title': 'Comandos de python'
         }

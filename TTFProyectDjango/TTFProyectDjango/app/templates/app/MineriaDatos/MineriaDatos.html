@@ -14,16 +14,27 @@
     </p>
 </div>
 
-<div class="col-md">
-    <h1>Etapas del proceso de minería de datos</h1>
-    <ul>
-        <li><a href="{% url 'ObtencionDatos' %}">ObtencionDatos</a></li>
-        <li><a href="{% url 'LimpiezaDatos' %}">LimpiezaDatos</a></li>
-        <li><a href="{% url 'Algoritmos' %}">Algoritmos</a></li>
-        <li><a href="{% url 'TransformacionDatos' %}">TransformacionDatos</a></li>
-        <li><a href="{% url 'EvaluacionResultados' %}">EvaluacionResultados</a></li>
-    </ul>
-    
+
+<div class="row">
+    <div class="col-md-4">
+        <h1>Etapas del proceso de minería de datos</h1>
+        <ul>
+            <li><a href="{% url 'ObtencionDatos' %}">ObtencionDatos</a></li>
+            <li><a href="{% url 'LimpiezaDatos' %}">LimpiezaDatos</a></li>
+            <li><a href="{% url 'Algoritmos' %}">Algoritmos</a></li>
+            <li><a href="{% url 'TransformacionDatos' %}">TransformacionDatos</a></li>
+            <li><a href="{% url 'EvaluacionResultados' %}">EvaluacionResultados</a></li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h1>Comandos de python empleados</h1>
+        <ul><li><a href="{% url 'comandosPython' %}">comandosPython</a></li></ul>
+    </div>
+    <div class="col-md-4">
+        <h1>Datasets</h1>
+        <ul><li><a href="{% url 'Datasets' %}">Datasets</a></li></ul>
+    </div>
+
 </div>
 
 

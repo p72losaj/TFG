@@ -1,0 +1,26 @@
+﻿{% extends "app/plantillaBase.html" %}
+
+{% block content %}
+<h2>{{title}}</h2>
+
+<section class="pyscript">
+    <h3>Fecha de ultima actualizacion: </h3>
+
+    <py-tutor>
+        <py-config>
+            packages = [
+                
+            ]
+            plugins = [
+            "https://pyscript.net/latest/plugins/python/py_tutor.py"
+            ]
+        </py-config>
+        <py-script>
+            
+
+        </py-script>
+    </py-tutor>
+    
+</section>
+
+{% endblock %}
