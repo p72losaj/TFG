@@ -131,21 +131,21 @@ def ArchivosCSV(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/ObtencionDatos/ArchivosCSV/ArchivosCSV.html',
+        'app/MineriaDatos/ObtencionDatos/ArchivosCSV.html',
         {
             'title':'Archivos CSV',
             'message':'Pagina de descripcion de archivos CSV en minería de datos',
         }
     )
 
-def EjercicioCSV(request):
-    "Renders the ejercicioCSV/ page"
+def EjerciciosObtencionDatos(request):
+    "Renders the MiningData/ObtencionDatos/EjercicioPropuesto/ page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/ObtencionDatos/ArchivosCSV/EjercicioCSV.html',
+        'app/MineriaDatos/ObtencionDatos/EjerciciosObtencionDatos.html',
         {
-            'title':'Ejercicio propuesto de obtencion de datos CSV'    
+            'title':'Ejercicios propuestos de obtencion de datos'    
         }
     )
 
@@ -161,23 +161,24 @@ def ArchivosARFF(request):
         }
     )
 
-def EjercicioARFF(request):
-    "Renders the ejercicioARFF/ page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/MineriaDatos/ObtencionDatos/ArchivosARFF/EjercicioARFF.html',
-        {
-            'title':'Ejercicio propuesto de obtencion de datos ARFF'    
-        }
-    )
-
 def LimpiezaDatos(request):
     "Renders the MiningData/LimpiezaDatos page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/MineriaDatos/LimpiezaDatos/LimpiezaDatos.html',
+        {
+            'title':'Mineria de datos-Limpieza de Datos',
+            'message':'Pagina de descripcion de limpieza de datos en mineria de datos',
+        }
+    )
+
+def Outliers(request):
+    "Renders the MiningData/LimpiezaDatos/Outliers page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/LimpiezaDatos/Outliers/Outliers.html',
         {
             'title':'Mineria de datos-Limpieza de Datos',
             'message':'Pagina de descripcion de limpieza de datos en mineria de datos',
