@@ -1,0 +1,19 @@
+﻿{% extends "app/plantillaBase.html" %}
+
+{% block content %}
+<h2>{{title}}</h2>
+
+<section class="pyscript">
+    <py-config>
+        packages = [
+
+        ]
+        
+    </py-config>
+    <py-script>
+        display("Ejercicio. Obtenga al menos 10 conjuntos de datos en formato ARFF")
+        
+    </py-script>
+</section>
+
+{% endblock %}

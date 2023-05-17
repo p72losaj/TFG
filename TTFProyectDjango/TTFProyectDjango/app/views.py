@@ -154,10 +154,21 @@ def ArchivosARFF(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/ObtencionDatos/ArchivosARFF.html',
+        'app/MineriaDatos/ObtencionDatos/ArchivosARFF/ArchivosARFF.html',
         {
             'title':'Archivos ARFF',
             'message':'Pagina de descripcion de archivos ARFF en minería de datos',
+        }
+    )
+
+def EjercicioARFF(request):
+    "Renders the ejercicioARFF/ page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/ObtencionDatos/ArchivosARFF/EjercicioARFF.html',
+        {
+            'title':'Ejercicio propuesto de obtencion de datos ARFF'    
         }
     )
 
@@ -166,7 +177,7 @@ def LimpiezaDatos(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/LimpiezaDatos.html',
+        'app/MineriaDatos/LimpiezaDatos/LimpiezaDatos.html',
         {
             'title':'Mineria de datos-Limpieza de Datos',
             'message':'Pagina de descripcion de limpieza de datos en mineria de datos',
@@ -178,7 +189,7 @@ def TransformacionDatos(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/TransformacionDatos.html',
+        'app/MineriaDatos/TransformacionDatos/TransformacionDatos.html',
         {
             'title':'Mineria de datos-Transformacion de Datos',
             'message':'Pagina de descripcion de transformacion de datos en mineria de datos',
@@ -190,7 +201,7 @@ def AlgoritmosMiningData(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/AlgoritmosMiningData.html',
+        'app/MineriaDatos/Algoritmos/AlgoritmosMiningData.html',
         {
             'title':'Mineria de datos-Algoritmos',
             'message':'Pagina de descripcion de algoritmos de mineria de datos',
@@ -202,7 +213,7 @@ def EvaluacionResultados(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/EvaluacionResultados.html',
+        'app/MineriaDatos/EvaluacionResultados/EvaluacionResultados.html',
         {
             'title':'Mineria de datos-Evaluacion de Resultados',
             'message':'Pagina de descripcion de evaluacion de los resultados obtenidos al aplicar algoritmos de mineria de datos',
