@@ -2,10 +2,10 @@
 Definition of urls for TTFProyectDjango.
 """
 
-from datetime import datetime
+# from datetime import datetime
 from django.urls import path
-from django.contrib import admin
-from django.contrib.auth.views import LoginView, LogoutView
+# from django.contrib import admin
+# from django.contrib.auth.views import LoginView, LogoutView
 from app import forms, views
 
 
@@ -22,13 +22,19 @@ urlpatterns = [
     path('MineriaDatos/Datasets/', views.Datasets, name='Datasets'),
     path('MineriaDatos/ObtencionDatos/', views.ObtencionDatos, name='ObtencionDatos'),
     path('MineriaDatos/ObtencionDatos/ArchivosCSV/', views.ArchivosCSV, name='ArchivosCSV'),
-    path('MineriaDatos/ObtencionDatos/Ejercicios', views.EjerciciosObtencionDatos, name='EjerciciosObtencionDatos'),
     path('MineriaDatos/ObtencionDatos/ArchivosARFF/', views.ArchivosARFF, name='ArchivosARFF'),
+    path('MineriaDatos/ObtencionDatos/Ejercicios', views.EjerciciosObtencionDatos, name='EjerciciosObtencionDatos'),
     path('MineriaDatos/LimpiezaDatos/', views.LimpiezaDatos, name='LimpiezaDatos'),
     path('MineriaDatos/LimpiezaDatos/Outliers', views.Outliers, name='Outliers'),
+    path('MineriaDatos/LimpiezaDatos/DatosNulos', views.DatosNulos, name='DatosNulos'),
+    path('MineriaDatos/LimpiezaDatos/DatosErroneosIrrelevantes', views.DatosErroneosIrrelevantes, name='DatosErroneosIrrelevantes'),
+    path('MineriaDatos/LimpiezaDatos/Ejercicios', views.EjerciciosLimpiezaDatos, name='EjerciciosLimpiezaDatos'),
     path('MineriaDatos/Algoritmos/', views.AlgoritmosMiningData, name='Algoritmos'),
+    path('MineriaDatos/Algoritmos/ArbolDecision', views.ArbolDecision, name='ArbolDecision'),
+
+    path('MineriaDatos/Algoritmos/Ejercicios', views.EjerciciosAlgoritmosMiningData, name='EjerciciosAlgoritmosMiningData'),
     path('MineriaDatos/TransformacionDatos/', views.TransformacionDatos, name='TransformacionDatos'),
     path('MineriaDatos/EvaluacionResultados/', views.EvaluacionResultados, name='EvaluacionResultados'),
     path('MineriaDatos/comandosPython/', views.comandosPython, name='comandosPython'),
-    #path('admin/', admin.site.urls),
+    
 ]

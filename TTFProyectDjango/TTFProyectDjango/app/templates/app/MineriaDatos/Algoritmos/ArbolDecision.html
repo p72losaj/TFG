@@ -1,0 +1,36 @@
+﻿{% extends "app/MineriaDatos/MineriaDatos.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<div class="jumbotron">
+    <h1>Árboles de Decisión</h1>
+    <p class="lead">
+        Un árbol de decisión es un algoritmo de aprendizaje supervisado no paramétrico, que se utiliza tanto para
+        tareas de clasificación como de regresión.
+    </p>
+    <p>
+        <a href="https://www.unir.net/ingenieria/revista/arboles-de-decision/"
+           class="btn btn-primary btn-large">Aprender más&raquo;</a>
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Video Tutorial</h2>
+        <ul>
+            <li><a href="">Py-Script</a></li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h2>Ejercicio propuesto</h2>
+        <ul>
+            <li><a href="{% url 'EjerciciosAlgoritmosMiningData' %}">Py-Script</a></li>
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}

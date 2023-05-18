@@ -1,0 +1,20 @@
+﻿{% extends "app/plantillaBase.html" %}
+
+{% block content %}
+<h2>{{title}}</h2>
+
+<section class="pyscript">
+    <py-config>
+        packages = [
+
+        ]
+
+    </py-config>
+    <py-script>
+        display("Ejercicio. Obtenga al menos 10 conjuntos de datos en formato CSV/ARFF")
+        display("Ejercicio. Analice la existencia de datos outliers y aplica un método de limpieza de datos.")
+        
+    </py-script>
+</section>
+
+{% endblock %}

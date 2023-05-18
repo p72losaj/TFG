@@ -1,0 +1,33 @@
+﻿{% extends "app/MineriaDatos/MineriaDatos.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<div class="jumbotron">
+    <h1>Outliers</h1>
+    <p class="lead">
+        Por outliers nos referimos a cualquier dato que difiere signicativamente del promedio o rango observado del resto de nuestros datos.
+    </p>
+    <p><a href="https://www.malicksarr.com/how-to-detect-and-handle-outliers-in-data-mining/?utm_content=cmp-true" 
+          class="btn btn-primary btn-large">Aprender más&raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Video Tutorial</h2>
+        <ul>
+            <li><a href="">Py-Script</a></li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h2>Ejercicio propuesto</h2>
+        <ul>
+            <li><a href="{% url 'EjerciciosLimpiezaDatos' %}">Py-Script</a></li>
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}

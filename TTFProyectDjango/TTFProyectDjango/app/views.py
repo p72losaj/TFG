@@ -154,7 +154,7 @@ def ArchivosARFF(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/ObtencionDatos/ArchivosARFF/ArchivosARFF.html',
+        'app/MineriaDatos/ObtencionDatos/ArchivosARFF.html',
         {
             'title':'Archivos ARFF',
             'message':'Pagina de descripcion de archivos ARFF en minería de datos',
@@ -178,10 +178,82 @@ def Outliers(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/LimpiezaDatos/Outliers/Outliers.html',
+        'app/MineriaDatos/LimpiezaDatos/Outliers.html',
         {
-            'title':'Mineria de datos-Limpieza de Datos',
-            'message':'Pagina de descripcion de limpieza de datos en mineria de datos',
+            'title':'Mineria de datos-Outliers',
+            'message':'Pagina de descripcion de valores atípicos',
+        }
+    )
+
+def DatosNulos(request):
+    "Renders the MiningData/LimpiezaDatos/Outliers page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/LimpiezaDatos/DatosNulos.html',
+        {
+            'title':'Mineria de datos-Datos Nulos',
+            'message':'Pagina de descripcion de datos nulos',
+        }
+    )
+
+def DatosErroneosIrrelevantes(request):
+    "Renders the MiningData/LimpiezaDatos/DatosErroneosIrrelevantes page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/LimpiezaDatos/DatosErroneosIrrelevantes.html',
+        {
+            'title':'Mineria de datos-Datos Erroneos e Irrelevantes',
+            'message':'Pagina de descripcion de datos erroneos e irrelevantes',
+        }
+    )
+
+def EjerciciosLimpiezaDatos(request):
+    "Renders the MiningData/LimpiezaDatos/Ejercicios/ page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/LimpiezaDatos/EjerciciosLimpiezaDatos.html',
+        {
+            'title':'Ejercicios propuestos de limpieza de datos',
+        }
+    )
+
+
+
+def AlgoritmosMiningData(request):
+    "Renders the MiningData/Algoritmos page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/Algoritmos/AlgoritmosMiningData.html',
+        {
+            'title':'Mineria de datos-Algoritmos',
+            'message':'Pagina de descripcion de algoritmos de mineria de datos',
+        }
+    )
+
+def ArbolDecision(request):
+    "Renders the MiningData/Algoritmos/ArbolDecision/ page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/Algoritmos/ArbolDecision.html',
+        {
+            'title':'Mineria de datos-Arbol de decisión',
+            'message':'Pagina de descripcion de clasificadores: Árbol de Decisión',
+        }
+    )
+
+def EjerciciosAlgoritmosMiningData(request):
+    "Renders the MiningData/Algoritmos/Ejercicios/ page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/Algoritmos/EjerciciosAlgoritmosMiningData.html',
+        {
+            'title':'Ejercicios propuestos de algoritmos de mineria de datos',
         }
     )
 
@@ -194,18 +266,6 @@ def TransformacionDatos(request):
         {
             'title':'Mineria de datos-Transformacion de Datos',
             'message':'Pagina de descripcion de transformacion de datos en mineria de datos',
-        }
-    )
-
-def AlgoritmosMiningData(request):
-    "Renders the MiningData/Algoritmos page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/MineriaDatos/Algoritmos/AlgoritmosMiningData.html',
-        {
-            'title':'Mineria de datos-Algoritmos',
-            'message':'Pagina de descripcion de algoritmos de mineria de datos',
         }
     )
 
