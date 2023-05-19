@@ -15,16 +15,24 @@
     </p>
 </div>
 
-<div class="col-md">
-    <h1>Listado de algoritmos de minería de datos</h1>
-    <ul>
-        <li><a href="{% url 'ArbolDecision' %}">Árboles de Decisión</a></li>
-        <li>K-means</li>
-        <li>Máquinas de Vectores Soporte</li>
-        <li>AdaBoost</li>
-        <li>Naive Baye</li>
-
-    </ul>
+<div class="row">
+    <div class="col-md-4">
+        <h1>Información de interés</h1>
+        <ul>
+            <li><a href="{% url 'ArbolDecision' %}">Árboles de Decisión</a></li>
+            <li><a href="{% url 'KNN' %}">KNN</a></li>
+            <li>Máquinas de Vectores Soporte</li>
+            <li>AdaBoost</li>
+            <li>Naive Baye</li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <h1>Tutoriales</h1>
+        <ul>
+            <li><a href="">Árboles de Decisión</a></li>
+            <li><a href="">KNN</a></li>
+        </ul>
+    </div>
 </div>
 
 {% endblock %}

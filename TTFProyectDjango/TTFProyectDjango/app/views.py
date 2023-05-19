@@ -138,17 +138,6 @@ def ArchivosCSV(request):
         }
     )
 
-def EjerciciosObtencionDatos(request):
-    "Renders the MiningData/ObtencionDatos/EjercicioPropuesto/ page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/MineriaDatos/ObtencionDatos/EjerciciosObtencionDatos.html',
-        {
-            'title':'Ejercicios propuestos de obtencion de datos'    
-        }
-    )
-
 def ArchivosARFF(request):
     "Renders the MiningData/ObtencionDatos/ArchivosARFF page"
     assert isinstance(request, HttpRequest)
@@ -209,18 +198,6 @@ def DatosErroneosIrrelevantes(request):
         }
     )
 
-def EjerciciosLimpiezaDatos(request):
-    "Renders the MiningData/LimpiezaDatos/Ejercicios/ page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/MineriaDatos/LimpiezaDatos/EjerciciosLimpiezaDatos.html',
-        {
-            'title':'Ejercicios propuestos de limpieza de datos',
-        }
-    )
-
-
 
 def AlgoritmosMiningData(request):
     "Renders the MiningData/Algoritmos page"
@@ -246,14 +223,15 @@ def ArbolDecision(request):
         }
     )
 
-def EjerciciosAlgoritmosMiningData(request):
-    "Renders the MiningData/Algoritmos/Ejercicios/ page"
+def KNN(request):
+    "Renders the MiningData/Algoritmos/KNN/ page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/Algoritmos/EjerciciosAlgoritmosMiningData.html',
+        'app/MineriaDatos/Algoritmos/KNN.html',
         {
-            'title':'Ejercicios propuestos de algoritmos de mineria de datos',
+            'title':'Mineria de datos-KNN',
+            'message':'Pagina de descripcion de clasificadores: KNN',
         }
     )
 
