@@ -31,39 +31,42 @@
                 dataset = pd.read_csv(open_url(url), header=None, names=cols)
                 return dataset
 
-            # Funcion que muestra la descripcion de un dataset
-            def mostrarDescripcionDatasetCSV(dataset):
-                display(dataset.describe())
-
-            # Funcion que muestra el grado de relación de las características de un dataset
-            def correlacionDataset(dataset):
-                display(dataset.corr())
-
-            # Funcion que muestra las clases de un dataset
-            def mostrarClasesDataset(dataset,cad):
-                sns.countplot(x=cad, data=dataset); plt.title('Clases dataset ')
-                display(plt)
-                plt.clf()
-
-            # Funcion que muestra la distribucion de los datos de 2 caracteristicas pertenientes a las clases de un dataset
-            def distribucionDatosDataset(X,Y, HUE, dataset):
-                sns.scatterplot(x=X, y=Y, hue=HUE, data = dataset)
-                plt.title("Sepal length - width")
-                plt.legend()
-                display(plt)
-                plt.clf()
-
-            # Funcion que muestra la informacion de un dataset
-            def mostrarInformacionDatasetCSV(dataset):
-                display(dataset.info())
+            # Funcion que realiza un analisis de la informacion de un dataset
+            def analisisDataset(dataset, opcion, etiquetaClase, col1, col2):
+                # Opcion 1. Mostramos la descripcion del dataset
+                if opcion==1:
+                    display(dataset.describe())
+                # Opcion 2. Mostramos la informacion del dataset
+                elif opcion==2:
+                    display(dataset.info())
+                # Opcion 3. Mostramos el grado de relacion de las columnas del dataset
+                elif opcion==3:
+                    display(dataset.corr())
+                # Opcion 4. Mostramos las clases del dataset
+                elif opcion==4:
+                    sns.countplot(x=etiquetaClase, data=dataset)
+                    plt.title('Clases dataset SegmentChallenge')
+                    display(plt)
+                    plt.clf()
+                # Opcion 5. Mostramos la distribucion de los datos de 2 columnas del dataset
+                elif opcion==5:
+                    sns.scatterplot(x=col1,y=col2,hue=etiquetaClase,data=dataset)
+                    plt.title("Iris: Sepal length - width")
+                    plt.legend()
+                    display(plt)
+                    plt.clf()
 
             def main():
+                # Obtencion del dataset iris
                 iris = obtenerDatasetCSV("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data", 
                                             ["sepal length","sepal width","petal length","petal width","Species"])
+                # Obtencion del dataset segment-challenge
                 data_arff = arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))
-                df = pd.DataFrame(data_arff[0]).select_dtypes([object]).stack().str.decode('utf-8').unstack()
-                mostrarClasesDataset(df, "class")
+                segment_challenge = pd.DataFrame(data_arff[0]).select_dtypes([object]).stack().str.decode('utf-8').unstack()
                 
+                # Analisis de los datos del dataset iris
+                # analisisDataset(iris,5,"Species","sepal length", "sepal width")
+                analisisDataset(segment_challenge,4,"class","","")
 
             if __name__ == "__main__":
                 main()
