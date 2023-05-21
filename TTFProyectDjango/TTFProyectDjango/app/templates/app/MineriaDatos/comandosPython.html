@@ -9,7 +9,8 @@
             "pandas",
             "seaborn",
             "matplotlib",
-            "scipy"
+            "scipy",
+            
         ]
         plugins = [
             "https://pyscript.net/latest/plugins/python/py_tutor.py"
@@ -26,10 +27,15 @@
             import matplotlib.pyplot as plt
             from scipy.io import arff
 
-            # Funcion que carga un dataset
-            def obtenerDatasetCSV(url, cols):
-                dataset = pd.read_csv(open_url(url), header=None, names=cols)
-                return dataset
+            # Funcion que carga los datasets
+            def obtenerDatasets():
+                # obtencion dataset iris
+                iris = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"), 
+                                                header=None, 
+                                                names=["sepal length","sepal width","petal length","petal width","Species"])
+                # Obtencion del dataset segment_challenge
+                segment_challenge = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0]).select_dtypes([object]).stack().str.decode('utf-8').unstack()
+                return iris, segment_challenge
 
             # Funcion que realiza un analisis de la informacion de un dataset
             def analisisDataset(dataset, opcion, etiquetaClase, col1, col2):
@@ -56,17 +62,27 @@
                     display(plt)
                     plt.clf()
 
+
             def main():
-                # Obtencion del dataset iris
-                iris = obtenerDatasetCSV("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data", 
-                                            ["sepal length","sepal width","petal length","petal width","Species"])
-                # Obtencion del dataset segment-challenge
-                data_arff = arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))
-                segment_challenge = pd.DataFrame(data_arff[0]).select_dtypes([object]).stack().str.decode('utf-8').unstack()
+                # Obtenemos los datasets
+                iris, segment_challenge = obtenerDatasets()
+                
                 
                 # Analisis de los datos del dataset iris
-                # analisisDataset(iris,5,"Species","sepal length", "sepal width")
+                analisisDataset(iris,5,"Species","sepal length", "sepal width")
                 analisisDataset(segment_challenge,4,"class","","")
+
+                # Outliers
+                
+                iris.boxplot(); display(plt); plt.clf()
+                data = iris["sepal width"]; sns.boxplot(x=data); display(plt); plt.clf()
+                
+                Q1 = data.quantile(0.25); Q3 = data.quantile(0.75); IQR = Q3-Q1
+                outliers = iris[(data < Q1 - 1.5 * IQR) | (data > Q3 + 1.5 * IQR)]; display("Outliers: ", outliers)
+                
+                iris.drop([15,32,33,60], axis=0, inplace=True)
+                
+                iris.boxplot(); display(plt); plt.clf()
 
             if __name__ == "__main__":
                 main()
