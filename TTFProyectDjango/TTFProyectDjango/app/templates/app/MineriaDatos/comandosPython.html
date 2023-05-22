@@ -20,70 +20,60 @@
         <py-script>
 
             # Packetes python
-
             import pandas as pd
             from pyodide.http import open_url
             import seaborn as sns
             import matplotlib.pyplot as plt
-            from scipy.io import arff
 
-            # Funcion que carga los datasets
-            def obtenerDatasets():
-                # obtencion dataset iris
+            # Funcion que carga un dataset
+            def cargarDatasets():
+                # Dataset iris
                 iris = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"), 
                                                 header=None, 
                                                 names=["sepal length","sepal width","petal length","petal width","Species"])
-                # Obtencion del dataset segment_challenge
-                segment_challenge = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0]).select_dtypes([object]).stack().str.decode('utf-8').unstack()
-                return iris, segment_challenge
-
-            # Funcion que realiza un analisis de la informacion de un dataset
-            def analisisDataset(dataset, opcion, etiquetaClase, col1, col2):
-                # Opcion 1. Mostramos la descripcion del dataset
-                if opcion==1:
-                    display(dataset.describe())
-                # Opcion 2. Mostramos la informacion del dataset
-                elif opcion==2:
+                # Dataset titanic
+                titanic = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
+                
+                return iris,titanic
+            
+            # Funcion que realiza distintos tipos de analisis de la informacion de un dataset
+            def analisisDatos(dataset, opcion, clase, etiqueta):
+                # Mostramos el dataset
+                if opcion == 0:
+                    display(dataset)
+                # Informacion del dataset
+                elif opcion == 1:
                     display(dataset.info())
-                # Opcion 3. Mostramos el grado de relacion de las columnas del dataset
-                elif opcion==3:
-                    display(dataset.corr())
-                # Opcion 4. Mostramos las clases del dataset
-                elif opcion==4:
-                    sns.countplot(x=etiquetaClase, data=dataset)
-                    plt.title('Clases dataset SegmentChallenge')
+                # Correlacion columnas dataset
+                elif opcion == 2:
+                    display(dataset.corr(numeric_only=True))
+                # Descripcion del dataset
+                elif opcion == 3:
+                    display(dataset.describe())
+                # Clases del dataset
+                elif opcion == 4:
+                    sns.countplot(x=clase, data=dataset)
+                    plt.title('Clases dataset')
                     display(plt)
                     plt.clf()
-                # Opcion 5. Mostramos la distribucion de los datos de 2 columnas del dataset
-                elif opcion==5:
-                    sns.scatterplot(x=col1,y=col2,hue=etiquetaClase,data=dataset)
-                    plt.title("Iris: Sepal length - width")
-                    plt.legend()
+                # Distribucion datos
+                elif opcion == 5:
+                    sns.displot(dataset, x=etiqueta, col=clase)
                     display(plt)
                     plt.clf()
-
-
+            
+            
+            # Funcion principal
             def main():
                 # Obtenemos los datasets
-                iris, segment_challenge = obtenerDatasets()
-                
-                
-                # Analisis de los datos del dataset iris
-                analisisDataset(iris,5,"Species","sepal length", "sepal width")
-                analisisDataset(segment_challenge,4,"class","","")
-
-                # Outliers
-                
-                iris.boxplot(); display(plt); plt.clf()
-                data = iris["sepal width"]; sns.boxplot(x=data); display(plt); plt.clf()
-                
-                Q1 = data.quantile(0.25); Q3 = data.quantile(0.75); IQR = Q3-Q1
-                outliers = iris[(data < Q1 - 1.5 * IQR) | (data > Q3 + 1.5 * IQR)]; display("Outliers: ", outliers)
-                
-                iris.drop([15,32,33,60], axis=0, inplace=True)
-                
-                iris.boxplot(); display(plt); plt.clf()
-
+                iris,titanic = cargarDatasets()
+                # Analizamos la informacion del dataset
+                analisisDatos(,0,"","")
+                analisisDatos(titanic,1,"Survived","Pclass")
+                analisisDatos(titanic,2,"Survived","Pclass")
+                analisisDatos(titanic,3,"Survived","Pclass")
+                analisisDatos(titanic,4,"Survived","Pclass")
+                analisisDatos(titanic,5,"Survived","Pclass")
             if __name__ == "__main__":
                 main()
         </py-script>
