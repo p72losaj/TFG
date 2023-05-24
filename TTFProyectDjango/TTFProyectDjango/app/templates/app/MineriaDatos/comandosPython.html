@@ -10,7 +10,6 @@
             "seaborn",
             "matplotlib",
             "scipy",
-            
         ]
         plugins = [
             "https://pyscript.net/latest/plugins/python/py_tutor.py"
@@ -24,8 +23,23 @@
             from pyodide.http import open_url
             import seaborn as sns
             import matplotlib.pyplot as plt
+            from scipy.io import arff
 
-            # Funcion que carga un dataset
+            # Obtencion dataset titanic
+            def cargarTitanic(df):
+                df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
+                return df
+
+            # Obtencion dataset iris
+            def cargarIris(df):
+                df = pd.read_csv(
+                                    open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"), 
+                                    header=None, 
+                                    names = ["sepal length","sepal width","petal length","petal width","Species"])
+                return df
+
+            # Funcion que carga los datasets
+
             def cargarDatasets():
                 # Dataset iris
                 iris = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"), 
@@ -33,48 +47,80 @@
                                                 names=["sepal length","sepal width","petal length","petal width","Species"])
                 # Dataset titanic
                 titanic = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
+
+                # Dataset segment challenge
+                segment_challenge = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
                 
-                return iris,titanic
+                # Correccion error escritura al transformar archivo arff en dataframe de pandas
+                segment_challenge['class'] = segment_challenge['class'].str.decode('utf-8')
+                
+                return iris,titanic, segment_challenge
+
+            # Funcion que muestra el dataset
             
-            # Funcion que realiza distintos tipos de analisis de la informacion de un dataset
-            def analisisDatos(dataset, opcion, clase, etiqueta):
-                # Mostramos el dataset
-                if opcion == 0:
-                    display(dataset)
-                # Informacion del dataset
-                elif opcion == 1:
-                    display(dataset.info())
-                # Correlacion columnas dataset
-                elif opcion == 2:
-                    display(dataset.corr(numeric_only=True))
-                # Descripcion del dataset
-                elif opcion == 3:
-                    display(dataset.describe())
-                # Clases del dataset
-                elif opcion == 4:
-                    sns.countplot(x=clase, data=dataset)
-                    plt.title('Clases dataset')
-                    display(plt)
-                    plt.clf()
-                # Distribucion datos
-                elif opcion == 5:
-                    sns.displot(dataset, x=etiqueta, col=clase)
-                    display(plt)
-                    plt.clf()
+            def showDataset(df):
+                display("Dataset: ")
+                display(df)
+                return df
+            
+            # Funcion que muestra la informacion del dataset
+            
+            def showInfoDataset(df):
+                display("Mostrando la informacion del dataset: ")
+                display(df.info())
+                return df
+
+            # Funcion que muestra la correlacion de las columnas del dataset
+            
+            def corrDataset(df):
+                display("Correlacion columnas dataset")
+                display(dataset.corr(numeric_only=True))
+                return df
+
+            # Funcion que muestra un analisis estadistico del dataset
+            
+            def analisisEstadisticoDataset(df):
+                display("Analisis estadistico del dataset")
+                display(df.describe())
+                return df
+
+            # Funcion que muestra las clases del dataset
+            
+            def showClases(df, clase):
+                sns.countplot(x=clase, data=df)
+                plt.title("Clases del dataset")
+                display(plt)
+                plt.clf()
+                return df
+
+            # Funcion que muestra la distribucion de los datos del dataset para una columna dada
+            
+            def distribucionDatosColumnaDataset(df, etiqueta, clase):
+                display("Mostrando la distribucion de los datos del dataset")
+                sns.displot(df, x=etiqueta, col=clase)
+                display(plt)
+                plt.clf()
+                return df
+
+            # Eliminamos columnas innecesarias dataset
+            
+            def drop_cols(df,cols):
+                df.drop(cols, axis=1, inplace=True)
+                return df
             
             
             # Funcion principal
             def main():
-                # Obtenemos los datasets
-                iris,titanic = cargarDatasets()
-                # Analizamos la informacion del dataset
-                analisisDatos(,0,"","")
-                analisisDatos(titanic,1,"Survived","Pclass")
-                analisisDatos(titanic,2,"Survived","Pclass")
-                analisisDatos(titanic,3,"Survived","Pclass")
-                analisisDatos(titanic,4,"Survived","Pclass")
-                analisisDatos(titanic,5,"Survived","Pclass")
+
+                # Procesamiento del dataset iris
+                iris.pipe(showDataset)
+                
+                # Procesamiento del dataset titanic
+                titanic.pipe(showDataset)
+                titanic2 = titanic.pipe(cargarTitanic).pipe(drop_cols, ['PassengerId','Name','Ticket','Cabin']).pipe(showDataset)
+
             if __name__ == "__main__":
+                iris,titanic,segment_challenge = cargarDatasets()
                 main()
         </py-script>
     </py-tutor>

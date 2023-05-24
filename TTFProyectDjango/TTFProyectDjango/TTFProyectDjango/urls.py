@@ -29,6 +29,7 @@ urlpatterns = [
     path('MineriaDatos/ObtencionDatos/ArchivosARFF/', views.ArchivosARFF, name='ArchivosARFF'),
     
     path('MineriaDatos/LimpiezaDatos/', views.LimpiezaDatos, name='LimpiezaDatos'),
+    path('MineriaDatos/LimpiezaDatos/EliminarColumnasInnecesarias', views.EliminarColumnasInnecesarias, name='EliminarColumnasInnecesarias'),
     path('MineriaDatos/LimpiezaDatos/Outliers', views.Outliers, name='Outliers'),
     path('MineriaDatos/LimpiezaDatos/DatosNulos', views.DatosNulos, name='DatosNulos'),
     path('MineriaDatos/LimpiezaDatos/DatosErroneosIrrelevantes', views.DatosErroneosIrrelevantes, name='DatosErroneosIrrelevantes'),

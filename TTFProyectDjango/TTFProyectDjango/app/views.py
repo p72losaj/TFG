@@ -162,6 +162,19 @@ def LimpiezaDatos(request):
         }
     )
 
+def EliminarColumnasInnecesarias(request):
+    "Renders the MiningData/LimpiezaDatos/EliminarColumnasInnecesarias page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/LimpiezaDatos/EliminarColumnasInnecesarias.html',
+        {
+            'title':'Mineria de datos-Eliminar columnas innecesarias',
+            'message':'Pagina de descripcion de columnas innecesarias en mineria de datos',
+        }
+    )
+
+
 def Outliers(request):
     "Renders the MiningData/LimpiezaDatos/Outliers page"
     assert isinstance(request, HttpRequest)
