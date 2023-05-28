@@ -162,15 +162,15 @@ def LimpiezaDatos(request):
         }
     )
 
-def EliminarColumnasInnecesarias(request):
-    "Renders the MiningData/LimpiezaDatos/EliminarColumnasInnecesarias page"
+def SeleccionDatosInteres(request):
+    "Renders the MiningData/LimpiezaDatos/SeleccionDatosInteres page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/LimpiezaDatos/EliminarColumnasInnecesarias.html',
+        'app/MineriaDatos/LimpiezaDatos/SeleccionDatosInteres.html',
         {
-            'title':'Mineria de datos-Eliminar columnas innecesarias',
-            'message':'Pagina de descripcion de columnas innecesarias en mineria de datos',
+            'title':'Mineria de datos-Seleccion de los Datos de Interes',
+            'message':'Pagina de descripcion de seleccion de datos de interes',
         }
     )
 
@@ -196,18 +196,6 @@ def DatosNulos(request):
         {
             'title':'Mineria de datos-Datos Nulos',
             'message':'Pagina de descripcion de datos nulos',
-        }
-    )
-
-def DatosErroneosIrrelevantes(request):
-    "Renders the MiningData/LimpiezaDatos/DatosErroneosIrrelevantes page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/MineriaDatos/LimpiezaDatos/DatosErroneosIrrelevantes.html',
-        {
-            'title':'Mineria de datos-Datos Erroneos e Irrelevantes',
-            'message':'Pagina de descripcion de datos erroneos e irrelevantes',
         }
     )
 
@@ -269,6 +257,18 @@ def EvaluacionResultados(request):
         {
             'title':'Mineria de datos-Evaluacion de Resultados',
             'message':'Pagina de descripcion de evaluacion de los resultados obtenidos al aplicar algoritmos de mineria de datos',
+        }
+    )
+
+def TransformacionDatos(request):
+    "Renders the MiningData/TransformacionDatos page"
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/MineriaDatos/TransformacionDatos/TransformacionDatos.html',
+        {
+            'title':'Mineria de datos-Transformacion de Datos',
+            'message':'Pagina de descripcion de transformacion de datos en mineria de datos',
         }
     )
 

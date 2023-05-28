@@ -18,51 +18,46 @@
     <py-tutor>
         <py-script>
 
-            # Packetes python
+            # Obtencion archivos
             import pandas as pd
             from pyodide.http import open_url
+            from scipy.io import arff
             import seaborn as sns
             import matplotlib.pyplot as plt
-            from scipy.io import arff
+            
+            # Fase 1. Obtencion y analisis de informacion
 
             # Obtencion dataset titanic
-            def cargarTitanic(df):
+            
+            def cargarTitanic():
                 df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
                 return df
 
             # Obtencion dataset iris
-            def cargarIris(df):
+
+            def cargarIris():
                 df = pd.read_csv(
                                     open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"), 
                                     header=None, 
                                     names = ["sepal length","sepal width","petal length","petal width","Species"])
                 return df
 
-            # Funcion que carga los datasets
+            # Obtencion dataset segment challenge
 
-            def cargarDatasets():
-                # Dataset iris
-                iris = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"), 
-                                                header=None, 
-                                                names=["sepal length","sepal width","petal length","petal width","Species"])
-                # Dataset titanic
-                titanic = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
-
-                # Dataset segment challenge
-                segment_challenge = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
+            def cargarSegmentChallenge():
                 
-                # Correccion error escritura al transformar archivo arff en dataframe de pandas
+                segment_challenge = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
                 segment_challenge['class'] = segment_challenge['class'].str.decode('utf-8')
                 
-                return iris,titanic, segment_challenge
+                return segment_challenge
 
             # Funcion que muestra el dataset
             
-            def showDataset(df):
-                display("Dataset: ")
+            def showDataset(df, nombreDataset):
+                display("Mostrando el dataset: " + nombreDataset)
                 display(df)
                 return df
-            
+
             # Funcion que muestra la informacion del dataset
             
             def showInfoDataset(df):
@@ -74,7 +69,7 @@
             
             def corrDataset(df):
                 display("Correlacion columnas dataset")
-                display(dataset.corr(numeric_only=True))
+                display(df.corr(numeric_only=True))
                 return df
 
             # Funcion que muestra un analisis estadistico del dataset
@@ -101,44 +96,32 @@
                 display(plt)
                 plt.clf()
                 return df
-
-            # Eliminamos columnas innecesarias dataset
             
-            def drop_cols(df,cols):
+
+            # Fase 2. Limpieza de datos
+
+            # Consideraciones dataset titanic
+            # 1) Establecer meta: Predecir supervivencia de los pasajeros => Atributo clave sera Survived
+            # 2) Separar etiquetas de los datos
+            # 3) ¿Variables categoricas / diferentes niveles? Atributos Sex y Embarked => Transformamos a variables numericas
+            # 4) Variables numericos se mantienen
+            # 5) Eliminamos atributos con poco relevancia
+
+            # Funcion que elimina atributos del dataset con poca relevancia
+
+            def eliminarColumnas(df, cols):
                 df.drop(cols, axis=1, inplace=True)
                 return df
 
-            # Visualizamos los datos nulos
-
-            def visualizarDatosNulos(df):
-                # Porcentaje de valores nulos
-                display("Porcentaje de valores nulos: ")
-                missing_values = df.isnull().sum()
-                display(missing_values[missing_values > 0]/len(df)*100)
-                # Grafica de valores nulos
-                sns.heatmap(df.isnull(), yticklabels=False, cbar=False)
-                plt.title("Datos nulos")
-                display(plt)
-                plt.clf()
-                return df
-            
-            # Funcion que rellena los valores nulos usando la moda
-
-            def rellenarValoresNulos(df, string):
-                df[string] = df[string].fillna(df[string].mode()[0])
-                return df
-            
             # Funcion principal
             def main():
+                titanic.pipe(showDataset, "TitanicOriginal")
+                titanic2 = titanic.copy().pipe(eliminarColumnas, ['PassengerId', 'Name', 'Ticket', 'Cabin']).pipe(showDataset, "TitanicCopia")
+                display("Variables categoricas: " + titanic2.dtypes[titanic2.dtypes == "object"].index)
 
-                # Procesamiento del dataset titanic
-                titanic2 = titanic.pipe(cargarTitanic).pipe(
-                                                                drop_cols, 
-                                                                ['PassengerId','Name','Ticket','Cabin','Embarked']).pipe(visualizarDatosNulos).pipe(
-                                                                rellenarValoresNulos, 'Age')
-                titanic2.pipe(visualizarDatosNulos)
             if __name__ == "__main__":
-                iris,titanic,segment_challenge = cargarDatasets()
+                # Cargamos los conjuntos de datos
+                iris, titanic, segment_challenge = cargarIris(), cargarTitanic(), cargarSegmentChallenge()
                 main()
         </py-script>
     </py-tutor>
