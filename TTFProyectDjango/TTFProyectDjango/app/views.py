@@ -150,12 +150,12 @@ def ArchivosARFF(request):
         }
     )
 
-def LimpiezaDatos(request):
-    "Renders the MiningData/LimpiezaDatos page"
+def PreprocesamientoDatos(request):
+    "Renders the MiningData/PreprocesamientoDatos page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/LimpiezaDatos/LimpiezaDatos.html',
+        'app/MineriaDatos/PreprocesamientoDatos/PreprocesamientoDatos.html',
         {
             'title':'Mineria de datos-Limpieza de Datos',
             'message':'Pagina de descripcion de limpieza de datos en mineria de datos',
@@ -163,11 +163,11 @@ def LimpiezaDatos(request):
     )
 
 def SeleccionDatosInteres(request):
-    "Renders the MiningData/LimpiezaDatos/SeleccionDatosInteres page"
+    "Renders the MiningData/PreprocesamientoDatos/SeleccionDatosInteres page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/LimpiezaDatos/SeleccionDatosInteres.html',
+        'app/MineriaDatos/PreprocesamientoDatos/SeleccionDatosInteres.html',
         {
             'title':'Mineria de datos-Seleccion de los Datos de Interes',
             'message':'Pagina de descripcion de seleccion de datos de interes',
@@ -176,11 +176,11 @@ def SeleccionDatosInteres(request):
 
 
 def Outliers(request):
-    "Renders the MiningData/LimpiezaDatos/Outliers page"
+    "Renders the MiningData/PreprocesamientoDatos/Outliers page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/LimpiezaDatos/Outliers.html',
+        'app/MineriaDatos/PreprocesamientoDatos/Outliers.html',
         {
             'title':'Mineria de datos-Outliers',
             'message':'Pagina de descripcion de valores atípicos',
@@ -192,7 +192,7 @@ def DatosNulos(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/LimpiezaDatos/DatosNulos.html',
+        'app/MineriaDatos/PreprocesamientoDatos/DatosNulos.html',
         {
             'title':'Mineria de datos-Datos Nulos',
             'message':'Pagina de descripcion de datos nulos',
@@ -236,18 +236,6 @@ def KNN(request):
         }
     )
 
-def TransformacionDatos(request):
-    "Renders the MiningData/TransformacionDatos page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/MineriaDatos/TransformacionDatos/TransformacionDatos.html',
-        {
-            'title':'Mineria de datos-Transformacion de Datos',
-            'message':'Pagina de descripcion de transformacion de datos en mineria de datos',
-        }
-    )
-
 def EvaluacionResultados(request):
     "Renders the MiningData/EvaluacionResultados page"
     assert isinstance(request, HttpRequest)
@@ -260,17 +248,6 @@ def EvaluacionResultados(request):
         }
     )
 
-def TransformacionDatos(request):
-    "Renders the MiningData/TransformacionDatos page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/MineriaDatos/TransformacionDatos/TransformacionDatos.html',
-        {
-            'title':'Mineria de datos-Transformacion de Datos',
-            'message':'Pagina de descripcion de transformacion de datos en mineria de datos',
-        }
-    )
 
 def Datasets(request):
     "Renders the informationInteres/ page"
