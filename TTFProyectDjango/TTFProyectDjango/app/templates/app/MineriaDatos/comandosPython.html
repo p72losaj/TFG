@@ -100,24 +100,47 @@
 
             # Fase 2. Limpieza de datos
 
-            # Consideraciones dataset titanic
-            # 1) Establecer meta: Predecir supervivencia de los pasajeros => Atributo clave sera Survived
-            # 2) Separar etiquetas de los datos
-            # 3) ¿Variables categoricas / diferentes niveles? Atributos Sex y Embarked => Transformamos a variables numericas
-            # 4) Variables numericos se mantienen
-            # 5) Eliminamos atributos con poco relevancia
+            # Funcion que visualiza los datos perdidos de un dataset
 
-            # Funcion que elimina atributos del dataset con poca relevancia
+            def visualizarDatosPerdidos(df):
+                # Mostramos las columnas con datos perdidos
+                display('Mostrando procentaje datos perdidos: ', round(df.isnull().sum() / len(df) * 100))
+                return df
 
-            def eliminarColumnas(df, cols):
+            # Funcion que visualiza el ratio de supervivencia de los pasajeros de cada cabina del titanic
+
+            def visualizarDatosPerdidosTitanic(df):
+                # Mostramos datos de cada cabina
+                df['Deck'] = df['Cabin'].apply(lambda c: c[0] if pd.notnull(c) else 'M')
+                df[['Deck','Survived']].groupby('Deck')['Survived'].mean().plot(kind='bar', figsize=(15,7))
+                # Mostramos la grafica
+                plt.title('Ratio de supervivencia de diferentes cabinas');display(plt);plt.clf()
+                # Mostramos la relacion entre la edad con el sexo y la clase social
+                display( 'Relacion edad con el sexo y la clase social: ', df.groupby(['Pclass','Sex'])['Age'].count() )
+                
+                return df
+
+            # Funcion que elimina las columnas de un dataset
+
+            def eliminarColumnas(df,cols):
                 df.drop(cols, axis=1, inplace=True)
                 return df
 
+            # Funcion que limpia los datos faltantes del dataset titanic
+
+            def LimpiarDatosFaltantesTitanic(df):
+                # Limpiamos los datos faltantes de la edad
+                df.interpolate(method ='linear', limit_direction ='backward', inplace=True)
+                # Comprobamos si se han limpiado los datos faltantes
+                visualizarDatosPerdidos(df)
+                return df
+
+            
+            
+            
             # Funcion principal
             def main():
-                titanic.pipe(showDataset, "TitanicOriginal")
-                titanic2 = titanic.copy().pipe(eliminarColumnas, ['PassengerId', 'Name', 'Ticket', 'Cabin']).pipe(showDataset, "TitanicCopia")
-                display("Variables categoricas: " + titanic2.dtypes[titanic2.dtypes == "object"].index)
+                titanic2 = titanic.copy().pipe(visualizarDatosPerdidos).pipe(visualizarDatosPerdidosTitanic).pipe(eliminarColumnas, ['PassengerId', 'Name', 'Ticket', 'Cabin']).pipe(LimpiarDatosFaltantesTitanic)
 
             if __name__ == "__main__":
                 # Cargamos los conjuntos de datos
