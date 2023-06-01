@@ -141,42 +141,39 @@
                 df.plot(kind="box", figsize=(8,8)); display(plt); plt.clf()
                 return df
 
-            # Funcion que transforma los datos del dataset titanic
-
+            # Funcion de transformacion de los datos del dataset titanic
             def transformacionDatosTitanic(df):
-                
-                variablesFicticias=[]
-            
-                # Generamos las variables ficticias para PClass, Sex y Embarked
-                cols = ['Pclass', 'Sex', 'Embarked']
+                # Transformamos las columnas Pclass, Sex y Embarked
+                dummies=[]; cols=['Pclass', 'Sex', 'Embarked'] 
                 for col in cols:
-                    variablesFicticias.append(pd.get_dummies(df[col]))
-                
-                df = pd.concat((df, pd.concat(variablesFicticias, axis=1)), axis=1)
-
-                # Generamos la variable para identificar si el pasajero viajaba en familia o no
-                df['enFamilia'] = (df['SibSp'] > 0) | (df['Parch'] > 0)
-                
-                # Generamos la variable para identificar si el pasajero es adulto o niño
-                df['rangoEdad'] = pd.cut(df['Age'], [-1,15,80], labels=['niño','adulto'])
-                
-                # Transformamos la tarifa en rangos de intervalos 
-                
-                
-                df.loc[ df['Fare'] <= 7.910400, 'Fare' ] = 0
-                df.loc[ (df['Fare'] > 7.910400)   & (df['Fare'] <= 14.454200), 'Fare'] = 1
-                df.loc[ (df['Fare'] > 14.454200)   & (df['Fare'] <= 31), 'Fare'] = 2
-                df.loc[ df['Fare'] > 31, 'Fare' ] = 3
-                df['Fare'] = df['Fare'].astype(int)
-
-                # Eliminamos las columnas de informacion redundante
-                df = df.drop(['Pclass', 'Sex', 'Embarked', 'SibSp', 'Parch', 'Age'], axis=1)
+                    dummies.append(pd.get_dummies(df[col]))
+                df = pd.concat((df, pd.concat(dummies, axis=1)), axis=1) 
+                # Transformamos las columnas SibSp y Parch
+                df['inFamily']=(df['SibSp'] > 0) | (df['Parch'] > 0) 
+                # Transformamos la columna Age en intervalos
+                df['AgeRange']=pd.cut(df['Age'], [-1,15,80], labels=['child','adult']) 
+                # Transformamos la columna Fare en intervalos
+                df.loc[ df['Fare'] <= 7.910400, 'Fare' ] = 0 
+                df.loc[ (df['Fare'] > 7.910400)   & (df['Fare'] <= 14.454200), 'Fare'] = 1 
+                df.loc[ (df['Fare'] > 14.454200)   & (df['Fare'] <= 31), 'Fare'] = 2 
+                df.loc[ df['Fare'] > 31, 'Fare' ] = 3 
+                df['Fare'] = df['Fare'].astype(int) 
+                # Eliminamos las columnas innecesarias
+                df.drop(['Pclass', 'Sex', 'Embarked', 'SibSp', 'Parch', 'Age'], axis=1,inplace=True) 
+                # Transformamos la columna Survived
+                df['Survived'] = df['Survived'].apply(transformSurvived)
                 return df
             
-            
+            # Funcion que codifica la etiqueta Survived del dataset titanic
+
+            def transformSurvived(survived):
+                if survived == 0:
+                    return 'Died'
+                else:
+                    return 'Alive'
+
             # Funcion principal
             def main():
-
                 # Preprocesamiento dataset titanic
                 titanic2 = titanic.copy().pipe(visualizarDatosPerdidos).pipe(visualizarDatosPerdidosTitanic).pipe(eliminarColumnas, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Deck']).pipe(LimpiarDatosFaltantesTitanic).pipe(detectarOutliers).pipe(transformacionDatosTitanic).pipe(detectarOutliers)
                 
