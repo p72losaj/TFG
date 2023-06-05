@@ -131,8 +131,6 @@
             def LimpiarDatosFaltantesTitanic(df):
                 # Limpiamos los datos faltantes de la edad
                 df.interpolate(method ='linear', limit_direction ='backward', inplace=True)
-                # Comprobamos si se han limpiado los datos faltantes
-                visualizarDatosPerdidos(df)
                 return df
 
             # Funcion que detecta valores atipicos de un dataset
@@ -149,11 +147,11 @@
                     dummies.append(pd.get_dummies(df[col]))
                 df = pd.concat((df, pd.concat(dummies, axis=1)), axis=1) 
                 # Transformamos las columnas SibSp y Parch
-                df['inFamily']=(df['SibSp'] > 0) | (df['Parch'] > 0) 
+                df['inFamily']=(df['SibSp'] > 0) | (df['Parch'] > 0)                 
                 # Transformamos la columna Age en intervalos
                 df['AgeRange']=pd.cut(df['Age'], [-1,15,80], labels=['child','adult']) 
                 # Transformamos la columna Fare en intervalos
-                df.loc[ df['Fare'] <= 7.910400, 'Fare' ] = 0 
+                df.loc[ df['Fare'] <= 7.910400, 'Fare' ] = 0
                 df.loc[ (df['Fare'] > 7.910400)   & (df['Fare'] <= 14.454200), 'Fare'] = 1 
                 df.loc[ (df['Fare'] > 14.454200)   & (df['Fare'] <= 31), 'Fare'] = 2 
                 df.loc[ df['Fare'] > 31, 'Fare' ] = 3 
@@ -171,13 +169,20 @@
                     return 'Died'
                 else:
                     return 'Alive'
+            
+            # Funcion de transformacion datos del dataset titanic
 
+            def preprocesamientoDatosTitanic(df):
+                
+                df.pipe(eliminarColumnas,['PassengerId', 'Name', 'Ticket', 'Cabin']).pipe(LimpiarDatosFaltantesTitanic).pipe(transformacionDatosTitanic)
+                return df
+             
             # Funcion principal
             def main():
                 # Preprocesamiento dataset titanic
-                titanic2 = titanic.copy().pipe(visualizarDatosPerdidos).pipe(visualizarDatosPerdidosTitanic).pipe(eliminarColumnas, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Deck']).pipe(LimpiarDatosFaltantesTitanic).pipe(detectarOutliers).pipe(transformacionDatosTitanic).pipe(detectarOutliers)
+                # titanic2 = titanic.copy().pipe(visualizarDatosPerdidos).pipe(visualizarDatosPerdidosTitanic).pipe(eliminarColumnas, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Deck']).pipe(LimpiarDatosFaltantesTitanic).pipe(detectarOutliers).pipe(transformacionDatosTitanic).pipe(detectarOutliers)
+                titanic2 = titanic.copy().pipe(preprocesamientoDatosTitanic).pipe(showDataset, 'titanicClean')
                 
-                display(titanic2)
             if __name__ == "__main__":
                 # Cargamos los conjuntos de datos
                 iris, titanic, segment_challenge = cargarIris(), cargarTitanic(), cargarSegmentChallenge()
