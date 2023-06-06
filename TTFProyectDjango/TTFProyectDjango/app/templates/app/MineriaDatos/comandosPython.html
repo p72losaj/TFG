@@ -181,7 +181,7 @@
             def main():
                 # Preprocesamiento dataset titanic
                 # titanic2 = titanic.copy().pipe(visualizarDatosPerdidos).pipe(visualizarDatosPerdidosTitanic).pipe(eliminarColumnas, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Deck']).pipe(LimpiarDatosFaltantesTitanic).pipe(detectarOutliers).pipe(transformacionDatosTitanic).pipe(detectarOutliers)
-                titanic2 = titanic.copy().pipe(preprocesamientoDatosTitanic).pipe(showDataset, 'titanicClean')
+                # titanic2 = titanic.copy().pipe(preprocesamientoDatosTitanic).pipe(showDataset, 'titanicClean')
                 
             if __name__ == "__main__":
                 # Cargamos los conjuntos de datos

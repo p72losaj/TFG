@@ -12,7 +12,6 @@ from app import forms, views
 urlpatterns = [
     path('', views.home, name='home'),
     
-    path('tecnologias/', views.tecnologias, name='tecnologias'),
     path('tecnologias/Django/', views.dJango, name='Django'),
     path('tecnologias/html/', views.html, name='html'),
     path('tecnologias/JavaScript/', views.JavaScript, name='JavaScript'),

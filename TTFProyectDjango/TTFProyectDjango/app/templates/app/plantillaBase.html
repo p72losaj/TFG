@@ -14,34 +14,37 @@
     <link rel="stylesheet" href="repl.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-    
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="/" class="navbar-brand">NETTLAERER</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    MENU
 
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-            </div>
-
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'MineriaDatos' %}">Mineria de Datos</a></li>
-                    <li><a href="{% url 'tecnologias' %}">Tecnologias</a></li>
-
-                </ul>
-
-            </div>
-        </div>
+    <div id="header">
+        <nav>
+            <ul class="nav">
+                <li><a href="/" class="navbar-brand">NETTLAERER</a></li>
+                <li><a class="navbar-brand">Mineria de Datos</a>
+                    <ul>
+                        <li><a href="{% url 'MineriaDatos' %}">Pagina Principal</a></li>
+                        <li><a href="{% url 'comandosPython' %}">comandosPython</a></li>
+                        <li><a href="{% url 'Datasets' %}">Datasets</a></li>
+                    </ul>   
+                </li>
+                <li><a class="navbar-brand">TECNOLOGIAS</a>
+                    <ul>
+                        <li><a href="{% url 'Python' %}">Python</a></li>
+                        <li><a href="{% url 'Django' %}">DJANGO</a></li>
+                        <li><a href="{% url 'html' %}">HTML</a></li>
+                        <li><a href="{% url 'JavaScript' %}">JAVASCRIPT</a></li>
+                        <li><a href="{% url 'CSS' %}">CSS</a></li>
+                        <li><a href="{% url 'Bash' %}">Bash</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </div>
+
 
     {% block content %}{% endblock %}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

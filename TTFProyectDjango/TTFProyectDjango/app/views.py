@@ -18,17 +18,6 @@ def home(request):
         }
     )
 
-def tecnologias(request):
-    """Renders the language page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/tecnologias/tecnologias.html',
-        {
-            'title':'Tecnologias',
-            'message':'Listado de tecnologias empleadas durante la realizacion del proyecto',
-        }
-    )
 
 def dJango(request):
     "Renders the dJango page"
