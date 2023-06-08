@@ -256,6 +256,6 @@ def comandosPython(request):
         request,
         'app/MineriaDatos/comandosPython.html',
         {
-            'title': 'Comandos de python'
+            'title': 'Simulador de python'
         }
     )
