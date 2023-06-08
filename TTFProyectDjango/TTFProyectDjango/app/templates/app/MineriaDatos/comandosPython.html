@@ -18,126 +18,136 @@
     <py-tutor>
         <py-script>
 
-            # Obtencion archivos
+            # Bibliotecas
             import pandas as pd
             from pyodide.http import open_url
             from scipy.io import arff
             import seaborn as sns
             import matplotlib.pyplot as plt
             
-            # Fase 1. Obtencion y analisis de informacion
-
-            # Obtencion dataset titanic
             
-            def cargarTitanic():
+            def cargarTitanic() -> pd.DataFrame:
+                """ Obtencion de los datos del titanic.
+                :return: Dataset
+
+                """
                 df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
                 return df
 
-            # Obtencion dataset iris
-
-            def cargarIris():
+            def cargarIris() -> pd.DataFrame:
+                """ Obtencion de los datos de especies de iris (flor)
+                :return: Dataset iris
+                """
                 df = pd.read_csv(
                                     open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"), 
                                     header=None, 
                                     names = ["sepal length","sepal width","petal length","petal width","Species"])
                 return df
 
-            # Obtencion dataset segment challenge
-
-            def cargarSegmentChallenge():
+            def cargarSegmentChallenge() -> pd.DataFrame:
+                """ Obtencion de los datos del dataset segment challenge
+                :return: Dataset segment challenge
+                """
+                df = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
+                df['class'] = df['class'].str.decode('utf-8') # Correccion error de decodificacíon
                 
-                segment_challenge = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
-                segment_challenge['class'] = segment_challenge['class'].str.decode('utf-8')
-                
-                return segment_challenge
-
-            # Funcion que muestra el dataset
-            
-            def showDataset(df, nombreDataset):
-                display("Mostrando el dataset: " + nombreDataset)
-                display(df)
                 return df
-
-            # Funcion que muestra la informacion del dataset
             
-            def showInfoDataset(df):
+            def showDataset(df, nombreDataset) -> pd.DataFrame:
+                """ Mostrar las 5 primeras lineas del conjunto de datos
+                :param df: Dataset a mostrar
+                :param nombreDataset: Nombre del dataset
+                :return: Dataset
+                """
+                display("Mostrando el dataset: " + nombreDataset)
+                display(df.head())
+                return df
+            
+            def showInfoDataset(df) -> pd.DataFrame:
+                """ Mostrar informacion del dataset
+                :param df: Dataset
+                :return: Dataset
+                """
                 display("Mostrando la informacion del dataset: ")
                 display(df.info())
                 return df
-
-            # Funcion que muestra la correlacion de las columnas del dataset
             
-            def corrDataset(df):
+            def corrDataset(df) -> pd.DataFrame:
+                """ Muestra el grado de correlacion de las columnas del dataset
+                :param df: Dataset
+                :return Dataset
+                """
                 display("Correlacion columnas dataset")
                 display(df.corr(numeric_only=True))
                 return df
-
-            # Funcion que muestra un analisis estadistico del dataset
             
-            def analisisEstadisticoDataset(df):
+            def analisisEstadisticoDataset(df) -> pd.DataFrame:
+                """ Muestra un analisis estadistico del dataset
+                :param df: Dataset
+                :return Dataset
+                """
                 display("Analisis estadistico del dataset")
                 display(df.describe())
                 return df
-
-            # Funcion que muestra las clases del dataset
             
-            def showClases(df, clase):
+            def showClases(df, clase) -> pd.DataFrame:
+                """ Muestra un grafico con la distribucion de las clases del dataset
+                :param df: Dataset
+                :param clase: Etiqueta de la clase del dataset
+                :return Dataset
+                """
                 sns.countplot(x=clase, data=df)
                 plt.title("Clases del dataset")
                 display(plt)
                 plt.clf()
                 return df
-
-            # Funcion que muestra la distribucion de los datos del dataset para una columna dada
             
-            def distribucionDatosColumnaDataset(df, etiqueta, clase):
-                display("Mostrando la distribucion de los datos del dataset")
+            def distribucionDatosColumnaDataset(df, etiqueta, clase) -> pd.DataFrame:
+                """ Muestra un grafico con la distribucion de los datos de una columna para cada clase del dataset
+                :param df: Dataset
+                :param etiqueta: Columna del dataset
+                :param clase: Clase del dataset
+                :return Dataset
+                """
                 sns.displot(df, x=etiqueta, col=clase)
                 display(plt)
-                plt.clf()
-                return df
-            
-
-            # Fase 2. Limpieza de datos
-
-            # Funcion que visualiza los datos perdidos de un dataset
-
-            def visualizarDatosPerdidos(df):
-                # Mostramos las columnas con datos perdidos
-                display('Mostrando procentaje datos perdidos: ', round(df.isnull().sum() / len(df) * 100))
+                plt.clf() # Limpiamos la imagen generada
                 return df
 
-            # Funcion que visualiza el ratio de supervivencia de los pasajeros de cada cabina del titanic
-
-            def visualizarDatosPerdidosTitanic(df):
-                # Mostramos datos de cada cabina
-                df['Deck'] = df['Cabin'].apply(lambda c: c[0] if pd.notnull(c) else 'M')
-                df[['Deck','Survived']].groupby('Deck')['Survived'].mean().plot(kind='bar', figsize=(15,7))
-                # Mostramos la grafica
-                plt.title('Ratio de supervivencia de diferentes cabinas');display(plt);plt.clf()
-                # Mostramos la relacion entre la edad con el sexo y la clase social
-                display( 'Relacion edad con el sexo y la clase social: ', df.groupby(['Pclass','Sex'])['Age'].count() )
-                
-                return df
-
-            # Funcion que elimina las columnas de un dataset
-
-            def eliminarColumnas(df,cols):
+            def EliminarColumnas(df,cols) -> pd.DataFrame:
+                """ Eliminamos columnas del dataset
+                :param df: Dataset
+                :param cols: Columnas del dataset a eliminar
+                :return Dataset
+                """
                 df.drop(cols, axis=1, inplace=True)
                 return df
+            
+            def LimpiarDataset(df) -> pd.DataFrame:
+                """ Limpia los datos del dataset
+                :param df: Dataset    
+                :return Dataset
+                """
+                # Deteccion y limpieza de los datos perdidos
+                display('Mostrando procentaje datos perdidos: ', round(df.isnull().sum() / len(df) * 100))
+                df = df.interpolate(method ='linear', limit_direction ='backward') # Limpiamos datos faltantes
 
-            # Funcion que limpia los datos faltantes del dataset titanic
+                # Deteccion de valores atipicos/outliers
+                df.plot(kind="box", figsize=(8,8)) # Grafico boxplot
+                display(plt)
+                plt.clf() # Limpiar grafico
+                
+                # Deteccion de filas repetidas
+                if df.duplicated(keep='last').sum() > 0:
+                    display('Mostrando filas duplicadas')
+                    display(df[df.duplicated(keep = 'last')])
+                    df = df.drop_duplicates(keep='last')
+                else:
+                    display('No existen datos duplicados en el dataset')
 
-            def LimpiarDatosFaltantesTitanic(df):
-                # Limpiamos los datos faltantes de la edad
-                df.interpolate(method ='linear', limit_direction ='backward', inplace=True)
                 return df
 
-            # Funcion que detecta valores atipicos de un dataset
-
-            def detectarOutliers(df):
-                df.plot(kind="box", figsize=(8,8)); display(plt); plt.clf()
-                return df
+            
 
             # Funcion de transformacion de los datos del dataset titanic
             def transformacionDatosTitanic(df):
@@ -148,7 +158,9 @@
                 df = pd.concat((df, pd.concat(dummies, axis=1)), axis=1) 
                 # Transformamos las columnas SibSp y Parch
                 df['inFamily']=(df['SibSp'] > 0) | (df['Parch'] > 0)                 
-                # Transformamos la columna Age en intervalos
+                # Transformamos la columna Age
+                df.loc[  df['Age'] <= 18, 'Age' ] = 0 # Child
+                df.loc[ df['Age'] > 18, 'Age' ] = 1# Adulto
                 df['AgeRange']=pd.cut(df['Age'], [-1,15,80], labels=['child','adult']) 
                 # Transformamos la columna Fare en intervalos
                 df.loc[ df['Fare'] <= 7.910400, 'Fare' ] = 0
@@ -170,22 +182,18 @@
                 else:
                     return 'Alive'
             
-            # Funcion de transformacion datos del dataset titanic
-
-            def preprocesamientoDatosTitanic(df):
-                
-                df.pipe(eliminarColumnas,['PassengerId', 'Name', 'Ticket', 'Cabin']).pipe(LimpiarDatosFaltantesTitanic).pipe(transformacionDatosTitanic)
-                return df
+            
              
-            # Funcion principal
+            
             def main():
-                # Preprocesamiento dataset titanic
-                # titanic2 = titanic.copy().pipe(visualizarDatosPerdidos).pipe(visualizarDatosPerdidosTitanic).pipe(eliminarColumnas, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Deck']).pipe(LimpiarDatosFaltantesTitanic).pipe(detectarOutliers).pipe(transformacionDatosTitanic).pipe(detectarOutliers)
-                # titanic2 = titanic.copy().pipe(preprocesamientoDatosTitanic).pipe(showDataset, 'titanicClean')
+                
+                titanic2 = titanic.copy().pipe(EliminarColumnas, ['PassengerId', 'Name', 'Ticket', 'Cabin']).pipe(LimpiarDataset)
+                display('Mostrando procentaje datos perdidos: ', round(titanic2.isnull().sum() / len(titanic2) * 100))
+                if titanic2.duplicated(keep='last').sum() == 0:
+                    display('No existen datos duplicados')
                 
             if __name__ == "__main__":
-                # Cargamos los conjuntos de datos
-                iris, titanic, segment_challenge = cargarIris(), cargarTitanic(), cargarSegmentChallenge()
+                titanic = cargarTitanic()
                 main()
         </py-script>
     </py-tutor>

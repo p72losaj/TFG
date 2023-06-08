@@ -146,8 +146,8 @@ def PreprocesamientoDatos(request):
         request,
         'app/MineriaDatos/PreprocesamientoDatos/PreprocesamientoDatos.html',
         {
-            'title':'Mineria de datos-Limpieza de Datos',
-            'message':'Pagina de descripcion de limpieza de datos en mineria de datos',
+            'title':'Mineria de datos-Preprocesamiento de Datos',
+            'message':'Pagina de descripcion de preprocesamiento de datos en mineria de datos',
         }
     )
 
@@ -256,6 +256,6 @@ def comandosPython(request):
         request,
         'app/MineriaDatos/comandosPython.html',
         {
-            'title': 'Comandos de python'
+            'title': 'Simulador de python'
         }
     )
