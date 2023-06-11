@@ -1,0 +1,25 @@
+﻿{% extends "app/plantillaBase.html" %}
+
+<!-- Add a filter menu -->
+{% block siderbar %}
+<div>
+    <button onclick="$('#Python').show();">Python</button>
+</div>
+{% endblock %}
+
+<!--Add a block content-->
+{% block content %}
+
+<!--Python-->
+<div id="Python" style="display: none; text-align:center">
+    <h1 style="font-family: 'Lobster';"><em>PYTHON</em></h1>
+    <p class="lead">Python es un lenguaje de programación orientado a objetos de alto nivel utilizado a menudo para crear sitios web y software, automatizar tareas y realizar análisis de datos.</p>
+    <p><a href="https://developer.oracle.com/es/learn/technical-articles/what-is-python" class="btn btn-primary btn-large">Aprender más&raquo;</a></p>
+    <div class="col-md-4">
+        <h2 style="font-family: 'Lobster'"><em>Aprendizaje</em></h2>
+        <p>Puede aprender más sobre cómo utilizar el lenguaje de programación python.</p>
+        <p><a href="https://www.w3schools.com/python/default.asp" class="btn btn-primary btn-large">Aprender más&raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}

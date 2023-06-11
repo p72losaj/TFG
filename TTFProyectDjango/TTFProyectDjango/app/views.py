@@ -11,13 +11,16 @@ def home(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/index.html',
-        {
-            'title':'Bienvenido a Nettlaer',
-            'message':'Descripcion de la aplicacion web NETTLAERER',
-        }
+        'app/index.html'
     )
 
+def tecnologias(request):
+    """Renders the tecnologias page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/tecnologias.html'
+    )
 
 def dJango(request):
     "Renders the dJango page"
@@ -67,17 +70,6 @@ def CSS(request):
         }
     )
 
-def Python(request):
-    "Renders the Python page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/tecnologias/Python.html',
-        {
-            'title':'Tecnologias-Python',
-            'message':'Pagina de descripcion de la tecnologia Python',
-        }
-    )
 
 def Bash(request):
     "Renders the Bash page"

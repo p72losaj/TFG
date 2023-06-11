@@ -11,12 +11,12 @@ from app import forms, views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    
+    path('tecnologias', views.tecnologias, name="tecnologias"),
     path('tecnologias/Django/', views.dJango, name='Django'),
     path('tecnologias/html/', views.html, name='html'),
     path('tecnologias/JavaScript/', views.JavaScript, name='JavaScript'),
     path('tecnologias/CSS/', views.CSS, name='CSS'),
-    path('tecnologias/Python/', views.Python, name='Python'),
+    
     path('tecnologias/Bash/', views.Bash, name='Bash'),
     
     path('MineriaDatos/', views.MineriaDatos, name='MineriaDatos'),
