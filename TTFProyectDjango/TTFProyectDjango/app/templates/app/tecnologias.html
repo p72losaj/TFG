@@ -3,7 +3,9 @@
 <!-- Add a filter menu -->
 {% block siderbar %}
 <div>
-    <button onclick="$('#Python').show();">Python</button>
+    <h2 style="font-family: 'Lobster'"><em>Filtro de página</em></h2>
+    <button onclick="$('#Python').show();$('#Django').hide()">Python</button>
+    <button onclick="$('#Django').show();$('#Python').hide()">Django</button>
 </div>
 {% endblock %}
 
@@ -19,6 +21,25 @@
         <h2 style="font-family: 'Lobster'"><em>Aprendizaje</em></h2>
         <p>Puede aprender más sobre cómo utilizar el lenguaje de programación python.</p>
         <p><a href="https://www.w3schools.com/python/default.asp" class="btn btn-primary btn-large">Aprender más&raquo;</a></p>
+    </div>
+</div>
+
+<!--Django-->
+<div id="Django" style="display: none; text-align:center">
+    <h1 style="font-family: 'Lobster';"><em>DJANGO</em></h1>
+    <p class="lead">Django es un marco web gratuito para crear excelentes sitios web y aplicaciones web utilizando HTML, CSS y JavaScript.</p>
+    <p><a href="https://www.djangoproject.com/" class="btn btn-primary btn-large">Aprender más&raquo;</a></p>
+    <div class="row">
+        <div class="col-md-4">
+            <h2 style="font-family: 'Lobster'"><em>Obtencion librerias</em></h2>
+            <p>Python Package Index es un repositorio de software para el lenguaje de programación Python.</p>
+            <p><a class="btn btn-primary btn-large" href="https://pypi.org/">Aprender más&raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2 style="font-family: 'Lobster'"><em>Microsoft Azure</em></h2>
+            <p>Puede publicar fácilmente en Microsoft Azure con Visual Studio. Descubra cómo puede alojar su aplicación con una prueba gratuita hoy.</p>
+            <p><a class="btn btn-primary btn-large" href="http://azure.microsoft.com">Aprender más&raquo;</a></p>
+        </div>
     </div>
 </div>
 

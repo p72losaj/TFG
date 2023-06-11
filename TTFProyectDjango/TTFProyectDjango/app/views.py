@@ -230,24 +230,10 @@ def EvaluacionResultados(request):
     )
 
 
-def Datasets(request):
-    "Renders the informationInteres/ page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/MineriaDatos/Datasets.html',
-        {
-            'title': 'Datasets'
-        }
-    )
-
-def comandosPython(request):
+def simuladorPython(request):
     "Renders the comandosPython/ page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/comandosPython.html',
-        {
-            'title': 'Simulador de python'
-        }
+        'app/simuladorPython.html'
     )
