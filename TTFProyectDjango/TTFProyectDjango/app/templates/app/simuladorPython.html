@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}NETTLAERER{% endblock %}</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+            integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
+    </script>
+
+    <!--Archivos navbar-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!--Archivos pyscript-->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+    <!-- Add CSS style-->
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <!--Add a navbar header-->
+    <div id="header" style="padding-left: 50px; margin-top:50px">
+        <h1 style="font-family: 'Lobster'; color:black"><em>Menu Principal</em></h1>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+
+            <ul class="nav">
+                <li><a href="/" class="navbar-brand">NETTLAERER</a></li>
+                <li>
+                    <a href="{% url 'tecnologias' %}" class="navbar-brand">TECNOLOGIAS</a>
+                </li>
+                <li><a href="{% url 'MineriaDatos' %}" class="navbar-brand" style="color:white">Mineria de Datos</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div style="text-align:center; padding:50px">
+        <!--Botones para mostrar/ocultar listado de dataset-->
+        <button onclick="$('#dataset').show();">Mostrar lista de dataset</button>
+        <button onclick="$('#dataset').hide();">Ocultar lista de dataset</button>
+    </div>
+       
+    <!--Tabla de dataset-->
+    <div id="dataset" style="display:none; text-align:center;padding:50px">
+        <table border="1" style="border-collapse:collapse; text-align:center;">
+        <tr>
+            <th>Dataset</th>
+            <th>ObtencionDataset</th>
+            <th>CaracteristicasDataset</th>
+        </tr>
+                <tr>
+                    <td>IRIS</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data">IrisDataset</a></td>
+                    <td>["sepal length","sepal width","petal length","petal width","Species"]</td>
+                </tr>
+                <tr>
+                    <td>WINE</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/wine.data">WineDataset</a></td>
+                    <td>['class', 'Alcohol', 'Malic_acid', 'Ash', 'Alcalinity_of_ash', 'Magnesium', 'Total_phenols','Flavanoids', 'Nonflavanoid_phenols', 'Proanthocyanins', 'Color_intensity', 'Hue', 'OD280/OD315','Proline']</td>
+                </tr>
+                <tr>
+                    <td>DIABETES</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/diabetes.csv">DiabetesDataset</a></td>
+                    <td>['preg', 'plas','pres','skin','insu','mass','pedi','age','class']</td>
+                </tr>
+                <tr>
+                    <td>TITANIC</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv">TitanicDataset</a></td>
+                </tr>
+                <tr>
+                    <td>ABALONE</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/abalone.data">AbaloneDataset</a></td>
+                    <td>['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight', 'Rings/Class']</td>
+                </tr>
+                <tr>
+                    <td>ILDP</td>
+                    <td>
+                        <a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/train_ildp.csv">IldpTrainDataset</a>
+                        <br />
+                        <a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/test_ildp.csv">IldpTestDataset</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SEGMENT CHALLENGE</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff">SegmentChallengeDataset</a></td>
+                </tr>
+                <tr>
+                    <td>GLASS</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/glass.arff">GlassDataset</a></td>
+                </tr>
+                <tr>
+                    <td>DRY BEAN</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/Dry_Bean_Dataset.arff">DryBeanDataset</a></td>
+                </tr>
+                <tr>
+                    <td>CAR</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/car.data">CarDataset</a></td>
+                    <td>['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class']</td>
+                </tr>
+                <tr>
+                    <td>ZOO</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/zoo.data">ZooDataset</a></td>
+                    <td>['animal_name', 'hair', 'feathers', 'eggs', 'milk', 'airzorne', 'aquatic', 'predator', 'toothed', 'backbone', 'breathes', 'venomous', 'fins', 'legs', 'tail', 'domestic', 'catsize', 'class']</td>
+                </tr>
+                <tr>
+                    <td>BALANCE SCALE</td>
+                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/balance-scale.data">BalanceScaleDataset</a></td>
+                    <td>['class', 'left_weight', 'left_distance', 'right_weight', 'right_distance']</td>
+                </tr>
+            </table>
+        </div>
+
+
+
+    <div id="pyscript" style="padding-left: 50px; margin-top:50px">
+        <h1 style="font-family:'Lobster'; text-align:center"><em>Simulador de Python</em></h1>
+        <!-- Configuracion PyScript -->
+        <py-config>
+            packages = [
+            "pandas",
+            "seaborn",
+            "matplotlib",
+            "scipy",
+            ]
+            plugins = [
+            "https://pyscript.net/latest/plugins/python/py_tutor.py"
+            ]
+        </py-config>
+        <!-- Mostrar codigo python-->
+        <py-tutor>
+            <py-script>
+                # Bibliotecas
+                import pandas as pd
+                from pyodide.http import open_url
+                from scipy.io import arff
+                import seaborn as sns
+                import matplotlib.pyplot as plt
+
+                def cargarTitanic() -> pd.DataFrame:
+                    """ Obtencion de los datos del titanic.
+                    :return: Dataset
+                    """
+                    df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
+                    return df
+
+                def cargarIris() -> pd.DataFrame:
+                    """ Obtencion de los datos de especies de iris (flor)
+                    :return: Dataset iris
+                    """
+                    df = pd.read_csv(
+                        open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),
+                        header=None,
+                        names = ["sepal length","sepal width","petal length","petal width","Species"])
+                    return df
+
+                def cargarSegmentChallenge() -> pd.DataFrame:
+                    """ Obtencion de los datos del dataset segment challenge
+                    :return: Dataset segment challenge
+                    """
+                    df = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
+                    df['class'] = df['class'].str.decode('utf-8') # Correccion error de decodificacíon
+                    return df
+
+                def showDataset(df, nombreDataset) -> pd.DataFrame:
+                    """ Mostrar las 5 primeras lineas del conjunto de datos
+                    :param df: Dataset a mostrar
+                    :param nombreDataset: Nombre del dataset
+                    :return: Dataset
+                    """
+                    display("Mostrando el dataset: " + nombreDataset)
+                    display(df.head())
+                    return df
+
+                def showInfoDataset(df) -> pd.DataFrame:
+                    """ Mostrar informacion del dataset
+                    :param df: Dataset
+                    :return: Dataset
+                    """
+                    display("Mostrando la informacion del dataset: ")
+                    display(df.info())
+                    return df
+
+                def corrDataset(df) -> pd.DataFrame:
+                    """ Muestra el grado de correlacion de las columnas del dataset
+                    :param df: Dataset
+                    :return Dataset
+                    """
+                    display("Correlacion columnas dataset")
+                    display(df.corr(numeric_only=True))
+                    return df
+
+                def analisisEstadisticoDataset(df) -> pd.DataFrame:
+                    """ Muestra un analisis estadistico del dataset
+                    :param df: Dataset
+                    :return Dataset
+                    """
+                    display("Analisis estadistico del dataset")
+                    display(df.describe())
+                    return df
+
+                def showClases(df, clase) -> pd.DataFrame:
+                    """ Muestra un grafico con la distribucion de las clases del dataset
+                    :param df: Dataset
+                    :param clase: Etiqueta de la clase del dataset
+                    :return Dataset
+                    """
+                    sns.countplot(x=clase, data=df)
+                    plt.title("Clases del dataset")
+                    display(plt); plt.clf()
+                    return df
+
+                def distribucionDatosColumnaDataset(df, etiqueta, clase) -> pd.DataFrame:
+                    """ Muestra un grafico con la distribucion de los datos de una columna para cada clase del dataset
+                    :param df: Dataset
+                    :param etiqueta: Columna del dataset
+                    :param clase: Clase del dataset
+                    :return Dataset
+                    """
+                    sns.displot(df, x=etiqueta, col=clase)
+                    display(plt); plt.clf()
+                    return df
+
+                def EliminarColumnas(df,cols) -> pd.DataFrame:
+                    """ Eliminamos columnas del dataset
+                    :param df: Dataset
+                    :param cols: Columnas del dataset a eliminar
+                    :return Dataset
+                    """
+                    df.drop(cols, axis=1, inplace=True)
+                    return df
+
+                def LimpiarDataset(df) -> pd.DataFrame:
+                    """ Limpia los datos del dataset
+                    :param df: Dataset
+                    :return Dataset
+                    """
+                    # Deteccion y limpieza de los datos perdidos
+                    display('Mostrando procentaje datos perdidos: ', round(df.isnull().sum() / len(df) * 100))
+                    df = df.interpolate(method ='linear', limit_direction ='backward') # Limpiamos datos faltantes
+                    # Deteccion de valores atipicos/outliers
+                    df.plot(kind="box", figsize=(8,8)) # Grafico boxplot
+                    display(plt); plt.clf()
+                    # Deteccion de filas repetidas
+                    if df.duplicated(keep='last').sum() > 0:
+                        display('Mostrando filas duplicadas')
+                        display(df[df.duplicated(keep = 'last')])
+                        df = df.drop_duplicates(keep='last')
+                    else:
+                        display('No existen datos duplicados en el dataset')
+                    return df
+
+                def transformacionDatosTitanic(df) -> pd.DataFrame:
+                    """ Transformacion de los datos del dataset titanic
+                    :param df: Dataset
+                    :return Dataset
+                    """
+                    # Transformamos las columnas Pclass, Sex y Embarked
+                    dummies=[]; cols=['Pclass', 'Sex', 'Embarked']
+                    for col in cols:
+                        dummies.append(pd.get_dummies(df[col]))
+                        df = pd.concat((df, pd.concat(dummies, axis=1)), axis=1)
+                    # Transformamos las columnas SibSp y Parch
+                    df['inFamily']=(df['SibSp'] > 0) | (df['Parch'] > 0)
+                    # Transformamos la columna Age
+                    df.loc[  df['Age'] <= 18, 'Age' ] = 0 # Child
+                    df.loc[ df['Age'] > 18, 'Age' ] = 1# Adulto
+                    df['AgeRange']=pd.cut(df['Age'], [-1,15,80], labels=['child','adult'])
+                    # Transformamos la columna Fare en intervalos
+                    df.loc[ df['Fare'] <= 7.910400, 'Fare' ] = 0
+                    df.loc[ (df['Fare'] > 7.910400)   & (df['Fare'] <= 14.454200), 'Fare'] = 1
+                    df.loc[ (df['Fare'] > 14.454200)   & (df['Fare'] <= 31), 'Fare'] = 2
+                    df.loc[ df['Fare'] > 31, 'Fare' ] = 3
+                    df['Fare'] = df['Fare'].astype(int)
+                    # Eliminamos las columnas innecesarias
+                    df.drop(['Pclass', 'Sex', 'Embarked', 'SibSp', 'Parch', 'Age'], axis=1,inplace=True)
+                    # Transformamos la columna Survived
+                    df['Survived'] = df['Survived'].apply(transformSurvived)
+                    return df
+
+                def transformSurvived(survived):
+                    """ Codificacion de la etiqueta Survived del dataset titanic
+                    :param survived: Columna Survived del dataset titanic
+                    """
+                    if survived == 0:
+                        return 'Died'
+                    else:
+                        return 'Alive'
+
+                def main():
+                    
+                    titanic2 = titanic.copy().pipe(EliminarColumnas, ['PassengerId', 'Name', 'Ticket', 'Cabin']).pipe(LimpiarDataset)
+                    display('Mostrando procentaje datos perdidos: ', round(titanic2.isnull().sum() / len(titanic2) * 100))
+                    if titanic2.duplicated(keep='last').sum() == 0:
+                        display('No existen datos duplicados')
+
+                if __name__ == "__main__":
+                    titanic = cargarTitanic()
+                    main()
+
+            </py-script>
+        </py-tutor>
+
+    </div>
+
+
+
+</body>
+</html>
+

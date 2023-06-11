@@ -20,8 +20,7 @@ urlpatterns = [
     path('tecnologias/Bash/', views.Bash, name='Bash'),
     
     path('MineriaDatos/', views.MineriaDatos, name='MineriaDatos'),
-    path('MineriaDatos/Datasets/', views.Datasets, name='Datasets'),
-    path('MineriaDatos/comandosPython/', views.comandosPython, name='comandosPython'),
+    path('simuladorPython', views.simuladorPython, name='simuladorPython'),
     
     path('MineriaDatos/ObtencionDatos/', views.ObtencionDatos, name='ObtencionDatos'),
     path('MineriaDatos/ObtencionDatos/ArchivosCSV/', views.ArchivosCSV, name='ArchivosCSV'),
