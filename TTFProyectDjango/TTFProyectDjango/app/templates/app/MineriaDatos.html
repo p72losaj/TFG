@@ -36,7 +36,16 @@
     <h1 style="font-family: 'Lobster' ">Información de interés</h1>
     <!--Botones para mostrar la informacion de interes-->
     <div style="text-align:center; padding:50px">
-
+        <button onclick="$('#archivosCSV').show()">ArchivosCSV</button>
+    </div>
+    <!--Informacion Adicional de Archivos CSV-->
+    <div id="archivosCSV" style="display:none">
+        <h1 style="font-family: 'Lobster' ">Archivos CSV</h1>
+            <p style="color:yellow">
+                Los archivos CSV son un tipo de documento en formato abierto sencillo para representar datos en forma de tabla, en las que las columnas se separan por un delimitador y las filas por saltos de líneas.
+                <br />
+                <a href="https://www.adslzone.net/reportajes/software/csv-que-es/" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
+            </p>
     </div>
 </div>
 
@@ -63,26 +72,6 @@
     <a href="" style="color:yellow">Script</a>
 </div>
 
-<div class="row" style="display:none">
-    <div class="col-md-4">
-        <h1>Etapas del proceso de minería de datos</h1>
-        <ul>
-            <li><a href="{% url 'ObtencionDatos' %}">ObtencionDatos</a></li>
-            <li><a href="{% url 'PreprocesamientoDatos' %}">PreprocesamientoDatos</a></li>
-            <li><a href="{% url 'Algoritmos' %}">Algoritmos</a></li>
-            <li><a href="{% url 'EvaluacionResultados' %}">EvaluacionResultados</a></li>
-        </ul>
-    </div>
-    
-    <div class="col-md-4">
-        <h1>Ejercicios Propuestos</h1>
-        <ul>
-            
-            <li><a href="">Script</a></li>
-        </ul>
-    </div>
-
-</div>
 
 
 {% endblock %}
