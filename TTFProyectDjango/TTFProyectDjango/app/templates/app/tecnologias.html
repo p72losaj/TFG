@@ -3,10 +3,11 @@
 <!-- Add a filter menu -->
 {% block siderbar %}
 <div>
-    <button onclick="$('#Python').show(); $('#Django').hide(); $('#html').hide();$('#javascript').hide()">PYTHON</button>
-    <button onclick="$('#Django').show(); $('#Python').hide(); $('#html').hide();$('#javascript').hide()">DJANGO</button>
-    <button onclick="$('#html').show(); $('#Python').hide(); $('#Django').hide();$('#javascript').hide()">HTML</button>
-    <button onclick="$('#javascript').show(); $('#Python').hide(); $('#Django').hide(); $('#html').hide()">JAVASCRIPT</button>
+    <button onclick="$('#Python').show(); $('#Django').hide(); $('#html').hide(); $('#javascript').hide();$('#css').hide()">PYTHON</button>
+    <button onclick="$('#Django').show(); $('#Python').hide(); $('#html').hide(); $('#javascript').hide();$('#css').hide()">DJANGO</button>
+    <button onclick="$('#html').show(); $('#Python').hide(); $('#Django').hide(); $('#javascript').hide();$('#css').hide()">HTML</button>
+    <button onclick="$('#javascript').show(); $('#Python').hide(); $('#Django').hide(); $('#html').hide();$('#css').hide()">JAVASCRIPT</button>
+    <button onclick="$('#javascript').hide(); $('#Python').hide(); $('#Django').hide(); $('#html').hide();$('#css').show()">CSS</button>
 </div>
 {% endblock %}
 
@@ -19,7 +20,7 @@
     <p style="color:yellow">
         Python es un lenguaje de programación orientado a objetos de alto nivel utilizado a menudo para crear sitios web y software, automatizar tareas y realizar análisis de datos.
         <br />
-        <a href="https://developer.oracle.com/es/learn/technical-articles/what-is-python" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+        <a href="https://developer.oracle.com/es/learn/technical-articles/what-is-python" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
     </p>
     
     <div class="col-md-4">
@@ -27,7 +28,7 @@
         <p style="color:yellow">
             Puede aprender más sobre cómo utilizar el lenguaje de programación python.
             <br />
-            <a href="https://www.w3schools.com/python/default.asp" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+            <a href="https://www.w3schools.com/python/default.asp" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
         </p>
     </div>
 </div>
@@ -37,7 +38,7 @@
     <p style="color:yellow">
         Django es un marco web gratuito para crear excelentes sitios web y aplicaciones web utilizando HTML, CSS y JavaScript.
         <br />
-        <a href="https://www.djangoproject.com/" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+        <a href="https://www.djangoproject.com/" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
     </p>
     <div class="row">
         <div class="col-md-4">
@@ -45,14 +46,14 @@
             <p style="color:yellow">
                 Python Package Index es un repositorio de software para el lenguaje de programación Python.</p>
                 <br />
-                <a class="btn btn-primary btn-large" href="https://pypi.org/">Aprender más&raquo;</a>
+                <a class="btn btn-primary btn-large" href="https://pypi.org/" target="_blank">Aprender más&raquo;</a>
         </div>
         <div class="col-md-4">
             <h2 style="font-family: 'Lobster'"><em>Microsoft Azure</em></h2>
             <p style="color:yellow">
                 Puede publicar fácilmente en Microsoft Azure con Visual Studio. Descubra cómo puede alojar su aplicación con una prueba gratuita hoy.
                 <br />
-                <a class="btn btn-primary btn-large" href="http://azure.microsoft.com">Aprender más&raquo;</a>
+                <a class="btn btn-primary btn-large" href="http://azure.microsoft.com" target="_blank">Aprender más&raquo;</a>
             </p>  
         </div>
     </div>
@@ -65,7 +66,7 @@
     <p style="color:yellow">
         HTML es el lenguaje con el que se define el contenido de las páginas web.
         <br />
-        <a href="https://developer.mozilla.org/es/docs/Web/HTML" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+        <a href="https://developer.mozilla.org/es/docs/Web/HTML" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
     </p>
     <div class="row">
         <div class="col-md-4">
@@ -74,14 +75,14 @@
                 Puede aprender de forma sencilla como diseñar páginas html. Descubra cómo diseñar sus propias páginas web usando html de forma gratuita.    
             </p>
                 <br />
-                <a href="https://www.w3schools.com/html/" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+                <a href="https://www.w3schools.com/html/" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
         </div>
         <div class="col-md-4">
             <h2 style="font-family: 'Lobster'"><em>PyScript</em></h2>
             <p style="color:yellow">
                 Pyscipt es un nuevo framework que permite crear aplicaciones para el navegador web usando Python, JavaScript, CSS y HTML. Descubra cómo emplear el lenguaje de programación Python en el navegador web.
                 <br />
-                <a class="btn btn-primary btn-large" href="https://platzi.com/blog/pyscript-la-forma-de-correr-python-en-el-navegador-news/">Aprender más&raquo;</a>
+                <a class="btn btn-primary btn-large" href="https://platzi.com/blog/pyscript-la-forma-de-correr-python-en-el-navegador-news/" target="_blank">Aprender más&raquo;</a>
             </p>  
         </div>
     </div>
@@ -94,19 +95,35 @@
     <p style="color:yellow">
         JavaScript es un lenguaje de programación que los desarrolladores utilizan para diseñar páginas web interactivas.
         <br />
-        <a href="https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+        <a href="https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
     </p>
-    
     <div class="col-md-4">
         <h2 style="font-family: 'Lobster'"><em>Aprendizaje</em></h2>
             <p style="color:yellow">
                 Puede aprender de forma sencilla como implementar JavaScript en páginas web. Descubra cómo mejorar las funcionalidades de sus páginas web de forma gratuita.
             </p>
                 <br />
-                <a href="https://www.w3schools.com/js/default.asp" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+                <a href="https://www.w3schools.com/js/default.asp" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
     </div>
-        
-    
+</div>
+
+<!--CSS-->
+
+<div id="css" style="display:none">
+    <h1 style="font-family: 'Lobster';"><em>CSS</em></h1>
+    <p style="color:yellow">
+        CSS es un lenguaje de programación utilizado por los programadores para el diseño visual de páginas web.
+        <br />
+        <a href="https://developer.mozilla.org/es/docs/Learn/CSS/First_steps/What_is_CSS" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+    </p>
+    <div class="col-md-4">
+        <h2 style="font-family: 'Lobster'"><em>Aprendizaje</em></h2>
+            <p style="color:yellow">
+                Puede aprender de forma sencilla como diseñar visualmente sus propias páginas web. Descubra cómo mejorar el diseño visual de sus páginas web de forma gratuita.
+            </p>
+                <br />
+                <a href="https://www.w3schools.com/css/default.asp" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+    </div>
 </div>
 
 {% endblock %}
