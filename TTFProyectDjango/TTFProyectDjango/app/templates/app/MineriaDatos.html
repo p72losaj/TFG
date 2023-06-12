@@ -36,10 +36,12 @@
     <h1 style="font-family: 'Lobster' ">Información de interés</h1>
     <!--Botones para mostrar la informacion de interes-->
     <div style="text-align:center; padding:50px">
-        <button onclick="$('#archivosCSV').show(); $('#archivosARFF').hide(); $('#interpolacion').hide(); $('#datosNulos').hide()">ArchivosCSV</button>
-        <button onclick="$('#archivosARFF').show(); $('#archivosCSV').hide(); $('#interpolacion').hide();$('#datosNulos').hide()">ArchivosARFF</button>
-        <button onclick="$('#interpolacion').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide();$('#datosNulos').hide()">Interpolacion</button>
-        <button onclick="$('#datosNulos').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide();$('#interpolacion').hide()">DatosNulos</button>
+        <button onclick="$('#archivosCSV').show(); $('#archivosARFF').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide()">ArchivosCSV</button>
+        <button onclick="$('#archivosARFF').show(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide()">ArchivosARFF</button>
+        <button onclick="$('#interpolacion').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide()">Interpolacion</button>
+        <button onclick="$('#datosNulos').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide()">DatosNulos</button>
+        <button onclick="$('#seleccionDatosInteres').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#outliers').hide()">SeleccionDatosInteres</button>
+        <button onclick="$('#outliers').show(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide()">Outliers</button>
     </div>
     <!--Informacion Adicional de Archivos CSV-->
     <div id="archivosCSV" style="display:none">
@@ -47,7 +49,7 @@
             <p style="color:yellow">
                 Los archivos CSV son un tipo de documento en formato abierto sencillo para representar datos en forma de tabla, en las que las columnas se separan por un delimitador y las filas por saltos de líneas.
                 <br />
-                <a href="https://www.adslzone.net/reportajes/software/csv-que-es/" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
+                <a style="margin-top:20px" href="https://www.adslzone.net/reportajes/software/csv-que-es/" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
             </p>
     </div>
     <!--Informacion Adicional de Archivos ARFF-->
@@ -56,14 +58,14 @@
         <p style="color:yellow">
             Un archivo arff es un archivo de texto ASCII que describe una lista de instancias con atributos comunes.
             <br />
-            <a href="https://filext.com/es/extension-de-archivo/ARFF" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
+            <a style="margin-top:20px" href="https://filext.com/es/extension-de-archivo/ARFF" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
         </p>
     </div>
     <!-- Informacion Adicional de Interpolacion-->
     <div id="interpolacion" style="display:none">
         <h1 style="font-family: 'Lobster' ">INTERPOLACION</h1>
         <p style="color:yellow">
-            <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
+            <a style="margin-top:20px" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
         </p>
     </div>
     <!-- Informacion Adicional de Datos nulos-->
@@ -72,9 +74,26 @@
         <p style="color:yellow">
             Se conoce como datos nulos a aquellos datos sin información alguna en alguno de los elementos de la variable. Estos pueden deberse a diversas causas como falta de información o no haber podido estimar la variable,  un error de entrada, o bien a un fenómeno externo que impidió la recolección de datos.
             <br />
-            <a href="https://www.scribbr.com/statistics/missing-data/" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
+            <a style="margin-top:20px" href="https://www.scribbr.com/statistics/missing-data/" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
         </p>
     </div>
+    <!-- Informacion Adicional de Seleccion de Datos de Interes-->
+    <div id="seleccionDatosInteres" style="display:none">
+        <h1 style="font-family: 'Lobster' ">SELECCION DE DATOS DE INTERES</h1>
+        <p style="color:yellow">
+            Al analizar los datos disponibles, se pueden identificar aquellos atributos que pueden ser relevantes y aquellos atributos que pueden descartarse.
+        </p>
+    </div>
+    <!-- Informacion Adicional de Outliers-->
+    <div id="outliers" style="display:none">
+        <h1 style="font-family: 'Lobster' ">OUTLIERS</h1>
+        <p style="color:yellow">
+            Por outliers nos referimos a cualquier dato que difiere signicativamente del promedio o rango observado del resto de nuestros datos.
+            <br />
+            <a style="margin-top:20px" href="https://www.malicksarr.com/how-to-detect-and-handle-outliers-in-data-mining/?utm_content=cmp-true" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a></p>
+        </p>
+    </div>
+
 </div>
 
 <!--Etapas del proceso de mineria de datos-->
@@ -97,7 +116,7 @@
         <div class="col-md-4">
             <h2 style="font-family: 'Lobster'"><em>Videos Tutorial</em></h2>
             <p>
-                <a href="" style="color:yellow">Lectura Dataset</a>
+                <a href="" style="color:yellow;margin-top:20px">Lectura Dataset</a>
                 <br />
                 <a href="" style="color:yellow">Conocer Dataset</a>
             </p>
@@ -109,9 +128,17 @@
         <p style="color:yellow">
             El Preprocesamiento de Datos consiste en un conjunto de técnicas utilizadas para preparar los datos para su uso en un sistema IA.
             <br />
-            <a href="https://blog.powerdata.es/el-valor-de-la-gestion-de-datos/preprocesar-y-normalizar-datos-4-pasos-para-limpiar-y-mejorar-datos"
+            <a style="margin-top:20px" href="https://blog.powerdata.es/el-valor-de-la-gestion-de-datos/preprocesar-y-normalizar-datos-4-pasos-para-limpiar-y-mejorar-datos"
            class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
         </p>
+        <div class="col-md-4">
+            <h2 style="font-family: 'Lobster'"><em>Videos Tutorial</em></h2>
+            <p>
+                <a href="" style="color:yellow;margin-top:20px">Limpieza de Datos</a>
+                <br />
+                <a href="" style="color:yellow">Transformacion de Datos</a>
+            </p>
+        </div>
     </div>
     <!--Etapa de mineria de datos: Algoritmos de Mineria de Datos -->
     <div id="Algoritmos" style="display:none">
