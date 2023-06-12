@@ -36,8 +36,9 @@
     <h1 style="font-family: 'Lobster' ">Información de interés</h1>
     <!--Botones para mostrar la informacion de interes-->
     <div style="text-align:center; padding:50px">
-        <button onclick="$('#archivosCSV').show(); $('#archivosARFF').hide() ">ArchivosCSV</button>
-        <button onclick="$('#archivosARFF').show(); $('#archivosCSV').hide()">ArchivosARFF</button>
+        <button onclick="$('#archivosCSV').show(); $('#archivosARFF').hide(); $('#interpolacion').hide()">ArchivosCSV</button>
+        <button onclick="$('#archivosARFF').show(); $('#archivosCSV').hide(); $('#interpolacion').hide()">ArchivosARFF</button>
+        <button onclick="$('#interpolacion').show();$('#archivosARFF').hide(); $('#archivosCSV').hide()">INTERPOLACION</button>
     </div>
     <!--Informacion Adicional de Archivos CSV-->
     <div id="archivosCSV" style="display:none">
@@ -55,6 +56,13 @@
             Un archivo arff es un archivo de texto ASCII que describe una lista de instancias con atributos comunes.
             <br />
             <a href="https://filext.com/es/extension-de-archivo/ARFF" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
+        </p>
+    </div>
+    <!-- Informacion Adicional de Interpolacion-->
+    <div id="interpolacion" style="display:none">
+        <h1 style="font-family: 'Lobster' ">INTERPOLACION</h1>
+        <p style="color:yellow">
+            <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
         </p>
     </div>
 </div>
@@ -89,7 +97,10 @@
     <div id="PreprocesamientoDatos" style="display:none">
         <h1 style="font-family: 'Lobster' ">Preprocesamiento de Datos</h1>
         <p style="color:yellow">
-            
+            El Preprocesamiento de Datos consiste en un conjunto de técnicas utilizadas para preparar los datos para su uso en un sistema IA.
+            <br />
+            <a href="https://blog.powerdata.es/el-valor-de-la-gestion-de-datos/preprocesar-y-normalizar-datos-4-pasos-para-limpiar-y-mejorar-datos"
+           class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
         </p>
     </div>
     <!--Etapa de mineria de datos: Algoritmos de Mineria de Datos -->
