@@ -36,7 +36,8 @@
     <h1 style="font-family: 'Lobster' ">Información de interés</h1>
     <!--Botones para mostrar la informacion de interes-->
     <div style="text-align:center; padding:50px">
-        <button onclick="$('#archivosCSV').show()">ArchivosCSV</button>
+        <button onclick="$('#archivosCSV').show(); $('#archivosARFF').hide() ">ArchivosCSV</button>
+        <button onclick="$('#archivosARFF').show(); $('#archivosCSV').hide()">ArchivosARFF</button>
     </div>
     <!--Informacion Adicional de Archivos CSV-->
     <div id="archivosCSV" style="display:none">
@@ -44,8 +45,17 @@
             <p style="color:yellow">
                 Los archivos CSV son un tipo de documento en formato abierto sencillo para representar datos en forma de tabla, en las que las columnas se separan por un delimitador y las filas por saltos de líneas.
                 <br />
-                <a href="https://www.adslzone.net/reportajes/software/csv-que-es/" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
+                <a href="https://www.adslzone.net/reportajes/software/csv-que-es/" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
             </p>
+    </div>
+    <!--Informacion Adicional de Archivos ARFF-->
+    <div id="archivosARFF" style="display:none">
+        <h1 style="font-family: 'Lobster' ">Archivos ARFF</h1>
+        <p style="color:yellow">
+            Un archivo arff es un archivo de texto ASCII que describe una lista de instancias con atributos comunes.
+            <br />
+            <a href="https://filext.com/es/extension-de-archivo/ARFF" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
+        </p>
     </div>
 </div>
 
@@ -60,7 +70,42 @@
         <button onclick="$('#Algoritmos').show(); $('#ObtencionDatos').hide(); $('#PreprocesamientoDatos').hide(); $('#EvaluacionResultados').hide()">Algoritmos</button>
         <button onclick="$('#EvaluacionResultados').show(); $('#ObtencionDatos').hide(); $('#PreprocesamientoDatos').hide(); $('#Algoritmos').hide()">EvaluacionResultados</button>
     </div>
+    <!--Etapa de mineria de datos: Obtencion de Datos-->
+    <div id="ObtencionDatos" style="display:none">
+        <h1 style="font-family: 'Lobster' ">Obtencion de Datos</h1>
+        <p style="color:yellow">
+            Esta fase de la minería de datos se refiere a obtener los datos o conjuntos de datos que se desean predecir, calcular o inferir. Dichos datos sirven para determinar los cálculos o los procesos.
+        </p>
+        <div class="col-md-4">
+            <h2 style="font-family: 'Lobster'"><em>Videos Tutorial</em></h2>
+            <p>
+                <a href="" style="color:yellow">Lectura Dataset</a>
+                <br />
+                <a href="" style="color:yellow">Conocer Dataset</a>
+            </p>
+        </div>
+    </div>
+    <!--Etapa de mineria de datos: Preprocesamiento de Datos -->
+    <div id="PreprocesamientoDatos" style="display:none">
+        <h1 style="font-family: 'Lobster' ">Preprocesamiento de Datos</h1>
+        <p style="color:yellow">
+            
+        </p>
+    </div>
+    <!--Etapa de mineria de datos: Algoritmos de Mineria de Datos -->
+    <div id="Algoritmos" style="display:none">
+        <h1 style="font-family: 'Lobster' ">Algoritmos de Mineria de Datos</h1>
+        <p style="color:yellow">
 
+        </p>
+    </div>
+    <!--Etapa de mineria de datos: Evaluacion de Resultados -->
+    <div id="EvaluacionResultados" style="display:none">
+        <h1 style="font-family: 'Lobster' ">Evaluacion de Resultados</h1>
+        <p style="color:yellow">
+
+        </p>
+    </div>
 </div>
 
 <!--Ejercicios propuestos-->
