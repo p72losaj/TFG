@@ -3,11 +3,17 @@
 <!-- Add a filter menu -->
 {% block siderbar %}
 <div>
-    <button onclick="$('#Python').show(); $('#Django').hide(); $('#html').hide(); $('#javascript').hide();$('#css').hide()">PYTHON</button>
-    <button onclick="$('#Django').show(); $('#Python').hide(); $('#html').hide(); $('#javascript').hide();$('#css').hide()">DJANGO</button>
-    <button onclick="$('#html').show(); $('#Python').hide(); $('#Django').hide(); $('#javascript').hide();$('#css').hide()">HTML</button>
-    <button onclick="$('#javascript').show(); $('#Python').hide(); $('#Django').hide(); $('#html').hide();$('#css').hide()">JAVASCRIPT</button>
-    <button onclick="$('#javascript').hide(); $('#Python').hide(); $('#Django').hide(); $('#html').hide();$('#css').show()">CSS</button>
+    <button onclick="$('#Python').show(); $('#Django').hide();$('#html').hide(); $('#javascript').hide();$('#css').hide();$('#bash').hide()">PYTHON</button>
+    <br />
+    <button onclick="$('#Django').show(); $('#Python').hide(); $('#html').hide(); $('#javascript').hide(); $('#css').hide();$('#bash').hide()">DJANGO</button>
+    <br />
+    <button onclick="$('#html').show(); $('#Python').hide(); $('#Django').hide(); $('#javascript').hide(); $('#css').hide();$('#bash').hide()">HTML</button>
+    <br />
+    <button onclick="$('#javascript').show(); $('#Python').hide(); $('#Django').hide(); $('#html').hide(); $('#css').hide();$('#bash').hide()">JAVASCRIPT</button>
+    <br />
+    <button onclick="$('#css').show();$('#javascript').hide(); $('#Python').hide(); $('#Django').hide(); $('#html').hide();$('#bash').hide()">CSS</button>
+    <br />
+    <button onclick="$('#bash').show();$('#javascript').hide(); $('#Python').hide(); $('#Django').hide(); $('#html').hide(); $('#css').hide()">BASH</button>
 </div>
 {% endblock %}
 
@@ -123,6 +129,25 @@
             </p>
                 <br />
                 <a href="https://www.w3schools.com/css/default.asp" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+    </div>
+</div>
+
+<!--BASH-->
+
+<div id="bash" style="display:none">
+    <h1 style="font-family: 'Lobster';"><em>BASH</em></h1>
+    <p style="color:yellow">
+        Bash es un intérprete de comandos y lenguaje de programación integrado que corre bajo el macroprocesador Shell de Unix.
+        <br />
+        <a href="https://es.ccm.net/ordenadores/linux/3810-que-es-un-shell-y-para-que-se-utiliza/" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+    </p>
+    <div class="col-md-4">
+        <h2 style="font-family: 'Lobster'"><em>Bash con Python</em></h2>
+            <p style="color:yellow">
+                Puede utilizar fácilmente Python en un script bash. Descubra cómo incrustar Python en Bash.
+            </p>
+                <br />
+                <a href="https://tecnobillo.com/sections/bonus/combinando-python-y-bash/combinando-python-y-bash.html" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
     </div>
 </div>
 
