@@ -3,9 +3,10 @@
 <!-- Add a filter menu -->
 {% block siderbar %}
 <div>
-    <button onclick="$('#Python').show(); $('#Django').hide(); $('#html').hide()">PYTHON</button>
-    <button onclick="$('#Django').show(); $('#Python').hide(); $('#html').hide()">DJANGO</button>
-    <button onclick="$('#html').show(); $('#Python').hide(); $('#Django').hide()">HTML</button>
+    <button onclick="$('#Python').show(); $('#Django').hide(); $('#html').hide();$('#javascript').hide()">PYTHON</button>
+    <button onclick="$('#Django').show(); $('#Python').hide(); $('#html').hide();$('#javascript').hide()">DJANGO</button>
+    <button onclick="$('#html').show(); $('#Python').hide(); $('#Django').hide();$('#javascript').hide()">HTML</button>
+    <button onclick="$('#javascript').show(); $('#Python').hide(); $('#Django').hide(); $('#html').hide()">JAVASCRIPT</button>
 </div>
 {% endblock %}
 
@@ -84,6 +85,28 @@
             </p>  
         </div>
     </div>
+</div>
+
+<!--JavaScript-->
+
+<div id="javascript" style="display:none">
+    <h1 style="font-family: 'Lobster';"><em>JAVASCRIPT</em></h1>
+    <p style="color:yellow">
+        JavaScript es un lenguaje de programación que los desarrolladores utilizan para diseñar páginas web interactivas.
+        <br />
+        <a href="https://developer.mozilla.org/es/docs/Learn/JavaScript/First_steps/What_is_JavaScript" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+    </p>
+    
+    <div class="col-md-4">
+        <h2 style="font-family: 'Lobster'"><em>Aprendizaje</em></h2>
+            <p style="color:yellow">
+                Puede aprender de forma sencilla como implementar JavaScript en páginas web. Descubra cómo mejorar las funcionalidades de sus páginas web de forma gratuita.
+            </p>
+                <br />
+                <a href="https://www.w3schools.com/js/default.asp" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+    </div>
+        
+    
 </div>
 
 {% endblock %}
