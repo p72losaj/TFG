@@ -38,8 +38,6 @@
                 <li>
                     <a href="{% url 'tecnologias' %}" class="navbar-brand" style="color:white">TECNOLOGIAS</a>
                     <ul>
-                        <li><a href="{% url 'Django' %}">DJANGO</a></li>
-                        <li><a href="{% url 'html' %}">HTML</a></li>
                         <li><a href="{% url 'JavaScript' %}">JAVASCRIPT</a></li>
                         <li><a href="{% url 'CSS' %}">CSS</a></li>
                         <li><a href="{% url 'Bash' %}">Bash</a></li>
@@ -58,9 +56,9 @@
             <div class="col-sm-2" style="padding-left: 50px;padding-right:50px">
                 <!--Add a filter menu-->
                 <h2 style="font-family: 'Lobster'; color:white"><em>Filtro de página</em></h2>
-                {% block siderbar %}  {% endblock %}
+                {% block siderbar %}{% endblock %}
             </div>
-            <div class="col-sm-10" style="padding:50px">
+            <div class="col-sm-10" style="padding:50px; color:white; text-align:center">
                 {% block content %}{% endblock %}
             </div>
         </div>

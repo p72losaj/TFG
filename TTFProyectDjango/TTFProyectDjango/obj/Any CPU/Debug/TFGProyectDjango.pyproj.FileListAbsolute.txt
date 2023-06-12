@@ -1,1 +1,2 @@
 C:\Users\jlore\Desktop\TFG\TTFProyectDjango\TTFProyectDjango\obj\Any CPU\Debug\TFGProyectDjango.pyproj.CoreCompileInputs.cache
+C:\Users\jlore\Desktop\Netlaerer\TFG\TTFProyectDjango\TTFProyectDjango\obj\Any CPU\Debug\TFGProyectDjango.pyproj.CoreCompileInputs.cache
