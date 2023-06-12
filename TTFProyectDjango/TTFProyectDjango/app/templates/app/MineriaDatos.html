@@ -1,0 +1,88 @@
+﻿{% extends "app/plantillaBase.html" %}
+
+<!--Add a filter menu-->
+{% block siderbar %}
+    
+    <div>
+        <button onclick="$('#descripcion').show(); $('#etapasMineriaDatos').hide(); $('#informacionInteres').hide(); $('#ejercicios').hide()">Descripcion</button>
+        <br />
+        <button onclick="$('#informacionInteres').show(); $('#descripcion').hide(); $('#etapasMineriaDatos').hide(); $('#ejercicios').hide()">InformacionInteres</button>
+        <br />
+        <button onclick="$('#etapasMineriaDatos').show(); $('descripcion').hide(); $('#informacionInteres').hide(); $('#ejercicios').hide()">EtapasMineriaDatos</button>
+        <br />
+        <button onclick="$('#ejercicios').show(); $('#etapasMineriaDatos').hide(); $('descripcion').hide(); $('#informacionInteres').hide()">EjerciciosPropuestos</button>
+        <br />
+    </div>
+{% endblock %}
+
+<!--Add a block content-->
+{% block content %}
+
+<!--Descripcion de mineria de datos-->
+
+<div id="descripcion" style="display:none">
+    <h1 style="font-family: 'Lobster' ">¿Qué es la minería de datos?</h1>
+    <p style="color:yellow">
+        Se define la minería de datos como el conjunto de técnicas y tecnologías que permiten explorar grandes bases de datos
+        de manera automática o semiautomática.
+        El objetivo de la minería de datos es encontrar patrones repetitivos, tendencias o reglas que expliquen el comportamiento
+        de los datos en un determinado contexto.
+    </p>
+</div>
+
+<!--Informacion de interes-->
+
+<div id="informacionInteres" style="display:none">
+    <h1 style="font-family: 'Lobster' ">Información de interés</h1>
+    <!--Botones para mostrar la informacion de interes-->
+    <div style="text-align:center; padding:50px">
+
+    </div>
+</div>
+
+<!--Etapas del proceso de mineria de datos-->
+
+<div id="etapasMineriaDatos" style="display:none">
+    <h1 style="font-family: 'Lobster' ">Etapas de la mineria de datos</h1>
+    <!--Botones para mostrar distintas etapas de la mineria de datos-->
+    <div style="text-align:center; padding:50px">
+        <button onclick="$('#ObtencionDatos').show(); $('#PreprocesamientoDatos').hide(); $('#Algoritmos').hide(); $('#EvaluacionResultados').hide()">ObtencionDatos</button>
+        <button onclick="$('#PreprocesamientoDatos').show(); $('#ObtencionDatos').hide(); $('#Algoritmos').hide(); $('#EvaluacionResultados').hide()">PreprocesamientoDatos</button>
+        <button onclick="$('#Algoritmos').show(); $('#ObtencionDatos').hide(); $('#PreprocesamientoDatos').hide(); $('#EvaluacionResultados').hide()">Algoritmos</button>
+        <button onclick="$('#EvaluacionResultados').show(); $('#ObtencionDatos').hide(); $('#PreprocesamientoDatos').hide(); $('#Algoritmos').hide()">EvaluacionResultados</button>
+    </div>
+
+</div>
+
+<!--Ejercicios propuestos-->
+
+<div id="ejercicios" style="display:none">
+    <h1 style="font-family: 'Lobster' ">Ejercicios Propuestos</h1>
+    <a href="" style="color:yellow">Video de Instrucciones</a>
+    <br />
+    <a href="" style="color:yellow">Script</a>
+</div>
+
+<div class="row" style="display:none">
+    <div class="col-md-4">
+        <h1>Etapas del proceso de minería de datos</h1>
+        <ul>
+            <li><a href="{% url 'ObtencionDatos' %}">ObtencionDatos</a></li>
+            <li><a href="{% url 'PreprocesamientoDatos' %}">PreprocesamientoDatos</a></li>
+            <li><a href="{% url 'Algoritmos' %}">Algoritmos</a></li>
+            <li><a href="{% url 'EvaluacionResultados' %}">EvaluacionResultados</a></li>
+        </ul>
+    </div>
+    
+    <div class="col-md-4">
+        <h1>Ejercicios Propuestos</h1>
+        <ul>
+            
+            <li><a href="">Script</a></li>
+        </ul>
+    </div>
+
+</div>
+
+
+{% endblock %}

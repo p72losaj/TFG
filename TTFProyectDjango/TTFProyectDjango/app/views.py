@@ -22,73 +22,13 @@ def tecnologias(request):
         'app/tecnologias.html'
     )
 
-def dJango(request):
-    "Renders the dJango page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/tecnologias/DJango.html',
-        {
-            'title':'Tecnologias-Django',
-            'message':'Pagina de descripcion de la tecnologia Django',
-        }
-    )
-
-def html(request):
-    "Renders the html page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/tecnologias/html.html',
-        {
-            'title':'Tecnologias-HTML',
-            'message':'Pagina de descripcion de la tecnologia HTML',
-        }
-    )
-
-def JavaScript(request):
-    "Renders the JavaScript page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/tecnologias/JavaScript.html',
-        {
-            'title':'Tecnologias-JAVASCRIPT',
-            'message':'Pagina de descripcion de la tecnologia JavaScript',
-        }
-    )
-
-def CSS(request):
-    "Renders the CSS page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/tecnologias/CSS.html',
-        {
-            'title':'Tecnologias-CSS',
-            'message':'Pagina de descripcion de la tecnologia CSS',
-        }
-    )
-
-
-def Bash(request):
-    "Renders the Bash page"
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/tecnologias/Bash.html',
-        {
-            'title':'Tecnologias-Bash',
-            'message':'Pagina de descripcion de la tecnologia Bash',
-        }
-    )
 
 def MineriaDatos(request):
     "Renders the Mineria de datos page"
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/MineriaDatos/MineriaDatos.html',
+        'app/MineriaDatos.html',
         {
             'title':'Mineria de datos',
             'message':'Pagina de descripcion de mineria de datos',
