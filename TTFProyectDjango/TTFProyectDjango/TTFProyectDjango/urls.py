@@ -16,20 +16,6 @@ urlpatterns = [
     path('MineriaDatos/', views.MineriaDatos, name='MineriaDatos'),
     path('simuladorPython', views.simuladorPython, name='simuladorPython'),
     
-    path('MineriaDatos/ObtencionDatos/', views.ObtencionDatos, name='ObtencionDatos'),
-    path('MineriaDatos/ObtencionDatos/ArchivosCSV/', views.ArchivosCSV, name='ArchivosCSV'),
-    path('MineriaDatos/ObtencionDatos/ArchivosARFF/', views.ArchivosARFF, name='ArchivosARFF'),
-    
-    path('MineriaDatos/PreprocesamientoDatos/', views.PreprocesamientoDatos, name='PreprocesamientoDatos'),
-    path('MineriaDatos/PreprocesamientoDatos/SeleccionDatosInteres', views.SeleccionDatosInteres, name='SeleccionDatosInteres'),
-    path('MineriaDatos/PreprocesamientoDatos/Outliers', views.Outliers, name='Outliers'),
-    path('MineriaDatos/PreprocesamientoDatos/DatosNulos', views.DatosNulos, name='DatosNulos'),
-    
-    
-    path('MineriaDatos/Algoritmos/', views.AlgoritmosMiningData, name='Algoritmos'),
-    path('MineriaDatos/Algoritmos/ArbolDecision', views.ArbolDecision, name='ArbolDecision'),
-    path('MineriaDatos/Algoritmos/KNN', views.KNN, name='KNN'),
-    
-    path('MineriaDatos/EvaluacionResultados/', views.EvaluacionResultados, name='EvaluacionResultados'),
+  
     
 ]
