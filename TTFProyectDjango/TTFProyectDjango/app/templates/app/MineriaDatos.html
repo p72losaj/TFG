@@ -2,7 +2,6 @@
 
 <!--Add a filter menu-->
 {% block siderbar %}
-    
     <div>
         <button onclick="$('#descripcion').show(); $('#etapasMineriaDatos').hide(); $('#informacionInteres').hide(); $('#ejercicios').hide()">Descripcion</button>
         <br />
@@ -19,12 +18,12 @@
 {% block content %}
 
 <!--Descripcion de mineria de datos-->
-
 <div id="descripcion" style="display:none">
     <h1 style="font-family: 'Lobster' ">¿Qué es la minería de datos?</h1>
     <p style="color:yellow">
         Se define la minería de datos como el conjunto de técnicas y tecnologías que permiten explorar grandes bases de datos
         de manera automática o semiautomática.
+        <br />
         El objetivo de la minería de datos es encontrar patrones repetitivos, tendencias o reglas que expliquen el comportamiento
         de los datos en un determinado contexto.
     </p>
@@ -36,13 +35,17 @@
     <h1 style="font-family: 'Lobster' ">Información de interés</h1>
     <!--Botones para mostrar la informacion de interes-->
     <div style="text-align:center; padding:50px">
-        <button onclick="$('#archivosCSV').show(); $('#archivosARFF').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide()">ArchivosCSV</button>
-        <button onclick="$('#archivosARFF').show(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide()">ArchivosARFF</button>
-        <button onclick="$('#interpolacion').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide()">Interpolacion</button>
-        <button onclick="$('#datosNulos').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide()">DatosNulos</button>
-        <button onclick="$('#seleccionDatosInteres').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#outliers').hide()">SeleccionDatosInteres</button>
-        <button onclick="$('#outliers').show(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide()">Outliers</button>
+        <button onclick="$('#archivosCSV').show(); $('#archivosARFF').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">ArchivosCSV</button>
+        <button onclick="$('#archivosARFF').show(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">ArchivosARFF</button>
+        <button onclick="$('#interpolacion').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">Interpolacion</button>
+        <button onclick="$('#datosNulos').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">DatosNulos</button>
+        <button onclick="$('#seleccionDatosInteres').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">SeleccionDatosInteres</button>
+        <button onclick="$('#outliers').show(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">Outliers</button>
+        <button onclick="$('#arbolDecision').show(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#knn').hide();$('#svc').hide()">ArbolDecision</button>
+        <button onclick="$('#knn').show(); $('#arbolDecision').hide(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide();$('#svc').hide()">KNN</button>
+        <button onclick="$('#svc').show();$('#knn').hide(); $('#arbolDecision').hide(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide()">SVC</button>
     </div>
+
     <!--Informacion Adicional de Archivos CSV-->
     <div id="archivosCSV" style="display:none">
         <h1 style="font-family: 'Lobster' ">Archivos CSV</h1>
@@ -52,6 +55,7 @@
                 <a style="margin-top:20px" href="https://www.adslzone.net/reportajes/software/csv-que-es/" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
             </p>
     </div>
+    
     <!--Informacion Adicional de Archivos ARFF-->
     <div id="archivosARFF" style="display:none">
         <h1 style="font-family: 'Lobster' ">Archivos ARFF</h1>
@@ -61,6 +65,7 @@
             <a style="margin-top:20px" href="https://filext.com/es/extension-de-archivo/ARFF" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
         </p>
     </div>
+    
     <!-- Informacion Adicional de Interpolacion-->
     <div id="interpolacion" style="display:none">
         <h1 style="font-family: 'Lobster' ">INTERPOLACION</h1>
@@ -68,15 +73,18 @@
             <a style="margin-top:20px" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html" class="btn btn-primary btn-large" target="_blank" >Aprender más&raquo;</a>
         </p>
     </div>
+    
     <!-- Informacion Adicional de Datos nulos-->
     <div id="datosNulos" style="display:none">
         <h1 style="font-family: 'Lobster' ">DATOS NULOS</h1>
         <p style="color:yellow">
-            Se conoce como datos nulos a aquellos datos sin información alguna en alguno de los elementos de la variable. Estos pueden deberse a diversas causas como falta de información o no haber podido estimar la variable,  un error de entrada, o bien a un fenómeno externo que impidió la recolección de datos.
+            Se conoce como datos nulos a aquellos datos sin información alguna en alguno de los elementos de la variable. 
+            <br />Estos pueden deberse a diversas causas como falta de información o no haber podido estimar la variable,  un error de entrada, o bien a un fenómeno externo que impidió la recolección de datos.
             <br />
             <a style="margin-top:20px" href="https://www.scribbr.com/statistics/missing-data/" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
         </p>
     </div>
+
     <!-- Informacion Adicional de Seleccion de Datos de Interes-->
     <div id="seleccionDatosInteres" style="display:none">
         <h1 style="font-family: 'Lobster' ">SELECCION DE DATOS DE INTERES</h1>
@@ -84,16 +92,54 @@
             Al analizar los datos disponibles, se pueden identificar aquellos atributos que pueden ser relevantes y aquellos atributos que pueden descartarse.
         </p>
     </div>
+    
     <!-- Informacion Adicional de Outliers-->
     <div id="outliers" style="display:none">
         <h1 style="font-family: 'Lobster' ">OUTLIERS</h1>
         <p style="color:yellow">
             Por outliers nos referimos a cualquier dato que difiere signicativamente del promedio o rango observado del resto de nuestros datos.
             <br />
-            <a style="margin-top:20px" href="https://www.malicksarr.com/how-to-detect-and-handle-outliers-in-data-mining/?utm_content=cmp-true" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a></p>
+            <a style="margin-top:20px" href="https://www.malicksarr.com/how-to-detect-and-handle-outliers-in-data-mining/?utm_content=cmp-true" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
         </p>
     </div>
+    
+    <!--Informacion Adicional de Arboles de Decision-->
+    <div id="arbolDecision" style="display:none">
+        <h1 style="font-family: 'Lobster' ">ARBOL DE DECISION</h1>
+        <p style="color:yellow">
+            Un árbol de decisión es un algoritmo de aprendizaje supervisado no paramétrico, que se utiliza tanto para tareas de clasificación como de regresión.
+            <br />
+            <a style="margin-top:20px" href="https://www.unir.net/ingenieria/revista/arboles-de-decision/" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+        </p>
+        
+        <div>
+            <h2 style="font-family: 'Lobster'"><em>Random Forest</em></h2>
+            <p style="color:yellow">
+                <br />
+                <a class="btn btn-primary btn-large" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html" target="_blank">Aprender más&raquo;</a>
+            </p>
+        </div>
+    </div>
 
+    <!--Informacion Adicional de KNN-->
+    <div id="knn" style="display:none">
+        <h1 style="font-family: 'Lobster' ">KNN</h1>
+        <p style="color:yellow">
+            Los algoritmos KNN son clasificadores de aprendizaje supervisado no paramétrico, que utilizan la proximidad para realizar clasificaciones o predicciones sobre la agrupación de un punto de datos individual.
+            <br />
+            <a style="margin-top:20px" href="https://www.themachinelearners.com/algoritmo-knn/" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+        </p>
+    </div>
+    
+    <!--Informacion Adicional de SVC-->
+    <div id="svc" style="display:none">
+        <h1 style="font-family: 'Lobster' ">SVC</h1>
+        <p style="color:yellow">
+            Un algoritmo SVC es un algoritmo de aprendizaje automático supervisado que generalmente se usa para tareas de clasificación.
+            <br />
+            <a style="margin-top:20px" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+        </p>
+    </div>
 </div>
 
 <!--Etapas del proceso de mineria de datos-->
@@ -113,12 +159,11 @@
         <p style="color:yellow">
             Esta fase de la minería de datos se refiere a obtener los datos o conjuntos de datos que se desean predecir, calcular o inferir. Dichos datos sirven para determinar los cálculos o los procesos.
         </p>
-        <div class="col-md-4">
+        <div>
             <h2 style="font-family: 'Lobster'"><em>Videos Tutorial</em></h2>
             <p>
                 <a href="" style="color:yellow;margin-top:20px">Lectura Dataset</a>
-                <br />
-                <a href="" style="color:yellow">Conocer Dataset</a>
+                <a href="" style="color:yellow; margin-left:30px">Conocer Dataset</a>
             </p>
         </div>
     </div>
@@ -131,12 +176,11 @@
             <a style="margin-top:20px" href="https://blog.powerdata.es/el-valor-de-la-gestion-de-datos/preprocesar-y-normalizar-datos-4-pasos-para-limpiar-y-mejorar-datos"
            class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>
         </p>
-        <div class="col-md-4">
+        <div>
             <h2 style="font-family: 'Lobster'"><em>Videos Tutorial</em></h2>
             <p>
                 <a href="" style="color:yellow;margin-top:20px">Limpieza de Datos</a>
-                <br />
-                <a href="" style="color:yellow">Transformacion de Datos</a>
+                <a href="" style="color:yellow; margin-left:30px">Transformacion de Datos</a>
             </p>
         </div>
     </div>
@@ -144,15 +188,32 @@
     <div id="Algoritmos" style="display:none">
         <h1 style="font-family: 'Lobster' ">Algoritmos de Mineria de Datos</h1>
         <p style="color:yellow">
-
+            Un algoritmo en minería de datos es un conjunto de heurísticas y cálculos que permiten crear un modelo a partir de datos.
+            <br />
+            <a style="margin-top:20px" href="https://learn.microsoft.com/es-es/analysis-services/data-mining/data-mining-algorithms-analysis-services-data-mining?view=asallproducts-allversions" class="btn btn-primary btn-large">Aprender más&raquo;</a>
         </p>
+        <!--Videos tutorial-->
+        <div>
+            <h2 style="font-family: 'Lobster'"><em>Videos Tutorial</em></h2>
+            <p>
+                <a href="" style="color:yellow;margin-top:20px">Árbol de Decisión</a> 
+                <a href="" style="color:yellow; margin-left:30px">KNN</a>
+                <a href="" style="color:yellow; margin-left:30px">SVC</a>
+            </p>
+        </div>
     </div>
     <!--Etapa de mineria de datos: Evaluacion de Resultados -->
     <div id="EvaluacionResultados" style="display:none">
         <h1 style="font-family: 'Lobster' ">Evaluacion de Resultados</h1>
         <p style="color:yellow">
-
+            La evaluación de resultados se efectúa una vez que se ha obtenido el modelo, comprobando que las conclusiones obtenidas son válidas y satisfactorias.
         </p>
+        <!--Videos tutoriales-->
+        <div>
+            <h2 style="font-family: 'Lobster'">Videos tutorial</h2>
+            <a href="" style="color:yellow; margin-top:20px">Datos obtenidos</a>
+            <a href="" style="color:yellow; margin-left:30px">Algoritmos de Clasificacion</a>
+        </div>
     </div>
 </div>
 
