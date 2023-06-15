@@ -206,6 +206,7 @@
                 def transformSexTitanic(df) -> pd.DataFrame:
                     """ Transform col Sex of Dataset Titanic 
                     :param df: Dataset
+                    :return dataset
                     """
                     df['Sex'] = df['Sex'].replace(['female','male'],[0,1])
                     return df
@@ -213,12 +214,56 @@
                 def transformSibSpParchTitanic(df) -> pd.DataFrame:
                     """ Transform cols SibSp and Parch of Dataset Titanic
                     :param df: Dataset
+                    :return dataset
                     """
                     df['inFamily'] = (df['SibSp'] > 0) | (df['Parch'] > 0)
                     df['inFamily'] = df['inFamily'].astype(int)
                     df.pipe(dropCols, ['SibSp', 'Parch'])
                     return df
 
+                def transformAgeTitanic(df) -> pd.DataFrame:
+                    """ Transform Age of dataset titanic into intervals
+                    :param df: Dataset
+                    return Dataset
+                    """
+                    df.loc[df['Age']<=20, 'Age'] = 0 # Child
+                    df.loc[ (df['Age'] >20) & (df['Age'] <= 65), 'Age'] = 1 # Adult
+                    df.loc[ df['Age'] > 65, 'Age'] = 2 # Elderly
+                    df['Age'] = df['Age'].astype(int)
+                    return df
+
+                def describeDataset(df) -> pd.DataFrame:
+                    """ Show descriptive statistics of dataset
+                    : param df: Dataset
+                    :return Dataset
+                    """
+                    display(df.describe())
+                    return df
+
+                def transformFareTitanic(df) -> pd.DataFrame:
+                    """ Transform col Fare of dataset titanic into intervals
+                    :param df: Dataset
+                    :return Dataset
+                    """
+                    df.loc[ df['Fare'] <= 7.925, 'Fare'] = 0 # Fist Percentile
+                    df.loc[ (df['Fare'] > 7.925) & ( df['Fare'] <= 15.2458), 'Fare' ] = 1 # Second Percentile
+                    df.loc[ df['Fare'] > 15.2458,'Fare' ] = 2 # Third Percentile
+                    df['Fare'] = df['Fare'].astype(int)
+                    return df
+
+                def transformSurvivedTitanic(df) -> pd.DataFrame:
+                    """ Transform col Survived of dataset titanic and show a graphic of data distribution
+                    :param df: Dataframe
+                    :return df
+                    """
+                    df['Survived'] = df['Survived'].replace([1,0],['Alive','Dead'])
+                    # Generate graphic
+                    sns.countplot( x='Survived', data=df)
+                    plt.title('Titanic Class')
+                    display(plt)
+                    plt.clf()
+                    return df
+                   
                 def main():
                     # Video 1: Show Dataset
                     # display('Show Dataset titanic'); titanic.pipe(showDataset)
@@ -227,7 +272,8 @@
 
                     # Video 2: Data Preprocessing
                     titanic2 = titanic.copy().pipe(showDataset).pipe(dropCols, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Embarked']).pipe(showInfoDataset).pipe(
-                                ClearLostDataTitanic).pipe(deleteDuplicatedData).pipe(transformSexTitanic).pipe(transformSibSpParchTitanic)
+                                ClearLostDataTitanic).pipe(deleteDuplicatedData).pipe(transformSexTitanic).pipe(transformSibSpParchTitanic).pipe(
+                                transformAgeTitanic).pipe(describeDataset).pipe(transformFareTitanic).pipe(transformSurvivedTitanic)
                     
                     # Check if the data preprocessing has been carried out correctly
                     display("Check data preprocessing")
