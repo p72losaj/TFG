@@ -117,6 +117,7 @@
             "seaborn",
             "matplotlib",
             "scipy",
+            "scikit-learn",
             ]
             plugins = [
             "https://pyscript.net/latest/plugins/python/py_tutor.py"
@@ -131,12 +132,23 @@
                 from scipy.io import arff
                 import seaborn as sns
                 import matplotlib.pyplot as plt
-
+                from sklearn.model_selection import StratifiedShuffleSplit
+                from sklearn.metrics import accuracy_score
+                
+                # Load
                 def loadTitanic() -> pd.DataFrame:
                     """ Obtaining data from titanic dataset.
                     :return: Dataset
                     """
                     df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
+                    return df
+                
+                def showDataset(df) -> pd.DataFrame:
+                    """ Show the first 5 lines of the dataset
+                    :param df: Dataset 
+                    :return: Dataset
+                    """
+                    display(df.head())
                     return df
 
                 def loadIris() -> pd.DataFrame:
@@ -154,15 +166,34 @@
                     :return: Dataset segment challenge
                     """
                     df = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
-                    df['class'] = df['class'].str.decode('utf-8') # Correccion error de decodificacíon
+                    df['class'] = df['class'].str.decode('utf-8')
                     return df
 
-                def showDataset(df) -> pd.DataFrame:
-                    """ Show the first 5 lines of the dataset
-                    :param df: Dataset 
+                def showInfoDataset(df) -> pd.DataFrame:
+                    """ Show Dataset Info
+                    :param df: Dataset
                     :return: Dataset
                     """
-                    display(df.head())
+                    display(df.info())
+                    return df
+
+                def describeDataset(df) -> pd.DataFrame:
+                    """ Show descriptive statistics of dataset
+                    : param df: Dataset
+                    :return Dataset
+                    """
+                    display(df.describe())
+                    return df
+
+                def showTitanicSurvived(df) -> pd.DataFrame:
+                    """ Generate the survived graphic of dataset titanic
+                    :param df: Dataset
+                    :return df
+                    """
+                    sns.countplot( x='Survived', data=df)
+                    plt.title('Titanic Class')
+                    display(plt)
+                    plt.clf()
                     return df
 
                 def dropCols(df,cols) -> pd.DataFrame:
@@ -174,20 +205,12 @@
                     df.drop(cols, axis=1, inplace=True)
                     return df
 
-                def showInfoDataset(df) -> pd.DataFrame:
-                    """ Show Dataset Info
-                    :param df: Dataset
-                    :return: Dataset
-                    """
-                    display(df.info())
-                    return df
-
                 def ClearLostDataTitanic(df) -> pd.DataFrame:
                     """ Clear lost data of dataset titanic
                     :param: Dataset
                     :return: Dataset
                     """
-                    df = df = df.interpolate(method ='linear', limit_direction ='backward')
+                    df = df.interpolate(method ='linear', limit_direction ='backward')
                     return df
 
                 def deleteDuplicatedData(df) -> pd.DataFrame:
@@ -198,9 +221,6 @@
                     # Detect duplicated rows
                     if df.duplicated(keep = 'last').sum() > 0:
                         df = df.drop_duplicates(keep='last')
-                        display("Delete duplicate rows of dataset")
-                    else:
-                        display('There are not duplicate rows')
                     return df
 
                 def transformSexTitanic(df) -> pd.DataFrame:
@@ -232,14 +252,6 @@
                     df['Age'] = df['Age'].astype(int)
                     return df
 
-                def describeDataset(df) -> pd.DataFrame:
-                    """ Show descriptive statistics of dataset
-                    : param df: Dataset
-                    :return Dataset
-                    """
-                    display(df.describe())
-                    return df
-
                 def transformFareTitanic(df) -> pd.DataFrame:
                     """ Transform col Fare of dataset titanic into intervals
                     :param df: Dataset
@@ -257,39 +269,55 @@
                     :return df
                     """
                     df['Survived'] = df['Survived'].replace([1,0],['Alive','Dead'])
-                    # Generate graphic
-                    sns.countplot( x='Survived', data=df)
-                    plt.title('Titanic Class')
-                    display(plt)
-                    plt.clf()
                     return df
-                   
-                def main():
-                    # Video 1: Show Dataset
-                    # display('Show Dataset titanic'); titanic.pipe(showDataset)
-                    # display('Show Dataset iris'); iris.pipe(showDataset)
-                    # display('Show dataset segment challenge'); segment_challenge.pipe(showDataset)
-
-                    # Video 2: Data Preprocessing
-                    titanic2 = titanic.copy().pipe(showDataset).pipe(dropCols, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Embarked']).pipe(showInfoDataset).pipe(
-                                ClearLostDataTitanic).pipe(deleteDuplicatedData).pipe(transformSexTitanic).pipe(transformSibSpParchTitanic).pipe(
-                                transformAgeTitanic).pipe(describeDataset).pipe(transformFareTitanic).pipe(transformSurvivedTitanic)
-                    
-                    # Check if the data preprocessing has been carried out correctly
-                    display("Check data preprocessing")
-                    titanic2.pipe(showInfoDataset).pipe(showDataset)
-                    
-                    
-                if __name__ == "__main__":
-                    # Video 1: Data Collection
-                    # titanic, iris, segment_challenge = loadTitanic(), loadIris(), loadSegmentChallenge()
-                    
-                    # Video 2: Load dataset
-                    titanic = loadTitanic()
-                    main()
 
             </py-script>
-        </py-tutor>
+        </py-tutor> 
+
+        <!--Ejercicio 1-->
+        <h2 style="font-family:'Lobster'; text-align:center">
+            <em>Ejercicio 1: Obtenga al menos 5 datos de muestra en CSV, ARFF o cualquier otro formato: Weka, UCI MLR </em>
+        </h2>
+        <py-repl>
+            
+            display('Dataset Titanic')
+            titanic = loadTitanic().pipe(showDataset)
+            
+            display('Dataset Iris')
+            iris = loadIris().pipe(showDataset)
+            
+            display('Dataset segment challenge')
+            segment_challenge = loadSegmentChallenge().pipe(showDataset)
+        </py-repl>
+        
+        <!--Ejercicio 2-->
+        <h2 style="font-family:'Lobster'; text-align:center">
+            <em>Ejercicio 2: Aplica el método de preprocesamiento de datos que consideres necesario para cada dataset </em>
+        </h2>
+        <py-repl >
+            # Dataset titanic
+            titanic = loadTitanic()
+            # Analizamos el dataset
+            # titanic.pipe(showInfoDataset).pipe(describeDataset).pipe(showTitanicSurvived)
+            # Aplicamos el preprocesamiento de los datos
+            titanic2 = titanic.pipe(dropCols, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Embarked']).pipe(ClearLostDataTitanic).pipe(deleteDuplicatedData).pipe(
+                        transformSexTitanic).pipe(transformSibSpParchTitanic).pipe(transformAgeTitanic).pipe(transformFareTitanic).pipe(transformSurvivedTitanic).pipe(showDataset).pipe(
+                        showTitanicSurvived).pipe(showInfoDataset)
+        </py-repl>
+        <!--Ejercicio 3-->
+        <h2 style="font-family:'Lobster'; text-align:center">
+            <em>Ejercicio 3: Aplica los siguientes algoritmos a cada dataset: Arbol de Decision, Arbol de decision aleatorio, KNN, SVC </em>
+        </h2>
+        <py-repl >
+            
+        </py-repl>
+        <!--Ejercicio 4-->
+        <h2 style="font-family:'Lobster'; text-align:center">
+            <em>Ejercicio 4: Utiliza la informacion obtenida en los ejercicios anteriores y saca conclusiones </em>
+        </h2>
+        <py-repl >
+            
+        </py-repl>
 
     </div>
 
