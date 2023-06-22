@@ -3,6 +3,7 @@
 <!-- Add a filter menu -->
 {% block siderbar %}
 <div>
+    <h2><em>Filtro de página</em></h2>
     <button onclick="$('#Python').show(); $('#Django').hide();$('#html').hide(); $('#javascript').hide();$('#css').hide();$('#bash').hide()">PYTHON</button>
     <br />
     <button onclick="$('#Django').show(); $('#Python').hide(); $('#html').hide(); $('#javascript').hide(); $('#css').hide();$('#bash').hide()">DJANGO</button>
@@ -22,8 +23,8 @@
 
 <!--Python-->
 <div id="Python" style="display: none">
-    <h1 style="font-family: 'Lobster';"><em>PYTHON</em></h1>
-    <p style="color:yellow">
+    <h1><em>PYTHON</em></h1>
+    <p>
         Python es un lenguaje de programación orientado a objetos de alto nivel utilizado a menudo para crear sitios web y software, automatizar tareas y realizar análisis de datos.
         <br />
         <a style="margin-top:20px" href="https://developer.oracle.com/es/learn/technical-articles/what-is-python" class="btn btn-primary btn-large" target="_blank">Aprender más&raquo;</a>

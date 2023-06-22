@@ -26,29 +26,60 @@
     <!-- Add CSS style-->
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
+    <style>
+
+        body {
+            background-color: black
+        }
+        .header {
+            padding-left: 50px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-family: 'Lobster';
+            color: white;
+        }
+
+        h2 {
+            font-family: 'Lobster';
+            color: white;
+        }
+
+        .col-sm-2 {
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        p {
+            color: yellow;
+        }
+        
+    </style>
 </head>
-<body style="background-color:black">
+<body>
     <!--Add a navbar header-->
-    <div id="header" style="padding-left: 50px; margin-top:50px">
-        <h1 style="font-family: 'Lobster'; color:white"><em>Menu Principal</em></h1>
+    <div class="header">
+        <h1><em>Menu Principal</em></h1>
         <nav class="navbar navbar-expand-lg navbar-light ">
 
             <ul class="nav">
                 <li> <a href="/" class="navbar-brand" style="color:white">NETTLAERER</a></li>
                 <li> <a href="{% url 'tecnologias' %}" class="navbar-brand" style="color:white">TECNOLOGIAS</a></li>
-                <li><a href="{% url 'MineriaDatos' %}" class="navbar-brand" style="color:white">Mineria de Datos</a></li>
+                <li> <a href="{% url 'MineriaDatos' %}" class="navbar-brand" style="color:white">Mineria de Datos</a></li>
                 
                 <li><a href="{% url 'simuladorPython' %}" class="navbar-brand" style="color:white" target="_blank">SimuladorPython</a></li>
             </ul>
         </nav>
     </div>
 
+
     <!--Add a fluid container-->
     <div class="container-fluid" >
         <div class="row">
-            <div class="col-sm-2" style="padding-left: 50px;padding-right:50px">
+            <div class="col-sm-2" style="">
                 <!--Add a filter menu-->
-                <h2 style="font-family: 'Lobster'; color:white"><em>Filtro de página</em></h2>
+                
                 {% block siderbar %}{% endblock %}
             </div>
             <div class="col-sm-10" style="padding:50px; color:white; text-align:center">

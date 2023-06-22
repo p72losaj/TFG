@@ -4,6 +4,7 @@
 {% block siderbar %}
     
     <div>
+        <h2><em>Filtro de página</em></h2>
         <button onclick="$('#datosContacto').hide();$('#requisitosSistema').hide();$('#Descripcion').show();">Descripcion</button>
         <button onclick="$('#datosContacto').show();$('#requisitosSistema').hide();$('#Descripcion').hide();">Datos de Contacto</button>
         <button onclick="$('#datosContacto').hide();$('#requisitosSistema').show();$('#Descripcion').hide();">Requisitos Sistema</button>
@@ -15,8 +16,8 @@
 
 <!--Description Aplicacion Web-->
 <div id="Descripcion" style="display:none">
-    <h1 style="font-family: 'Lobster';"><em>NETTLAERER</em></h1>
-    <p style="color:yellow">
+    <h1><em>NETTLAERER</em></h1>
+    <p>
     NETTLAERER es una aplicación web sin fines de lucro creada por Jaime Lorenzo Sánchez en 2023.
     Se diseñó con el objetivo de ayudar a los programadores a dar sus primeros pasos en la minería de datos.
     El sitio web incluye ejercicios y materiales de práctica complementarios. Los recursos o materiales de aprendizaje disponibles son gratuitos para los usuarios de su sitio web y aplicación.
@@ -25,16 +26,15 @@
 
 <!--Datos de contacto-->
 <div id="datosContacto" style="display:none">
-    <h1 style="font-family: 'Lobster'; "><em>Datos de Contacto</em></h1>
-    <p style="color:yellow">Email: jlorenzosa@gmail.com</p>
+    <h1><em>Datos de Contacto</em></h1>
+    <p>Email: jlorenzosa@gmail.com</p>
 </div>
 
 <!--Requisitos del sistema-->
 <div id="requisitosSistema" style="display:none">
-    <h1 style="font-family: 'Lobster' "><em>Requisitos del sistema</em></h1>
-     <p style="color:yellow">
-        Python: 3.10.11 <br />
-        Django: 4.2
+    <h1><em>Requisitos del sistema</em></h1>
+     <p>
+        Python: 3.10.11 <br /> Django: 4.2
      </p>
      
 </div>
