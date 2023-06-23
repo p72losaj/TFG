@@ -144,7 +144,9 @@
                 import matplotlib.pyplot as plt
                 from sklearn.model_selection import cross_val_score
                 from sklearn.tree import DecisionTreeClassifier
+                from sklearn.ensemble import RandomForestClassifier
                 from sklearn.neighbors import KNeighborsClassifier
+                from sklearn.svm import SVC
 
                 def loadTitanic() -> pd.DataFrame:
                     """ Obtaining data from titanic dataset.
@@ -287,7 +289,7 @@
                     :param test_data: Test data of Dataset
                     """
                     # Create models
-                    models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3)]
+                    models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3), RandomForestClassifier(), SVC(probability = True)]
                     classifiers = []
                     log_cols = ["Classifier", "Accuracy"]
                     log = pd.DataFrame(columns=log_cols)
@@ -306,7 +308,8 @@
                         log.loc[i, log_cols[1]] = acc_dict[name]
                         i += 1
                     # Show result
-                    plt.figure(figsize=(14,14))
+                    display(log)
+                    plt.figure(figsize=(14,10))
                     plt.xlabel('Accuracy')
                     plt.title('Classifier Accuracy')
                     sns.barplot(x=log.Accuracy, y=classifiers, data=log, color='b')
@@ -340,7 +343,9 @@
             import matplotlib.pyplot as plt
             from sklearn.model_selection import cross_val_score
             from sklearn.tree import DecisionTreeClassifier
+            from sklearn.ensemble import RandomForestClassifier
             from sklearn.neighbors import KNeighborsClassifier
+            from sklearn.svm import SVC
             
             def loadTitanic() -> pd.DataFrame:
                 """ Obtaining data from titanic dataset.
@@ -482,7 +487,7 @@
                 :param test_data: Test data of Dataset
                 """
                 # Create models
-                models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3)]
+                models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3), RandomForestClassifier(), SVC(probability = True)]
                 classifiers = []
                 log_cols = ["Classifier", "Accuracy"]
                 log = pd.DataFrame(columns=log_cols)
@@ -501,7 +506,8 @@
                     log.loc[i, log_cols[1]] = acc_dict[name]
                     i += 1
                 # Show result
-                plt.figure(figsize=(14,14))
+                display(log)
+                plt.figure(figsize=(14,10))
                 plt.xlabel('Accuracy')
                 plt.title('Classifier Accuracy')
                 sns.barplot(x=log.Accuracy, y=classifiers, data=log, color='b')
