@@ -42,6 +42,7 @@
         <button onclick="$('#arbolDecision').show(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#knn').hide();$('#svc').hide()">ArbolDecision</button>
         <button onclick="$('#knn').show(); $('#arbolDecision').hide(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide();$('#svc').hide()">KNN</button>
         <button onclick="$('#svc').show();$('#knn').hide(); $('#arbolDecision').hide(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide()">SVC</button>
+        <button onclick="$('#cross_val_score').show();$('#svc').hide();$('#knn').hide(); $('#arbolDecision').hide(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide()">cross_val_score</button>
     </div>
 
     <!--Informacion Adicional de Archivos CSV-->
@@ -134,6 +135,14 @@
             Un algoritmo SVC es un algoritmo de aprendizaje automático supervisado que generalmente se usa para tareas de clasificación.
             <br />
             <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
+        </p>
+    </div>
+
+    <!--Informacion Adicional de cross_val_score-->
+    <div id="cross_val_score" style="display:none">
+        <h1>CROSS_VAL_SCORE</h1>
+        <p>
+            <a href="https://stephenallwright.com/cross_val_score-sklearn/" target="_blank" class="btn btn-primary btn-large">Aprender más&raquo;</a>
         </p>
     </div>
 </div>

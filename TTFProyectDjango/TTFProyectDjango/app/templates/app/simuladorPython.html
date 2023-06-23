@@ -142,9 +142,10 @@
                 from scipy.io import arff
                 import seaborn as sns
                 import matplotlib.pyplot as plt
-                from sklearn.model_selection import StratifiedShuffleSplit
-                from sklearn.metrics import accuracy_score
-            
+                from sklearn.model_selection import cross_val_score
+                from sklearn.tree import DecisionTreeClassifier
+                from sklearn.neighbors import KNeighborsClassifier
+
                 def loadTitanic() -> pd.DataFrame:
                     """ Obtaining data from titanic dataset.
                     :return: Dataset
@@ -279,6 +280,38 @@
                     """
                     df['Survived'] = df['Survived'].replace([1,0],['Alive','Dead'])
                     return df
+
+                def Classifiers(train_data, test_data):
+                    """ Apply classifier of mining data to dataset
+                    :param train_data: Train Data of Dataset
+                    :param test_data: Test data of Dataset
+                    """
+                    # Create models
+                    models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3)]
+                    classifiers = []
+                    log_cols = ["Classifier", "Accuracy"]
+                    log = pd.DataFrame(columns=log_cols)
+                    acc_dict = {}
+                    # train and test
+                    i=0
+                    for model in models:
+                        name = model.__class__.__name__
+                        classifiers.append(name)
+                        acc = cross_val_score(model, train_data, test_data, cv=5, scoring='accuracy').mean()
+                        if name in acc_dict:
+                            acc_dict[name] += acc
+                        else:
+                            acc_dict[name] = acc
+                        log.loc[i, log_cols[0]] = models[i]
+                        log.loc[i, log_cols[1]] = acc_dict[name]
+                        i += 1
+                    # Show result
+                    plt.figure(figsize=(14,14))
+                    plt.xlabel('Accuracy')
+                    plt.title('Classifier Accuracy')
+                    sns.barplot(x=log.Accuracy, y=classifiers, data=log, color='b')
+                    display(plt)
+                    plt.clf()
                 
             </pre>
         </div>
@@ -298,16 +331,17 @@
             ]
             
         </py-config>
-        <!-- Mostrar codigo python-->
+        <!-- Codigo python-->
         <py-script>
             import pandas as pd
             from pyodide.http import open_url
             from scipy.io import arff
             import seaborn as sns
             import matplotlib.pyplot as plt
-            from sklearn.model_selection import StratifiedShuffleSplit
-            from sklearn.metrics import accuracy_score
-
+            from sklearn.model_selection import cross_val_score
+            from sklearn.tree import DecisionTreeClassifier
+            from sklearn.neighbors import KNeighborsClassifier
+            
             def loadTitanic() -> pd.DataFrame:
                 """ Obtaining data from titanic dataset.
                 :return: Dataset
@@ -442,7 +476,39 @@
                 df['Survived'] = df['Survived'].replace([1,0],['Alive','Dead'])
                 return df
             
-
+            def Classifiers(train_data, test_data):
+                """ Apply classifier of mining data to dataset
+                :param train_data: Train Data of Dataset
+                :param test_data: Test data of Dataset
+                """
+                # Create models
+                models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3)]
+                classifiers = []
+                log_cols = ["Classifier", "Accuracy"]
+                log = pd.DataFrame(columns=log_cols)
+                acc_dict = {}
+                # train and test
+                i=0
+                for model in models:
+                    name = model.__class__.__name__
+                    classifiers.append(name)
+                    acc = cross_val_score(model, train_data, test_data, cv=5, scoring='accuracy').mean()
+                    if name in acc_dict:
+                        acc_dict[name] += acc
+                    else:
+                        acc_dict[name] = acc
+                    log.loc[i, log_cols[0]] = models[i]
+                    log.loc[i, log_cols[1]] = acc_dict[name]
+                    i += 1
+                # Show result
+                plt.figure(figsize=(14,14))
+                plt.xlabel('Accuracy')
+                plt.title('Classifier Accuracy')
+                sns.barplot(x=log.Accuracy, y=classifiers, data=log, color='b')
+                display(plt)
+                plt.clf()
+            
+            
         </py-script>
 
         <!--Ejercicio 1-->
@@ -453,12 +519,6 @@
             
             display('Dataset Titanic')
             titanic = loadTitanic().pipe(showDataset)
-            
-            display('Dataset Iris')
-            iris = loadIris().pipe(showDataset)
-            
-            display('Dataset segment challenge')
-            segment_challenge = loadSegmentChallenge().pipe(showDataset)
         </py-repl>
         
         <!--Ejercicio 2-->
@@ -472,15 +532,25 @@
         <py-repl >
             # Aplicamos el preprocesamiento de los datos del dataset titanic
             titanic2 = titanic.pipe(dropCols, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Embarked']).pipe(ClearLostDataTitanic).pipe(deleteDuplicatedData).pipe(
-                        transformSexTitanic).pipe(transformSibSpParchTitanic).pipe(transformAgeTitanic).pipe(transformFareTitanic).pipe(transformSurvivedTitanic).pipe(showDataset).pipe(
-                        showTitanicSurvived).pipe(showInfoDataset)
+                        transformSexTitanic).pipe(transformSibSpParchTitanic).pipe(transformAgeTitanic).pipe(transformFareTitanic).pipe(transformSurvivedTitanic)
+        </py-repl>
+        <py-repl>
+            # Comprobamos si se ha realizado correctamente el preprocesamiento de los datos del dataset
+            titanic2.pipe(showDataset).pipe(showTitanicSurvived).pipe(showInfoDataset)
         </py-repl>
         <!--Ejercicio 3-->
         <p>
             <em>Ejercicio 3: Aplica los siguientes algoritmos a cada dataset: Arbol de Decision, Arbol de decision aleatorio, KNN, SVC </em>
         </p>
         <py-repl >
-            
+            # titanic train data
+            train_titanic = titanic2.drop(['Survived'], axis=1)
+            train_titanic = pd.get_dummies(train_titanic)
+            train_titanic = train_titanic.dropna(axis=1)
+            # titanic test data
+            test_titanic = titanic2['Survived']
+            # Apply algorithms to dataset titanic
+            Classifiers(train_titanic, test_titanic)
         </py-repl>
         <!--Ejercicio 4-->
         <p>
