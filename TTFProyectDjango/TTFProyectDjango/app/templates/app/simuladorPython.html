@@ -248,8 +248,7 @@
                     :param df: Dataset
                     :return dataset
                     """
-                    df['inFamily'] = (df['SibSp'] > 0) | (df['Parch'] > 0)
-                    df['inFamily'] = df['inFamily'].astype(int)
+                    df['Members_Family'] = df['SibSp'] + df['Parch']
                     df.pipe(dropCols, ['SibSp', 'Parch'])
                     return df
 
@@ -446,8 +445,7 @@
                 :param df: Dataset
                 :return dataset
                 """
-                df['inFamily'] = (df['SibSp'] > 0) | (df['Parch'] > 0)
-                df['inFamily'] = df['inFamily'].astype(int)
+                df['Members_Family'] = df['SibSp'] + df['Parch']
                 df.pipe(dropCols, ['SibSp', 'Parch'])
                 return df
 
