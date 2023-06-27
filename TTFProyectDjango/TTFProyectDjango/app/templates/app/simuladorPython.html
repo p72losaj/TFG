@@ -549,8 +549,6 @@
         <py-repl >
             # titanic train data
             train_titanic = titanic2.drop(['Survived'], axis=1)
-            train_titanic = pd.get_dummies(train_titanic)
-            train_titanic = train_titanic.dropna(axis=1)
             # titanic test data
             test_titanic = titanic2['Survived']
             # Apply algorithms to dataset titanic
