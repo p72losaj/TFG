@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -208,7 +208,6 @@
                     plt.title('Titanic Class')
                     display(plt)
                     plt.clf()
-                    return df
 
                 def dropCols(df,cols) -> pd.DataFrame:
                     """ Delete columns from the dataset
@@ -536,7 +535,7 @@
         </p>
         <py-repl>
             # Analizamos el dataset titanic
-            titanic = titanic.pipe(showInfoDataset).pipe(describeDataset)
+            titanic.pipe(showInfoDataset).pipe(describeDataset)
         </py-repl>
         <py-repl >
             # Aplicamos el preprocesamiento de los datos del dataset titanic
@@ -545,7 +544,7 @@
         </py-repl>
         <py-repl>
             # Comprobamos si se ha realizado correctamente el preprocesamiento de los datos del dataset
-            titanic2 = titanic2.pipe(showDataset).pipe(showInfoDataset)
+            titanic2.pipe(showDataset).pipe(showInfoDataset)
         </py-repl>
         <!--Ejercicio 3-->
         <p>
@@ -564,9 +563,7 @@
             <em>Ejercicio 4: Utiliza la informacion obtenida en los ejercicios anteriores y saca conclusiones </em>
         </p>
         <py-repl >
-            # Dataset titanic
-            titanic2 = titanic2.pipe(showTitanicSurvived)
-
+            titanic2.pipe(showTitanicSurvived)
         </py-repl>
 
     </div>
