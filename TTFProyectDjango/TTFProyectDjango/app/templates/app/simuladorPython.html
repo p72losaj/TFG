@@ -314,6 +314,14 @@
                     display(plt)
                     plt.clf()
 
+                def showTitanicMembersFamilySurvived(df):
+                    """ Analysis of the survivors according to the member family of titanic dataset
+                    :param df: Dataset titanic
+                    """
+                    sns.catplot(x='Members_Family', hue='Survived', kind='count', data=df)
+                    display(plt)
+                    plt.clf()
+
             </pre>
         </div>
     </div>
@@ -504,6 +512,14 @@
                 sns.catplot(x='Fare', hue='Survived', kind='count', col='Pclass', data=df)
                 display(plt)
                 plt.clf()
+
+            def showTitanicMembersFamilySurvived(df):
+                """ Analysis of the survivors according to the member family of titanic dataset
+                :param df: Dataset titanic
+                """
+                sns.catplot(x='Members_Family', hue='Survived', kind='count', data=df)
+                display(plt)
+                plt.clf()
             
         </py-script>
 
@@ -553,6 +569,7 @@
             showTitanicSurvived(titanic2)
             showTitanicAgeSexSurvived(titanic2)
             showTitanicFarePclassSurvived(titanic2)
+            showTitanicMembersFamilySurvived(titanic2)
         </py-repl>
 
     </div>
