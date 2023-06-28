@@ -177,12 +177,6 @@
                     df = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
                     df['class'] = df['class'].str.decode('utf-8')
                     return df
-                
-                def showInfoDataset(df):
-                    """ Show Dataset Info
-                    :param df: Dataset
-                    """
-                    display(df.info())
 
                 def describeDataset(df) -> pd.DataFrame:
                     """ Show descriptive statistics of dataset
@@ -365,14 +359,6 @@
                 df['class'] = df['class'].str.decode('utf-8')
                 return df
 
-            def showInfoDataset(df) -> pd.DataFrame:
-                """ Show Dataset Info
-                :param df: Dataset
-                :return: Dataset
-                """
-                display(df.info())
-                return df
-
             def describeDataset(df) -> pd.DataFrame:
                 """ Show descriptive statistics
                 :param df: Dataframe
@@ -520,16 +506,14 @@
         </p>
         <py-repl>
             # Analizamos el dataset titanic
-            titanic.pipe(showInfoDataset).pipe(describeDataset)
+            display(titanic.info())
+            titanic.pipe(describeDataset)
         </py-repl>
         <py-repl >
             # Aplicamos el preprocesamiento de los datos del dataset titanic
-            titanic2 = titanic.pipe(dropCols, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Embarked']).pipe(ClearLostDataTitanic).pipe(deleteDuplicatedData).pipe(
+            titanic2 = titanic.copy().pipe(dropCols, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Embarked']).pipe(ClearLostDataTitanic).pipe(deleteDuplicatedData).pipe(
                         transformSexTitanic).pipe(transformSibSpParchTitanic).pipe(transformAgeTitanic).pipe(transformFareTitanic).pipe(transformSurvivedTitanic)
-        </py-repl>
-        <py-repl>
-            # Comprobamos si se ha realizado correctamente el preprocesamiento de los datos del dataset
-            titanic2.pipe(showDataset).pipe(showInfoDataset)
+            display(titanic2)
         </py-repl>
         <!--Ejercicio 3-->
         <p>
