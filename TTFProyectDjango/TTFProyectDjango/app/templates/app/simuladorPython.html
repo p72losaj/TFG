@@ -160,13 +160,11 @@
                     df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
                     return df
                 
-                def showDataset(df) -> pd.DataFrame:
+                def showDataset(df):
                     """ Show the first 5 lines of the dataset
                     :param df: Dataset 
-                    :return: Dataset
                     """
                     display(df.head())
-                    return df
                 
                 def loadIris() -> pd.DataFrame:
                     """ Obtaining data from iris dataset.
@@ -202,10 +200,9 @@
                     display(df.describe())
                     return df
 
-                def showTitanicSurvived(df) -> pd.DataFrame:
+                def showTitanicSurvived(df):
                     """ Generate the survived graphic of dataset titanic
                     :param df: Dataset
-                    :return df
                     """
                     sns.countplot( x='Survived', data=df)
                     plt.title('Titanic Class')
@@ -313,12 +310,13 @@
                         i += 1
                     # Show result
                     display(log)
-                    plt.figure(figsize=(14,10))
+                    plt.figure(figsize=(13,10))
                     plt.xlabel('Accuracy')
                     plt.title('Classifier Accuracy')
                     sns.barplot(x=log.Accuracy, y=classifiers, data=log, color='b')
                     display(plt)
                     plt.clf()
+
                 
             </pre>
         </div>
@@ -358,13 +356,12 @@
                 df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
                 return df
             
-            def showDataset(df) -> pd.DataFrame:
-                    """ Show the first 5 lines of the dataset
-                    :param df: Dataset 
-                    :return: Dataset
-                    """
-                    display(df.head())
-                    return df
+            def showDataset(df):
+                """ Show the first 5 lines of the dataset
+                :param df: Dataset 
+                """
+                display(df.head())
+
             def loadIris() -> pd.DataFrame:
                 """ Obtaining data from iris dataset.
                 :return: Dataset iris
@@ -399,16 +396,14 @@
                 display(df.describe())
                 return df
 
-            def showTitanicSurvived(df) -> pd.DataFrame:
+            def showTitanicSurvived(df):
                 """ Generate the survived graphic of dataset titanic
                 :param df: Dataset
-                :return df
                 """
                 sns.countplot( x='Survived', data=df)                    
                 plt.title('Titanic Class')
                 display(plt)
                 plt.clf()
-                return df
 
             def dropCols(df,cols) -> pd.DataFrame:
                 """ Delete columns from the dataset
@@ -510,13 +505,17 @@
                     i += 1
                 # Show result
                 display(log)
-                plt.figure(figsize=(14,10))
+                plt.figure(figsize=(13,10))
                 plt.xlabel('Accuracy')
                 plt.title('Classifier Accuracy')
                 sns.barplot(x=log.Accuracy, y=classifiers, data=log, color='b')
                 display(plt)
                 plt.clf()
-            
+
+            def showTitanicAgeSurvived(df):
+                """ Analysis of the survivors according to the age of titanic dataset
+
+                """
             
         </py-script>
 
@@ -527,7 +526,8 @@
         <py-repl>
             
             display('Dataset Titanic')
-            titanic = loadTitanic().pipe(showDataset)
+            titanic = loadTitanic()
+            showDataset(titanic)
         </py-repl>
         
         <!--Ejercicio 2-->
@@ -536,7 +536,7 @@
         </p>
         <py-repl>
             # Analizamos el dataset titanic
-            titanic.pipe(showInfoDataset).pipe(describeDataset).pipe(showTitanicSurvived)
+            titanic = titanic.pipe(showInfoDataset).pipe(describeDataset)
         </py-repl>
         <py-repl >
             # Aplicamos el preprocesamiento de los datos del dataset titanic
@@ -545,18 +545,18 @@
         </py-repl>
         <py-repl>
             # Comprobamos si se ha realizado correctamente el preprocesamiento de los datos del dataset
-            titanic2.pipe(showDataset).pipe(showTitanicSurvived).pipe(showInfoDataset)
+            titanic2 = titanic2.pipe(showDataset).pipe(showInfoDataset)
         </py-repl>
         <!--Ejercicio 3-->
         <p>
             <em>Ejercicio 3: Aplica los siguientes algoritmos a cada dataset: Arbol de Decision, Arbol de decision aleatorio, KNN, SVC </em>
         </p>
         <py-repl >
-            # titanic train data
+            # Datos de entrenamiento del dataset titanic
             train_titanic = titanic2.drop(['Survived'], axis=1)
-            # titanic test data
+            # Datos de test del dataset titanic
             test_titanic = titanic2['Survived']
-            # Apply algorithms to dataset titanic
+            # Aplicamos algoritmos de mineria de datos para el dataset titanic
             Classifiers(train_titanic, test_titanic)
         </py-repl>
         <!--Ejercicio 4-->
@@ -564,7 +564,9 @@
             <em>Ejercicio 4: Utiliza la informacion obtenida en los ejercicios anteriores y saca conclusiones </em>
         </p>
         <py-repl >
-            
+            # Dataset titanic
+            titanic2 = titanic2.pipe(showTitanicSurvived)
+
         </py-repl>
 
     </div>
