@@ -184,13 +184,11 @@
                     df['class'] = df['class'].str.decode('utf-8')
                     return df
                 
-                def showInfoDataset(df) -> pd.DataFrame:
+                def showInfoDataset(df):
                     """ Show Dataset Info
                     :param df: Dataset
-                    :return: Dataset
                     """
                     display(df.info())
-                    return df
 
                 def describeDataset(df) -> pd.DataFrame:
                     """ Show descriptive statistics of dataset
