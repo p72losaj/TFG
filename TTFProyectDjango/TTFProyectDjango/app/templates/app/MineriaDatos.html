@@ -33,15 +33,15 @@
     <h1>Información de interés</h1>
     <!--Botones para mostrar la informacion de interes-->
     <div style="text-align:center; padding:50px">
-        <button onclick="$('#archivosCSV').show(); $('#archivosARFF').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">ArchivosCSV</button>
-        <button onclick="$('#archivosARFF').show(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">ArchivosARFF</button>
-        <button onclick="$('#interpolacion').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">Interpolacion</button>
-        <button onclick="$('#datosNulos').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">DatosNulos</button>
-        <button onclick="$('#seleccionDatosInteres').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">SeleccionDatosInteres</button>
-        <button onclick="$('#outliers').show(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#arbolDecision').hide(); $('#knn').hide();$('#svc').hide()">Outliers</button>
-        <button onclick="$('#arbolDecision').show(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#knn').hide();$('#svc').hide()">ArbolDecision</button>
-        <button onclick="$('#knn').show(); $('#arbolDecision').hide(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide();$('#svc').hide()">KNN</button>
-        <button onclick="$('#svc').show();$('#knn').hide(); $('#arbolDecision').hide(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide()">SVC</button>
+        <button onclick="$('#archivosCSV').show(); $('#archivosARFF').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide(); $('#svc').hide();$('#cross_val_score').hide()">ArchivosCSV</button>
+        <button onclick="$('#archivosARFF').show(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide(); $('#svc').hide();$('#cross_val_score').hide()">ArchivosARFF</button>
+        <button onclick="$('#interpolacion').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#datosNulos').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide(); $('#svc').hide();$('#cross_val_score').hide()">Interpolacion</button>
+        <button onclick="$('#datosNulos').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#seleccionDatosInteres').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide(); $('#svc').hide();$('#cross_val_score').hide()">DatosNulos</button>
+        <button onclick="$('#seleccionDatosInteres').show(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#outliers').hide(); $('#arbolDecision').hide(); $('#knn').hide(); $('#svc').hide();$('#cross_val_score').hide()">SeleccionDatosInteres</button>
+        <button onclick="$('#outliers').show(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#arbolDecision').hide(); $('#knn').hide(); $('#svc').hide();$('#cross_val_score').hide()">Outliers</button>
+        <button onclick="$('#arbolDecision').show(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#knn').hide(); $('#svc').hide();$('#cross_val_score').hide()">ArbolDecision</button>
+        <button onclick="$('#knn').show(); $('#arbolDecision').hide(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide(); $('#svc').hide();$('#cross_val_score').hide()">KNN</button>
+        <button onclick="$('#svc').show(); $('#knn').hide(); $('#arbolDecision').hide(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide();$('#cross_val_score').hide()">SVC</button>
         <button onclick="$('#cross_val_score').show();$('#svc').hide();$('#knn').hide(); $('#arbolDecision').hide(); $('#outliers').hide(); $('#seleccionDatosInteres').hide(); $('#archivosARFF').hide(); $('#archivosCSV').hide(); $('#interpolacion').hide(); $('#datosNulos').hide()">cross_val_score</button>
     </div>
 
@@ -207,7 +207,9 @@
         </p>
         <!--Videos tutoriales-->
         <h2>Videos tutorial</h2>
-        <a href="" target="_blank" class="btn btn-primary btn-large">Evaluacion de Resultados &raquo;</a>
+        <p>
+            <a href="" target="_blank" class="btn btn-primary btn-large">Evaluacion de Resultados &raquo;</a>
+        </p>
     </div>
 </div>
 

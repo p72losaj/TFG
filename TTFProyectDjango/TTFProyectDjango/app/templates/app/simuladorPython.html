@@ -27,9 +27,13 @@
             padding-left: 50px;
             margin-top: 50px;
         }
-        .menuBotones, .informacion {
+        .menuBotones{
             text-align: center;
             padding: 50px;
+        }
+        .informacion {
+            padding: 50px;
+            text-align: left
         }
         .pyscript {
             padding-left: 50px;
@@ -38,6 +42,7 @@
         
         p {
             font-family: 'Lobster';
+            text-align: left
         }
         table {
             margin-top:30px;
@@ -189,13 +194,13 @@
                     display(df.info())
                     return df
 
-	            def describeDataset(df) -> pd.DataFrame:
-            	    """ Show descriptive statistics of dataset
-		            : param df: Dataset
-		            :return Dataset
-		            """
-		            display(df.describe())
-		            return df
+                def describeDataset(df) -> pd.DataFrame:
+                    """ Show descriptive statistics of dataset
+                    : param df: Dataset
+                    :return Dataset
+                    """
+                    display(df.describe())
+                    return df
 
                 def showTitanicSurvived(df) -> pd.DataFrame:
                     """ Generate the survived graphic of dataset titanic
