@@ -178,14 +178,6 @@
                     df['class'] = df['class'].str.decode('utf-8')
                     return df
 
-                def describeDataset(df) -> pd.DataFrame:
-                    """ Show descriptive statistics of dataset
-                    : param df: Dataset
-                    :return Dataset
-                    """
-                    display(df.describe())
-                    return df
-
                 def showTitanicSurvived(df):
                     """ Generate the survived graphic of dataset titanic
                     :param df: Dataset
@@ -276,7 +268,7 @@
                     """
                     # Create models
                     models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3), RandomForestClassifier(), SVC(probability = True)]
-                    classifiers = []
+                    classifiers = ['DecisionTree', 'KNN', 'RandomForest', 'SVC']
                     log_cols = ["Classifier", "Accuracy"]
                     log = pd.DataFrame(columns=log_cols)
                     acc_dict = {}
@@ -284,7 +276,6 @@
                     i=0
                     for model in models:
                         name = model.__class__.__name__
-                        classifiers.append(name)
                         acc = cross_val_score(model, train_data, test_data, cv=5, scoring='accuracy').mean()
                         if name in acc_dict:
                             acc_dict[name] += acc
@@ -295,9 +286,10 @@
                         i += 1
                     # Show result
                     display(log)
-                    plt.figure(figsize=(13,10))
+                    
                     plt.xlabel('Accuracy')
                     plt.title('Classifier Accuracy')
+                    plt.figsize(15)
                     sns.barplot(x=log.Accuracy, y=classifiers, data=log, color='b')
                     display(plt)
                     plt.clf()
@@ -319,7 +311,8 @@
             "scipy",
             "scikit-learn",
             ]
-            
+            terminal = false
+            docked = false
         </py-config>
         <!-- Codigo python-->
         <py-script>
@@ -357,14 +350,6 @@
                 """
                 df = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
                 df['class'] = df['class'].str.decode('utf-8')
-                return df
-
-            def describeDataset(df) -> pd.DataFrame:
-                """ Show descriptive statistics
-                :param df: Dataframe
-                :return Dataframe
-                """
-                display(df.describe())
                 return df
 
             def showTitanicSurvived(df):
@@ -457,7 +442,7 @@
                 """
                 # Create models
                 models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3), RandomForestClassifier(), SVC(probability = True)]
-                classifiers = []
+                classifiers = ['DecisionTree', 'KNN', 'RandomForest', 'SVC']
                 log_cols = ["Classifier", "Accuracy"]
                 log = pd.DataFrame(columns=log_cols)
                 acc_dict = {}
@@ -465,7 +450,6 @@
                 i=0
                 for model in models:
                     name = model.__class__.__name__
-                    classifiers.append(name)
                     acc = cross_val_score(model, train_data, test_data, cv=5, scoring='accuracy').mean()
                     if name in acc_dict:
                         acc_dict[name] += acc
@@ -476,10 +460,9 @@
                     i += 1
                 # Show result
                 display(log)
-                plt.figure(figsize=(13,10))
                 plt.xlabel('Accuracy')
                 plt.title('Classifier Accuracy')
-                sns.barplot(x=log.Accuracy, y=classifiers, data=log, color='b')
+                sns.barplot(y=log.Accuracy, x=classifiers, data=log, color='b')
                 display(plt)
                 plt.clf()
 
@@ -507,7 +490,7 @@
         <py-repl>
             # Analizamos el dataset titanic
             display(titanic.info())
-            titanic.pipe(describeDataset)
+            display(titanic.describe())
         </py-repl>
         <py-repl >
             # Aplicamos el preprocesamiento de los datos del dataset titanic
