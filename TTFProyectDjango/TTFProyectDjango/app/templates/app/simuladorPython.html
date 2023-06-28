@@ -160,12 +160,6 @@
                     df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
                     return df
                 
-                def showDataset(df):
-                    """ Show the first 5 lines of the dataset
-                    :param df: Dataset 
-                    """
-                    display(df.head())
-                
                 def loadIris() -> pd.DataFrame:
                     """ Obtaining data from iris dataset.
                     :return: Dataset iris
@@ -352,12 +346,6 @@
                 """
                 df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
                 return df
-            
-            def showDataset(df):
-                """ Show the first 5 lines of the dataset
-                :param df: Dataset 
-                """
-                display(df.head())
 
             def loadIris() -> pd.DataFrame:
                 """ Obtaining data from iris dataset.
@@ -521,10 +509,9 @@
             <em>Ejercicio 1: Obtenga al menos 5 datos de muestra en CSV, ARFF o cualquier otro formato: Weka, UCI MLR </em>
         </p>
         <py-repl>
-            
-            display('Dataset Titanic')
+            # Dataset titanic
             titanic = loadTitanic()
-            showDataset(titanic)
+            display(titanic.head())
         </py-repl>
         
         <!--Ejercicio 2-->
