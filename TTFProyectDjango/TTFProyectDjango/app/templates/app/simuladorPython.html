@@ -287,14 +287,25 @@
                     # Show result
                     display(log)
                     
-                    plt.xlabel('Accuracy')
+                    plt.xlabel('Classifiers')
                     plt.title('Classifier Accuracy')
                     plt.figsize(15)
-                    sns.barplot(x=log.Accuracy, y=classifiers, data=log, color='b')
+                    sns.barplot(x=classifiers, y=log.Accuracy, data=log, color='b')
                     display(plt)
                     plt.clf()
 
-                
+                def showTitanicAgeSurvived(df):
+                    """ Analysis of the survivors according to the age of titanic dataset
+                    :param titanic: Dataset titanic
+                    """
+                    df['Sex'] = df['Sex'].replace([0,1],['Female','Male'])
+                    df.loc[ df['Age'] == 0, 'Age' ] = 'Young'
+                    df.loc[ df['Age'] == 1, 'Age' ] = 'Adult'
+                    df.loc[ df['Age'] == 2, 'Age' ] = 'Elderly'
+                    sns.catplot(x='Age', hue='Survived', kind='count', col='Sex', data = df)
+                    display(plt)
+                    plt.clf()
+
             </pre>
         </div>
     </div>
@@ -460,16 +471,23 @@
                     i += 1
                 # Show result
                 display(log)
-                plt.xlabel('Accuracy')
+                plt.xlabel('Classifiers')
                 plt.title('Classifier Accuracy')
-                sns.barplot(y=log.Accuracy, x=classifiers, data=log, color='b')
+                sns.barplot(x=classifiers, y=log.Accuracy, data=log, color='b')
                 display(plt)
                 plt.clf()
 
             def showTitanicAgeSurvived(df):
                 """ Analysis of the survivors according to the age of titanic dataset
-
+                :param titanic: Dataset titanic
                 """
+                df['Sex'] = df['Sex'].replace([0,1],['Female','Male'])
+                df.loc[ df['Age'] == 0, 'Age' ] = 'Young'
+                df.loc[ df['Age'] == 1, 'Age' ] = 'Adult'
+                df.loc[ df['Age'] == 2, 'Age' ] = 'Elderly'
+                sns.catplot(x='Age', hue='Survived', kind='count', col='Sex', data = df)
+                display(plt)
+                plt.clf()
             
         </py-script>
 
@@ -515,7 +533,9 @@
             <em>Ejercicio 4: Utiliza la informacion obtenida en los ejercicios anteriores y saca conclusiones </em>
         </p>
         <py-repl >
-            titanic2.pipe(showTitanicSurvived)
+            # Dataset titanic
+            showTitanicSurvived(titanic2)
+            showTitanicAgeSurvived(titanic2)
         </py-repl>
 
     </div>
