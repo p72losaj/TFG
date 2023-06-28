@@ -294,15 +294,23 @@
                     display(plt)
                     plt.clf()
 
-                def showTitanicAgeSurvived(df):
-                    """ Analysis of the survivors according to the age of titanic dataset
-                    :param titanic: Dataset titanic
+                def showTitanicAgeSexSurvived(df):
+                    """ Analysis of the survivors according to the age and Sex of titanic dataset
+                    :param df: Dataset titanic
                     """
                     df['Sex'] = df['Sex'].replace([0,1],['Female','Male'])
                     df.loc[ df['Age'] == 0, 'Age' ] = 'Young'
                     df.loc[ df['Age'] == 1, 'Age' ] = 'Adult'
                     df.loc[ df['Age'] == 2, 'Age' ] = 'Elderly'
                     sns.catplot(x='Age', hue='Survived', kind='count', col='Sex', data = df)
+                    display(plt)
+                    plt.clf()
+
+                def showTitanicFarePclassSurvived(df):
+                    """ Analysis of the survivors according to the fare and pclass of titanic dataset
+                    :param df: Dataset titanic
+                    """
+                    sns.catplot(x='Fare', hue='Survived', kind='count', col='Pclass', data=df)
                     display(plt)
                     plt.clf()
 
@@ -477,15 +485,23 @@
                 display(plt)
                 plt.clf()
 
-            def showTitanicAgeSurvived(df):
-                """ Analysis of the survivors according to the age of titanic dataset
-                :param titanic: Dataset titanic
+            def showTitanicAgeSexSurvived(df):
+                """ Analysis of the survivors according to the age and sex of titanic dataset
+                :param df: Dataset titanic
                 """
                 df['Sex'] = df['Sex'].replace([0,1],['Female','Male'])
                 df.loc[ df['Age'] == 0, 'Age' ] = 'Young'
                 df.loc[ df['Age'] == 1, 'Age' ] = 'Adult'
                 df.loc[ df['Age'] == 2, 'Age' ] = 'Elderly'
                 sns.catplot(x='Age', hue='Survived', kind='count', col='Sex', data = df)
+                display(plt)
+                plt.clf()
+
+            def showTitanicFarePclassSurvived(df):
+                """ Analysis of the survivors according to the fare and pclass of titanic dataset
+                :param df: Dataset titanic
+                """
+                sns.catplot(x='Fare', hue='Survived', kind='count', col='Pclass', data=df)
                 display(plt)
                 plt.clf()
             
@@ -535,7 +551,8 @@
         <py-repl >
             # Dataset titanic
             showTitanicSurvived(titanic2)
-            showTitanicAgeSurvived(titanic2)
+            showTitanicAgeSexSurvived(titanic2)
+            showTitanicFarePclassSurvived(titanic2)
         </py-repl>
 
     </div>
