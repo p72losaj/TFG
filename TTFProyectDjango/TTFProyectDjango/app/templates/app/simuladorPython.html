@@ -152,6 +152,7 @@
                 from sklearn.ensemble import RandomForestClassifier
                 from sklearn.neighbors import KNeighborsClassifier
                 from sklearn.svm import SVC
+                from sklearn.metrics import confusion_matrix
 
                 def loadTitanic() -> pd.DataFrame:
                     """ Obtaining data from titanic dataset.
@@ -322,6 +323,16 @@
                     display(plt)
                     plt.clf()
 
+                def generate_confusion_matrix(train,test,classifier):
+                    """ Generate a confusion matrix
+                    :param train: Data train
+                    :param test: Data test
+                    :classifier: Mining Data Classifier
+                    """
+                    classifier.fit(train,test)
+                    cm = confusion_matrix(test, classifier.predict(train))
+                    display(cm)
+
             </pre>
         </div>
     </div>
@@ -353,6 +364,7 @@
             from sklearn.ensemble import RandomForestClassifier
             from sklearn.neighbors import KNeighborsClassifier
             from sklearn.svm import SVC
+            from sklearn.metrics import confusion_matrix
             
             def loadTitanic() -> pd.DataFrame:
                 """ Obtaining data from titanic dataset.
@@ -520,6 +532,18 @@
                 sns.catplot(x='Members_Family', hue='Survived', kind='count', data=df)
                 display(plt)
                 plt.clf()
+
+            def generate_confusion_matrix(train,test,classifier):
+                """ Generate a confusion matrix
+                :param train: Data train
+                :param test: Data test
+                :classifier: Mining Data Classifier
+                """
+                classifier.fit(train,test)
+                cm = confusion_matrix(test, classifier.predict(train))
+                display(cm)
+                
+                
             
         </py-script>
 
@@ -565,7 +589,8 @@
             <em>Ejercicio 4: Utiliza la informacion obtenida en los ejercicios anteriores y saca conclusiones </em>
         </p>
         <py-repl >
-            # Dataset titanic
+            # Analysis dataset titanic
+            generate_confusion_matrix(train_titanic, test_titanic, SVC(probability=True))
             showTitanicSurvived(titanic2)
             showTitanicAgeSexSurvived(titanic2)
             showTitanicFarePclassSurvived(titanic2)
