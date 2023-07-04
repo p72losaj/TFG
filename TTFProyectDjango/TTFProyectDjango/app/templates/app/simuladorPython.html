@@ -278,12 +278,8 @@
                     for model in models:
                         name = model.__class__.__name__
                         acc = cross_val_score(model, train_data, test_data, cv=5, scoring='accuracy').mean()
-                        if name in acc_dict:
-                            acc_dict[name] += acc
-                        else:
-                            acc_dict[name] = acc
                         log.loc[i, log_cols[0]] = models[i]
-                        log.loc[i, log_cols[1]] = acc_dict[name]
+                        log.loc[i, log_cols[1]] = acc
                         i += 1
                     # Show result
                     display(log)
@@ -490,12 +486,8 @@
                 for model in models:
                     name = model.__class__.__name__
                     acc = cross_val_score(model, train_data, test_data, cv=5, scoring='accuracy').mean()
-                    if name in acc_dict:
-                        acc_dict[name] += acc
-                    else:
-                        acc_dict[name] = acc
                     log.loc[i, log_cols[0]] = models[i]
-                    log.loc[i, log_cols[1]] = acc_dict[name]
+                    log.loc[i, log_cols[1]] = acc
                     i += 1
                 # Show result
                 display(log)
@@ -540,6 +532,7 @@
                 :classifier: Mining Data Classifier
                 """
                 classifier.fit(train,test)
+                display(test.unique())
                 cm = confusion_matrix(test, classifier.predict(train))
                 display(cm)
                 
