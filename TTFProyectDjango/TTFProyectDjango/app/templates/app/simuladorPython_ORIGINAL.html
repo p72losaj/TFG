@@ -21,50 +21,35 @@
     <!-- Add CSS style-->
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
-    <!-- Configuracion PyScript -->
-    <py-config>
-        packages = [
-        "pandas",
-        "seaborn",
-        "matplotlib",
-        "scipy",
-        "scikit-learn",
-        ]
-        terminal = false
-        docked = false
-    </py-config>
-
     <style>
 
         .header {
             padding-left: 50px;
             margin-top: 50px;
         }
-
-        .menuBotones {
+        .menuBotones{
             text-align: center;
             padding: 50px;
         }
-
         .informacion {
             padding: 50px;
             text-align: left
         }
-
         .pyscript {
             padding-left: 50px;
             margin-top: 50px;
         }
-
+        
         p {
             font-family: 'Lobster';
             text-align: left
         }
-
         table {
-            margin-top: 30px;
+            margin-top:30px;
             border-collapse: collapse;
         }
+
+
     </style>
 </head>
 <body>
@@ -89,8 +74,6 @@
         <button onclick="$('#codigoPython').show();$('#dataset').hide()">Mostrar codigo python</button>
         <button onclick="$('#dataset').hide();$('#codigoPython').hide()">Ocultar listaDataset/codigoPython</button>
     </div>
-
-
 
     <!--Mostrar informacion de interes-->
     <div class="informacion">   
@@ -350,136 +333,21 @@
         </div>
     </div>
     
-    <!--Contenedor de fluido-->
-    <div class="container-fluid">
-        <div class="row">
-            <!--Añadimos un menu de filtro-->
-            <div class="col-sm-3" style="">
-                <em>Etapas del proceso de mineria de datos</em>
-                <button onclick="$('#ObtencionDatos').show()">1. Obtención de datos</button>
-                <!--<button onclick="$('#ObtencionDatos').hide()">Ocultar</button>-->
 
-            </div>
-            
-            <div class="col-sm-10">
-                <!--Paso 1: Obtencion de datos-->
-                <div id="ObtencionDatos" style="display:none">
-                    <!--PASO 1: OBTENCION DE DATOS-->
-                    <h1>Paso 1: Extracción y lectura de datos</h1>
-                    <p>
-                        Antes de que podamos analizar los datos, dichos datos deben ser importados o extraídos. <br />
-                        A continuación, veremos distintos ejemplos sobre cómo cargar e importar datos a partir de archivos, en formato csv, arff y data, mediante un enlace web.
-                        <h2>Archivos CSV</h2>
-                        En los ejemplos a continuación, veremos cómo obtener información a partir de archivos en formato csv.
-                        <br />
-                        Nota: Para obtener los conjuntos de datos, debemos usar la librería Pandas y pyodide.http; sin embargo, antes de obtener dichos datos debemos comprobar si el conjunto de datos se encuentra etiquetado o no etiquetado.<br />
-                        <ul>
-                            <li>Conjunto de datos etiquetado: Conjunto de datos que incluye las etiquetas de las columnas.</li>
-                            <li>Conjunto de datos no etiqueta: Conjunto de datos que no incluye las etiquetas de las columnas.</li>
-                        </ul>
-                        <h3>Conjunto de datos etiquetado</h3>
-                        <h4>Ejemplo 1</h4>
-                        <py-repl>
-                            import pandas as pd
-                            from pyodide.http import open_url
-                            titanic = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"),header=0, sep=",")
-                            display(titanic)
-                        </py-repl>
-                        <em>Explicación del ejemplo</em>
-                        <ul>
-                            <li>Importamos las librerías pandas y pyodide.http</li>
-                            <li>Nombramos el dataFrame como titanic</li>
-                            <li>header=0 significa que las cabeceras de los nombres de las variables se encuentran en la primera fila.</li>
-                            <li>sep="," significa que "," es usado como el separador entre las variables</li>
-                        </ul>
-                        Consejo: Si obtenemos un conjunto de datos con un número elevado de filas, podemos usar la función head(x) para mostrar las primeras x filas del conjunto de datos.
-                        Si no especificamos un valor de x, por defecto se muestran las primeras 5 filas del conjunto de datos.
-                        <h4>Ejemplo 2</h4>
-                        <py-repl>
-                            import pandas as pd
-                            from pyodide.http import open_url
-                            titanic = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"),header=0, sep=",")
-                            display(titanic.head())
-                        </py-repl>
-                        <h3>Conjunto de datos no etiquetado</h3>
-                        <h4>Ejemplo 3</h4>
-                        <py-repl>
-                            import pandas as pd
-                            from pyodide.http import open_url
-                            iris = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),header=None,sep=",",names = ["sepal length","sepal width","petal length","petal width","Species"])
-                            display(iris.head(7))
-                        </py-repl>
-                        <em>Explicación del ejemplo</em>
-                        <ul>
-                            <li>Importamos las librerías pandas y pyodide.http</li>
-                            <li>Nombramos el dataFrame como titanic</li>
-                            <li>header=1 significa que las cabeceras de los nombres de las variables no se encuentran en la primera fila.</li>
-                            <li>sep="," significa que "," es usado como el separador entre las variables</li>
-                            <li>names = ["sepal length","sepal width","petal length","petal width","Species"] significa la secuencia de etiquetado de las columnas del conjunto de datos a aplicar.</li>
-                        </ul>
-
-                    </p>
-
-                    <h2>Archivos ARFF</h2>
-
-                    <p>
-                        En los ejemplos a continuación, veremos cómo obtener información a partir de archivos en formato arff.
-                        <h4>Ejemplo 4</h4>
-                        <py-repl>
-                            import pandas as pd
-                            from pyodide.http import open_url
-                            from scipy.io import arff
-                            segment_challenge = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
-                            display(segment_challenge.head(8))
-                        </py-repl>
-                        <em>Explicación del ejemplo</em>
-                        <ul>
-                            <li>Importamos las librerías pandas, pyodide y scipy.io</li>
-                            <li>Nombramos el dataframe como segment_challenge</li>
-                            <li>Usamos la funcion arff.loadarff para cargar el archivo arff.</li>
-                            <li>Usamos la función DataFrame para transformar el archivo arff en un dataframe de pandas</li>
-                            Nota: Podemos comprobar al leer los datos que se produce un error de escritura en la columna "class". Para solucionar dicho error debemos aplicar una decodificación en dicha columna.
-                            <br />
-                            Nota: Al visualizar la información obtenida del conjunto de datos, podemos visualizar la información de una columna de dicho conjunto de datos.
-                        </ul>
-                        <h4>Ejemplo 5</h4>
-                        <py-repl>
-                            import pandas as pd
-                            from pyodide.http import open_url
-                            from scipy.io import arff
-                            segment_challenge = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
-                            segment_challenge['class'] = segment_challenge['class'].str.decode('utf-8')
-                            display(segment_challenge['class'].head(10))
-                        </py-repl>
-                        
-                    </p>
-
-                    <h2>Archivos Data</h2>
-                    <p>
-                        A continuación, veremos cómo obtener información a partir de archivos en formato data.
-                        Nota: El procedimiento a seguir es similar al empleado en la obtención de archivos CSV
-                        <h4>Ejemplo 6</h4>
-                        <py-repl>
-                            import pandas as pd
-                            from pyodide.http import open_url
-                            balance_scale = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/balance-scale.data"),header=None,sep=",",names = ['class', 'left_weight', 'left_distance', 'right_weight', 'right_distance'])
-                            display(balance_scale.head())
-                        </py-repl>
-                    </p>
-
-                </div>
-                <!--Paso 2: Preprocesamiento de datos-->
-                <!--Paso 3: Algoritmos-->
-                <!--Paso 4: Conclusiones-->
-
-            </div>
-        </div>
-    </div>
-
-    
     <!--Py-script-->
     <div class="pyscript">
-
+        <!-- Configuracion PyScript -->
+        <py-config>
+            packages = [
+            "pandas",
+            "seaborn",
+            "matplotlib",
+            "scipy",
+            "scikit-learn",
+            ]
+            terminal = false
+            docked = false
+        </py-config>
         <!-- Codigo python-->
         <py-script>
             import pandas as pd
@@ -493,185 +361,194 @@
             from sklearn.neighbors import KNeighborsClassifier
             from sklearn.svm import SVC
             from sklearn.metrics import confusion_matrix
-
+            
             def loadTitanic() -> pd.DataFrame:
-            """ Obtaining data from titanic dataset.
-            :return: Dataset
-            """
-            df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
-            return df
+                """ Obtaining data from titanic dataset.
+                :return: Dataset
+                """
+                df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
+                return df
 
             def loadIris() -> pd.DataFrame:
-            """ Obtaining data from iris dataset.
-            :return: Dataset iris
-            """
-            df = pd.read_csv(
-            open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),
-            header=None,
-            names = ["sepal length","sepal width","petal length","petal width","Species"])
-            return df
-
+                """ Obtaining data from iris dataset.
+                :return: Dataset iris
+                """
+                df = pd.read_csv(
+                    open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),
+                    header=None,
+                    names = ["sepal length","sepal width","petal length","petal width","Species"])
+                return df
+            
             def loadSegmentChallenge() -> pd.DataFrame:
-            """ Obtaining data from Segment Challenge dataset.
-            :return: Dataset segment challenge
-            """
-            df = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
-            df['class'] = df['class'].str.decode('utf-8')
-            return df
+                """ Obtaining data from Segment Challenge dataset.
+                :return: Dataset segment challenge
+                """
+                df = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
+                df['class'] = df['class'].str.decode('utf-8')
+                return df
 
             def showTitanicSurvived(df):
-            """ Generate the survived graphic of dataset titanic
-            :param df: Dataset
-            """
-            sns.countplot( x='Survived', data=df)
-            plt.title('Titanic Class')
-            display(plt)
-            plt.clf()
+                """ Generate the survived graphic of dataset titanic
+                :param df: Dataset
+                """
+                sns.countplot( x='Survived', data=df)                    
+                plt.title('Titanic Class')
+                display(plt)
+                plt.clf()
 
             def dropCols(df,cols) -> pd.DataFrame:
-            """ Delete columns from the dataset
-            :param df: Dataset
-            :param cols: Cols to remove
-            :return Dataset
-            """
-            df.drop(cols, axis=1, inplace=True)
-            return df
+                """ Delete columns from the dataset
+                :param df: Dataset
+                :param cols: Cols to remove
+                :return Dataset
+                """
+                df.drop(cols, axis=1, inplace=True)
+                return df
 
             def ClearLostDataTitanic(df) -> pd.DataFrame:
-            """ Clear lost data of dataset titanic
-            :param: Dataset
-            :return: Dataset
-            """
-            df = df.interpolate(method ='linear', limit_direction ='backward')
-            return df
+                """ Clear lost data of dataset titanic
+                :param: Dataset
+                :return: Dataset
+                """
+                df = df.interpolate(method ='linear', limit_direction ='backward')
+                return df
 
             def deleteDuplicatedData(df) -> pd.DataFrame:
-            """ Delete duplicated data of dataset
-            :param: Dataset
-            :return: Dataset
-            """
-            # Detect duplicated rows
-            if df.duplicated(keep = 'last').sum() > 0:
-            df = df.drop_duplicates(keep='last')
-            return df
-
+                """ Delete duplicated data of dataset
+                :param: Dataset
+                :return: Dataset
+                """
+                # Detect duplicated rows
+                if df.duplicated(keep = 'last').sum() > 0:
+                    df = df.drop_duplicates(keep='last')
+                return df
+            
             def transformSexTitanic(df) -> pd.DataFrame:
-            """ Transform col Sex of Dataset Titanic
-            :param df: Dataset
-            :return dataset
-            """
-            df['Sex'] = df['Sex'].replace(['female','male'],[0,1])
-            return df
+                """ Transform col Sex of Dataset Titanic 
+                :param df: Dataset
+                :return dataset
+                """
+                df['Sex'] = df['Sex'].replace(['female','male'],[0,1])
+                return df
 
             def transformSibSpParchTitanic(df) -> pd.DataFrame:
-            """ Transform cols SibSp and Parch of Dataset Titanic
-            :param df: Dataset
-            :return dataset
-            """
-            df['Members_Family'] = df['SibSp'] + df['Parch']
-            df.pipe(dropCols, ['SibSp', 'Parch'])
-            return df
+                """ Transform cols SibSp and Parch of Dataset Titanic
+                :param df: Dataset
+                :return dataset
+                """
+                df['Members_Family'] = df['SibSp'] + df['Parch']
+                df.pipe(dropCols, ['SibSp', 'Parch'])
+                return df
 
             def transformAgeTitanic(df) -> pd.DataFrame:
-            """ Transform Age of dataset titanic into intervals
-            :param df: Dataset
-            return Dataset
-            """
-            df.loc[df['Age']<=20, 'Age'] = 0 # Child
-            df.loc[ (df['Age'] >20) & (df['Age'] <= 65), 'Age'] = 1 # Adult
-            df.loc[ df['Age'] > 65, 'Age'] = 2 # Elderly
-            df['Age'] = df['Age'].astype(int)
-            return df
+                """ Transform Age of dataset titanic into intervals
+                :param df: Dataset
+                return Dataset
+                """
+                df.loc[df['Age']<=20, 'Age'] = 0 # Child
+                df.loc[ (df['Age'] >20) & (df['Age'] <= 65), 'Age'] = 1 # Adult
+                df.loc[ df['Age'] > 65, 'Age'] = 2 # Elderly
+                df['Age'] = df['Age'].astype(int)
+                return df
 
             def transformFareTitanic(df) -> pd.DataFrame:
-            """ Transform col Fare of dataset titanic into intervals
-            :param df: Dataset
-            :return Dataset
-            """
-            df.loc[ df['Fare'] <= 7.925, 'Fare'] = 0 # Fist Percentile
-            df.loc[ (df['Fare'] > 7.925) & ( df['Fare'] <= 15.2458), 'Fare' ] = 1 # Second Percentile
-            df.loc[ df['Fare'] > 15.2458,'Fare' ] = 2 # Third Percentile
-            df['Fare'] = df['Fare'].astype(int)
-            return df
+                """ Transform col Fare of dataset titanic into intervals
+                :param df: Dataset
+                :return Dataset
+                """
+                df.loc[ df['Fare'] <= 7.925, 'Fare'] = 0 # Fist Percentile
+                df.loc[ (df['Fare'] > 7.925) & ( df['Fare'] <= 15.2458), 'Fare' ] = 1 # Second Percentile
+                df.loc[ df['Fare'] > 15.2458,'Fare' ] = 2 # Third Percentile
+                df['Fare'] = df['Fare'].astype(int)
+                return df
 
             def transformSurvivedTitanic(df) -> pd.DataFrame:
-            """ Transform col Survived of dataset titanic and show a graphic of data distribution
-            :param df: Dataframe
-            :return df
-            """
-            df['Survived'] = df['Survived'].replace([1,0],['Alive','Dead'])
-            return df
-
+                """ Transform col Survived of dataset titanic and show a graphic of data distribution
+                :param df: Dataframe
+                :return df
+                """
+                df['Survived'] = df['Survived'].replace([1,0],['Alive','Dead'])
+                return df
+            
             def Classifiers(train_data, test_data):
-            """ Apply classifier of mining data to dataset
-            :param train_data: Train Data of Dataset
-            :param test_data: Test data of Dataset
-            """
-            # Create models
-            models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3), RandomForestClassifier(), SVC(probability = True)]
-            classifiers = ['DecisionTree', 'KNN', 'RandomForest', 'SVC']
-            log_cols = ["Classifier", "Accuracy"]
-            log = pd.DataFrame(columns=log_cols)
-            acc_dict = {}
-            # train and test
-            i=0
-            for model in models:
-            name = model.__class__.__name__
-            acc = cross_val_score(model, train_data, test_data, cv=5, scoring='accuracy').mean()
-            log.loc[i, log_cols[0]] = models[i]
-            log.loc[i, log_cols[1]] = acc
-            i += 1
-            # Show result
-            display(log)
-            plt.xlabel('Classifiers')
-            plt.title('Classifier Accuracy')
-            sns.barplot(x=classifiers, y=log.Accuracy, data=log, color='b')
-            display(plt)
-            plt.clf()
+                """ Apply classifier of mining data to dataset
+                :param train_data: Train Data of Dataset
+                :param test_data: Test data of Dataset
+                """
+                # Create models
+                models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3), RandomForestClassifier(), SVC(probability = True)]
+                classifiers = ['DecisionTree', 'KNN', 'RandomForest', 'SVC']
+                log_cols = ["Classifier", "Accuracy"]
+                log = pd.DataFrame(columns=log_cols)
+                acc_dict = {}
+                # train and test
+                i=0
+                for model in models:
+                    name = model.__class__.__name__
+                    acc = cross_val_score(model, train_data, test_data, cv=5, scoring='accuracy').mean()
+                    log.loc[i, log_cols[0]] = models[i]
+                    log.loc[i, log_cols[1]] = acc
+                    i += 1
+                # Show result
+                display(log)
+                plt.xlabel('Classifiers')
+                plt.title('Classifier Accuracy')
+                sns.barplot(x=classifiers, y=log.Accuracy, data=log, color='b')
+                display(plt)
+                plt.clf()
 
             def showTitanicAgeSexSurvived(df):
-            """ Analysis of the survivors according to the age and sex of titanic dataset
-            :param df: Dataset titanic
-            """
-            df['Sex'] = df['Sex'].replace([0,1],['Female','Male'])
-            df.loc[ df['Age'] == 0, 'Age' ] = 'Young'
-            df.loc[ df['Age'] == 1, 'Age' ] = 'Adult'
-            df.loc[ df['Age'] == 2, 'Age' ] = 'Elderly'
-            sns.catplot(x='Age', hue='Survived', kind='count', col='Sex', data = df)
-            display(plt)
-            plt.clf()
+                """ Analysis of the survivors according to the age and sex of titanic dataset
+                :param df: Dataset titanic
+                """
+                df['Sex'] = df['Sex'].replace([0,1],['Female','Male'])
+                df.loc[ df['Age'] == 0, 'Age' ] = 'Young'
+                df.loc[ df['Age'] == 1, 'Age' ] = 'Adult'
+                df.loc[ df['Age'] == 2, 'Age' ] = 'Elderly'
+                sns.catplot(x='Age', hue='Survived', kind='count', col='Sex', data = df)
+                display(plt)
+                plt.clf()
 
             def showTitanicFarePclassSurvived(df):
-            """ Analysis of the survivors according to the fare and pclass of titanic dataset
-            :param df: Dataset titanic
-            """
-            sns.catplot(x='Fare', hue='Survived', kind='count', col='Pclass', data=df)
-            display(plt)
-            plt.clf()
+                """ Analysis of the survivors according to the fare and pclass of titanic dataset
+                :param df: Dataset titanic
+                """
+                sns.catplot(x='Fare', hue='Survived', kind='count', col='Pclass', data=df)
+                display(plt)
+                plt.clf()
 
             def showTitanicMembersFamilySurvived(df):
-            """ Analysis of the survivors according to the member family of titanic dataset
-            :param df: Dataset titanic
-            """
-            sns.catplot(x='Members_Family', hue='Survived', kind='count', data=df)
-            display(plt)
-            plt.clf()
+                """ Analysis of the survivors according to the member family of titanic dataset
+                :param df: Dataset titanic
+                """
+                sns.catplot(x='Members_Family', hue='Survived', kind='count', data=df)
+                display(plt)
+                plt.clf()
 
             def generate_confusion_matrix(train,test,classifier):
-            """ Generate a confusion matrix
-            :param train: Data train
-            :param test: Data test
-            :classifier: Mining Data Classifier
-            """
-            classifier.fit(train,test)
-            display(test.unique())
-            cm = confusion_matrix(test, classifier.predict(train))
-            display(cm)
-
-
-
+                """ Generate a confusion matrix
+                :param train: Data train
+                :param test: Data test
+                :classifier: Mining Data Classifier
+                """
+                classifier.fit(train,test)
+                display(test.unique())
+                cm = confusion_matrix(test, classifier.predict(train))
+                display(cm)
+                
+                
+            
         </py-script>
 
+        <!--Ejercicio 1-->
+        <p>
+            <em>Ejercicio 1: Obtenga al menos 5 datos de muestra en CSV, ARFF o cualquier otro formato: Weka, UCI MLR </em>
+        </p>
+        <py-repl>
+            # Dataset titanic
+            titanic = loadTitanic()
+            display(titanic.head())
+        </py-repl>
         
         <!--Ejercicio 2-->
         <p>
@@ -682,17 +559,17 @@
             display(titanic.info())
             display(titanic.describe())
         </py-repl>
-        <py-repl>
+        <py-repl >
             # Aplicamos el preprocesamiento de los datos del dataset titanic
             titanic2 = titanic.copy().pipe(dropCols, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Embarked']).pipe(ClearLostDataTitanic).pipe(deleteDuplicatedData).pipe(
-            transformSexTitanic).pipe(transformSibSpParchTitanic).pipe(transformAgeTitanic).pipe(transformFareTitanic).pipe(transformSurvivedTitanic)
+                        transformSexTitanic).pipe(transformSibSpParchTitanic).pipe(transformAgeTitanic).pipe(transformFareTitanic).pipe(transformSurvivedTitanic)
             display(titanic2)
         </py-repl>
         <!--Ejercicio 3-->
         <p>
             <em>Ejercicio 3: Aplica los siguientes algoritmos a cada dataset: Arbol de Decision, Arbol de decision aleatorio, KNN, SVC </em>
         </p>
-        <py-repl>
+        <py-repl >
             # Datos de entrenamiento del dataset titanic
             train_titanic = titanic2.drop(['Survived'], axis=1)
             # Datos de test del dataset titanic
@@ -704,7 +581,7 @@
         <p>
             <em>Ejercicio 4: Utiliza la informacion obtenida en los ejercicios anteriores y saca conclusiones </em>
         </p>
-        <py-repl>
+        <py-repl >
             # Analysis dataset titanic
             generate_confusion_matrix(train_titanic, test_titanic, SVC(probability=True))
             showTitanicSurvived(titanic2)
