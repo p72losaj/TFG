@@ -83,85 +83,14 @@
         </nav>
     </div>
 
-    <div class="menuBotones">
-        <!--Botones para mostrar/ocultar listado de dataset-->
-        <button onclick="$('#dataset').show(); $('#codigoPython').hide()">Mostrar lista de dataset</button>
-        <button onclick="$('#codigoPython').show();$('#dataset').hide()">Mostrar codigo python</button>
-        <button onclick="$('#dataset').hide();$('#codigoPython').hide()">Ocultar listaDataset/codigoPython</button>
-    </div>
-
-
-
     <!--Mostrar informacion de interes-->
     <div class="informacion">   
-        <!--Datasets-->
-        <div id="dataset" style="display:none">
-            <table border="1">
-                <tr>
-                    <th>Dataset</th>
-                    <th>ObtencionDataset</th>
-                    <th>CaracteristicasDataset</th>
-                </tr>
-                <tr>
-                    <td>IRIS</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data">IrisDataset</a></td>
-                    <td>["sepal length","sepal width","petal length","petal width","Species"]</td>
-                </tr>
-                <tr>
-                    <td>WINE</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/wine.data">WineDataset</a></td>
-                    <td>['class', 'Alcohol', 'Malic_acid', 'Ash', 'Alcalinity_of_ash', 'Magnesium', 'Total_phenols','Flavanoids', 'Nonflavanoid_phenols', 'Proanthocyanins', 'Color_intensity', 'Hue', 'OD280/OD315','Proline']</td>
-                </tr>
-                <tr>
-                    <td>DIABETES</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/diabetes.csv">DiabetesDataset</a></td>
-                    <td>['preg', 'plas','pres','skin','insu','mass','pedi','age','class']</td>
-                </tr>
-                <tr>
-                    <td>TITANIC</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv">TitanicDataset</a></td>
-                </tr>
-                <tr>
-                    <td>ABALONE</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/abalone.data">AbaloneDataset</a></td>
-                    <td>['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight', 'Rings/Class']</td>
-                </tr>
-                <tr>
-                    <td>SEGMENT CHALLENGE</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff">SegmentChallengeDataset</a></td>
-                </tr>
-                <tr>
-                    <td>GLASS</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/glass.arff">GlassDataset</a></td>
-                </tr>
-                <tr>
-                    <td>DRY BEAN</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/Dry_Bean_Dataset.arff">DryBeanDataset</a></td>
-                </tr>
-                <tr>
-                    <td>CAR</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/car.data">CarDataset</a></td>
-                    <td>['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class']</td>
-                </tr>
-                <tr>
-                    <td>ZOO</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/zoo.data">ZooDataset</a></td>
-                    <td>['animal_name', 'hair', 'feathers', 'eggs', 'milk', 'airzorne', 'aquatic', 'predator', 'toothed', 'backbone', 'breathes', 'venomous', 'fins', 'legs', 'tail', 'domestic', 'catsize', 'class']</td>
-                </tr>
-                <tr>
-                    <td>BALANCE SCALE</td>
-                    <td><a href="https://raw.githubusercontent.com/p72losaj/Datasets/main/balance-scale.data">BalanceScaleDataset</a></td>
-                    <td>['class', 'left_weight', 'left_distance', 'right_weight', 'right_distance']</td>
-                </tr>
-            </table>
-        </div>
+        
         <!--Mostramos codigo-->
         <div id="codigoPython" style="display:none">
             <!--Python Packages-->
             <pre>
-                import pandas as pd
-                from pyodide.http import open_url
-                from scipy.io import arff
+                
                 import seaborn as sns
                 import matplotlib.pyplot as plt
                 from sklearn.model_selection import cross_val_score
@@ -170,31 +99,6 @@
                 from sklearn.neighbors import KNeighborsClassifier
                 from sklearn.svm import SVC
                 from sklearn.metrics import confusion_matrix
-
-                def loadTitanic() -> pd.DataFrame:
-                    """ Obtaining data from titanic dataset.
-                    :return: Dataset
-                    """
-                    df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
-                    return df
-                
-                def loadIris() -> pd.DataFrame:
-                    """ Obtaining data from iris dataset.
-                    :return: Dataset iris
-                    """
-                    df = pd.read_csv(
-                        open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),
-                        header=None,
-                        names = ["sepal length","sepal width","petal length","petal width","Species"])
-                    return df
-
-                def loadSegmentChallenge() -> pd.DataFrame:
-                    """ Obtaining data from Segment Challenge dataset.
-                    :return: Dataset segment challenge
-                    """
-                    df = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
-                    df['class'] = df['class'].str.decode('utf-8')
-                    return df
 
                 def showTitanicSurvived(df):
                     """ Generate the survived graphic of dataset titanic
@@ -205,70 +109,12 @@
                     display(plt)
                     plt.clf()
 
-                def dropCols(df,cols) -> pd.DataFrame:
-                    """ Delete columns from the dataset
-                    :param df: Dataset
-                    :param cols: Cols to remove
-                    :return Dataset
-                    """
-                    df.drop(cols, axis=1, inplace=True)
-                    return df
-
                 def ClearLostDataTitanic(df) -> pd.DataFrame:
                     """ Clear lost data of dataset titanic
                     :param: Dataset
                     :return: Dataset
                     """
                     df = df.interpolate(method ='linear', limit_direction ='backward')
-                    return df
-
-                def deleteDuplicatedData(df) -> pd.DataFrame:
-                    """ Delete duplicated data of dataset
-                    :param: Dataset
-                    :return: Dataset
-                    """
-                    # Detect duplicated rows
-                    if df.duplicated(keep = 'last').sum() > 0:
-                        df = df.drop_duplicates(keep='last')
-                    return df
-
-                def transformSexTitanic(df) -> pd.DataFrame:
-                    """ Transform col Sex of Dataset Titanic 
-                    :param df: Dataset
-                    :return dataset
-                    """
-                    df['Sex'] = df['Sex'].replace(['female','male'],[0,1])
-                    return df
-
-                def transformSibSpParchTitanic(df) -> pd.DataFrame:
-                    """ Transform cols SibSp and Parch of Dataset Titanic
-                    :param df: Dataset
-                    :return dataset
-                    """
-                    df['Members_Family'] = df['SibSp'] + df['Parch']
-                    df.pipe(dropCols, ['SibSp', 'Parch'])
-                    return df
-
-                def transformAgeTitanic(df) -> pd.DataFrame:
-                    """ Transform Age of dataset titanic into intervals
-                    :param df: Dataset
-                    return Dataset
-                    """
-                    df.loc[df['Age']<=20, 'Age'] = 0 # Child
-                    df.loc[ (df['Age'] >20) & (df['Age'] <= 65), 'Age'] = 1 # Adult
-                    df.loc[ df['Age'] > 65, 'Age'] = 2 # Elderly
-                    df['Age'] = df['Age'].astype(int)
-                    return df
-
-                def transformFareTitanic(df) -> pd.DataFrame:
-                    """ Transform col Fare of dataset titanic into intervals
-                    :param df: Dataset
-                    :return Dataset
-                    """
-                    df.loc[ df['Fare'] <= 7.925, 'Fare'] = 0 # Fist Percentile
-                    df.loc[ (df['Fare'] > 7.925) & ( df['Fare'] <= 15.2458), 'Fare' ] = 1 # Second Percentile
-                    df.loc[ df['Fare'] > 15.2458,'Fare' ] = 2 # Third Percentile
-                    df['Fare'] = df['Fare'].astype(int)
                     return df
 
                 def transformSurvivedTitanic(df) -> pd.DataFrame:
@@ -356,9 +202,9 @@
             <!--Añadimos un menu de filtro-->
             <div class="col-sm-3" style="">
                 <em>Etapas del proceso de mineria de datos</em>
-                <button onclick="$('#ObtencionDatos').show()">1. Obtención de datos</button>
-                <!--<button onclick="$('#ObtencionDatos').hide()">Ocultar</button>-->
-
+                <button onclick="$('#ObtencionDatos').show(); $('#PreprocesamientoDatos').hide(), $('#EjerciciosPropuestos').hide()">1. Obtención de Datos</button>
+                <button onclick="$('#PreprocesamientoDatos').show();$('#ObtencionDatos').hide(), $('#EjerciciosPropuestos').hide()">2. Preprocesamiento de Datos</button>
+                <button onclick="$('#EjerciciosPropuestos').show(),$('#PreprocesamientoDatos').hide();$('#ObtencionDatos').hide()">Ejercicios propuestos</button>
             </div>
             
             <div class="col-sm-10">
@@ -398,7 +244,9 @@
                         <py-repl>
                             import pandas as pd
                             from pyodide.http import open_url
-                            titanic = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"),header=0, sep=",")
+                            titanic = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"),
+                            header=0,
+                            sep=",")
                             display(titanic.head())
                         </py-repl>
                         <h3>Conjunto de datos no etiquetado</h3>
@@ -406,7 +254,10 @@
                         <py-repl>
                             import pandas as pd
                             from pyodide.http import open_url
-                            iris = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),header=None,sep=",",names = ["sepal length","sepal width","petal length","petal width","Species"])
+                            iris = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),
+                            header=None,
+                            sep=",",
+                            names = ["sepal length","sepal width","petal length","petal width","Species"])
                             display(iris.head(7))
                         </py-repl>
                         <em>Explicación del ejemplo</em>
@@ -451,7 +302,7 @@
                             segment_challenge['class'] = segment_challenge['class'].str.decode('utf-8')
                             display(segment_challenge['class'].head(10))
                         </py-repl>
-                        
+
                     </p>
 
                     <h2>Archivos Data</h2>
@@ -462,16 +313,319 @@
                         <py-repl>
                             import pandas as pd
                             from pyodide.http import open_url
-                            balance_scale = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/balance-scale.data"),header=None,sep=",",names = ['class', 'left_weight', 'left_distance', 'right_weight', 'right_distance'])
+                            balance_scale = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/balance-scale.data"),
+                            header=None,
+                            sep=",",
+                            names = ['class', 'left_weight', 'left_distance', 'right_weight', 'right_distance'])
                             display(balance_scale.head())
                         </py-repl>
                     </p>
 
-                </div>
+</div>
                 <!--Paso 2: Preprocesamiento de datos-->
+                <div id="PreprocesamientoDatos" style="display:none">
+                    <h1>Paso 2. Preprocesamiento de Datos</h1>
+                    <p>
+                        Una vez importados/extraídos los datos, es importante preprocesar los datos como un paso previo al análisis de los mismos. Para realizar el preprocesamiento de los datos, es importante establecer la meta final de nuestro análisis de los datos. 
+                        <br />
+                        Recomendación: Antes de comenzar el preprocesamiento de datos, es recomendable establecer la meta final de nuestro análisis debido a que todo este proceso dependerá de dicha meta. <br />
+                        Esta meta no es única, es decir, dependerá del conjunto de datos y de la decisión de cada persona.
+                        <br />
+                    En esta sección, veremos los siguientes pasos para realizar el preprocesamiento de los datos:
+                    <ol>
+                        <li>Evaluación de los datos: Llevar a cabo una evaluación de la calidad de los datos ayuda a establecer la solidez de los mismos.
+                        <li>Limpieza de los datos: La limpieza de los datos tiene como objetivo crear conjuntos de datos sencillos y completos para que los programas ejecuten el análisis.</li>
+                        <li>Integrar y transformar los datos: Se utiliza la transformación para convertir los datos en formatos adecuados que el software informático y el aprendizaje automático puedan leer e interpretar.</li>
+                        <li>Reducción de los datos: Se emplea la reducción de los datos para tener una representación más pequeña de los datos de su base de datos, permitiendo que su base de datos sea más rápida, menos costosa y más fácil de almacenar y recuperar.</li>
+                    </ol>
+                    <p>
+                        Al evaluar los datos, es recomendable la realización de una búsqueda de los siguientes datos:
+                        <ul>
+                            <li>
+                                Datos ruidosos, se refiere a aquellos datos sin valor significativo, como las entradas duplicadas o los campos de datos no relevantes para su análisis.
+                                <br />La eliminación de los datos innecesarios ayuda a analizar los datos así como disminuir el tiempo de entrenamiento y test de los algoritmos que vayamos a desarrollar, como por ejemplo, árbol de decisión o Regresión Logística.
+                            </li>
+                            <li>
+                                Datos perdidos o faltantes, se refiere a toda pérdida de información por diversas causas como por ejemplo un error humano, un mal funcionamiento u otros factores.
+                                <br />La sustitución de estos datos ayuda a garantizar que los futuros análisis sean precisos y fiables.
+                            </li>
+                            <li>
+                                Datos atípicos, se refiere a aquellos datos extraños en el conjunto de datos.
+                            </li>
+                            <li>
+                                Categorías de datos, se refiere a los tipos de datos que componen el conjunto de datos. Los datos pueden ser divididos en 3 categorías: Numéricos, Categóricos u Ordinales.
+                            </li>
+                        </ul>
+                        <h2>El conjunto de datos</h2>
+                        Para este tutorial vamos a trabajar con el conjunto de datos titanic. Primero, vamos a obtener el conjunto de datos. Una vez obtenido el conjunto de datos, la meta que vamos a establecer es comprobar quienes fueron los pasajeros del titanic con mayores posibilidades de supervivencia.
+                        <py-repl>
+                            import pandas as pd
+                            from pyodide.http import open_url
+                            titanic = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"),header=0, sep=",")
+                            display(titanic)
+                        </py-repl>
+
+                        <h2>Limpieza de Datos</h2>
+                        A continuación, analizaremos el dataset titanic y aplicaremos distintas técnicas de detección y limpieza de datos.
+                        <h3>Información innecesaria</h3>
+                        Si observamos el dataset titanic comprobamos que para la meta establecida la información referida tanto al PassengerId, al ticket del pasajero (Ticket) y al puerto de embarque (Embarked) no aporta información relevante, de modo que podemos eliminar dicha información.
+                        <br />Además, consideraremos que la columna Name no aporta la suficiente información relevante para nuestra meta.
+                        <br /> Para eliminar las columnas del dataset, emplearemos la función drop de Pamdas, tal y como veremos en el código a continuación:
+                        <br />Nota: Es recomendable que al modificar un dataset, realicemos una copia del mismo y modifiquemos dicha copia.
+                        <py-repl>
+                            titanic_copia = titanic.copy()
+                            titanic_copia.drop(['PassengerId','Name','Ticket','Embarked'], axis=1, inplace=True)
+                            display(titanic_copia.head())
+                        </py-repl>
+                        <em>Explicación:</em>
+                        <ul>
+                            <li>Empleamos la función copy() de Pandas para realizar una copia completa del dataset titanic y almacenamos dicha copia en la variable titanic_copia</li>
+                            <li>Para eliminar la columna Ticket, empleamos la función drop de Pandas.</li>
+                            <li>axis=1 significa que se elimina la columna completa</li>
+                            <li>inplace=True significa que se aplican los cambios directamente sobre el conjunto de datos titanic_copia</li>
+                        </ul>
+                        <h3>Datos atípicos</h3>
+                        Existen diversas formas de detectar datos atípicos, los cuáles abarcan desde generar gráficas hasta el uso de métodos matemáticos.
+                        <h4>Diagrama de cajas</h4>
+                        <br />Una forma simple y efectiva de visualizar datos atípicos, y resulta prácticamente útil para buscar valores atípicos, es generar diagramas de caja. Para generar estos diagramas, emplearemos la función boxplot de la librería seaborn.
+                        <br />Sin embargo, cabe destacar que es recomendable para garantizar una correcta detección de dichos datos, generar dichos gráficos para columnas individuales del conjunto de datos siempre y cuando el conjunto de datos disponga de pocas columnas.
+                        <br />En el código a continuación, veremos como generar los diagramas de caja:
+                        <py-repl>
+                            import seaborn as sns
+                            import matplotlib.pyplot as plt
+                            sns.boxplot(titanic_copia['Age'])
+                            display(plt)
+                            # Limpiamos la gráfica generada usando la función clf de matplotlib.pyplot
+                            plt.clf()
+                        </py-repl>
+                        En el gráfico generado, podemos observar que los valores que se encuentren fuera del diagrama se consideran valores atípicos. Al final veremos como eliminar los datos atípicos del conjunto de datos.
+                        Es necesario indicar que los diagramas de caja se pueden usar cuando tenemos datos en una sola dimensión.
+                        <h4>Rango intercuartílico</h4>
+                        Un método usado con mucha frecuencia en la investigación para limpiar datos mediante la eliminación de valores atípicos es calculando el rango intercuartílico para detectar dichos valores.
+                        <br />El rango intercuartílico (IQR) es la diferencia entre el tercer cuantil (Q3) y el primer cuantil (Q1). Para calcular dichos valores, el método más sencillo es usando la función describe() de Pandas
+                        <py-repl>
+                            display(titanic_copia.describe())
+                        </py-repl>
+                        Si observamos la tabla obtenida, podemos obtener la siguiente información para cada columna del conjunto de datos:
+                        <ul>
+                            <li>count, significa el número de elementos de la columna.</li>
+                            <li>mean, representa el valor medio obtenido a partir de los datos de la columna.</li>
+                            <li>std, representa el valor de la desviación típica obtenido a partir de los datos de la columna.</li>
+                            <li>min, representa el valor mínimo de la columna.</li>
+                            <li>25%, representa el valor del primer percentil (Q1).</li>
+                            <li>50%, representa el valor de la mediana obtenido a partir de los datos de la columna.</li>
+                            <li>75%, representa el valor del tercer percentil (Q3).</li>
+                            <li>max, representa el valor máximo de la columna.</li>
+                        </ul>
+                        Con los datos de los percentiles Q1 y Q3, podemos definir nuestros límites inferior y superior. Es decir, cualquier punto por debajo del límite inferior y por encima del
+                        límite superior se considerará un valor atípico. En nuestro caso, emplearemos este método.
+                        <br />En el código a continuación mostraremos cómo detectar y eliminar valores atípicos usando el rango intercuartílico, para la columna Age. Para ello, usaremos la librería numpy para obtener los índices de los valores atípicos:
+                        <py-repl>
+                            import numpy as np
+                            # Mostramos el numero de filas y columnas del conjunto de datos con valores atípicos
+                            display('Filas,columnas con valores atipicos: ', titanic_copia.shape)
+                            # Calculamos el valor de IQR
+                            Q1 = 20.125000; Q3 = 38.000000; IQR = Q3 - Q1
+                            # Definimos el límite superior e inferior
+                            upper = np.where(titanic_copia['Age'] >= (Q3+1.5*IQR))
+                            lower = np.where(titanic_copia['Age'] <= (Q1-1.5*IQR))
+                            # Removemos los valores atípicos
+                            titanic_copia.drop(upper[0], inplace = True)
+                            titanic_copia.drop(lower[0], inplace = True)
+                            # Comprobamos si se han eliminado los valores atípicos
+                            display('Filas,columnas sin valores atipicos: ', titanic_copia.shape)
+                        </py-repl>
+                        Podemos comprobar que se han eliminado correctamente los datos atípicos de la columna 'Age'.
+
+                        <h3>Datos duplicados</h3>
+                        Una vez eliminada la información irrelevante para el análisis, comprobaremos la existencia de datos duplicados. En caso de detectar dichos datos duplicados, se procederá a eliminar las filas del conjunto de datos con dichos datos.
+                        <br />Para realizar este proceso, usaremos el método duplicated() para comprobar si un registro está duplicado o no, junto con una suma o conteo de los mismos.
+                        <br />Para eliminar las filas duplicadas, usaremos la función drop_duplicates.
+                        <py-repl>
+                            if titanic_copia.duplicated(keep = 'first').sum() > 0:
+                            titanic_copia = titanic_copia.drop_duplicates(keep='first')
+                            display(titanic_copia)
+                        </py-repl>
+                        <em>Explicación</em>
+                        <ul>
+                            <li>Usamos el condicional if para comprobar si se cumple la condición de que el dataset tenga filas duplicadas, es decir, que la suma de las filas duplicadas sea superior a 0.</li>
+                            <li>Si se cumple la condición, se eliminan las filas duplicadas del conjunto de datos. En caso contrario, no hace nada.</li>
+                            <li>En la función duplicated, keep='first' significa que marca como True las filas duplicadas, excepto la primera ocurrencia.</li>
+                            <li>En la función drop_duplicates, keep='first' significa que elimina las filas duplicadas excepto la primera ocurrencia.</li>
+                        </ul>
+                        <h3>Datos perdidos o faltantes</h3>
+                        Cuando cargamos un conjunto de datos usando Pandas, todos los datos perdidos se convierten automáticamente en valores "NaN". <br />
+                        La manera más sencilla de detectar los valores pérdidos es usar la función insnull() de Pandas, que devuelve los siguientes 2 valores:
+                        <ul>
+                            <li>True, cuando se trata de un valor perdido.</li>
+                            <li>False, cuando no se trata de un valor perdido.</li>
+                        </ul>
+                        Además, si utilizamos también la función sum() podemos comprobar cuántos valores perdidos hay en cada columna del conjunto de datos. Veamos cómo funciona en el siguiente código:
+                        <py-repl>
+                            display(titanic_copia.isnull().sum())
+                        </py-repl>
+                        Si observamos los resultados obtenidos, podemos comprobar que la columna 'Age' tiene 177 datos perdidos, la columna 'Cabin' tiene 687 datos perdidos, y la columna 'Embarked' tiene 2 datos perdidos.
+                        Nota: Otra forma de visualizar los datos perdidos en un gráfico es usando los mapas de calor que proporciona la librería seaborn, tal y como veremos en el siguiente código:
+                        <py-repl>
+                            import seaborn as sns
+                            import matplotlib.pyplot as plt
+                            sns.heatmap(titanic_copia.isnull(), cbar=False)
+                            display(plt)
+                        </py-repl>
+                        Las marcas blancas del grafico anterior representan los valores perdidos, de modo que podemos encontrar patrones y vínculos existentes entre los valores perdidos en las diferentes columnas del dataset.
+                        <br />
+                        Una vez hemos detectado e identificado correctamente los valores perdidos, podemos ocuparnos de ellos mediante su eliminación o imputación.
+                        <h4>Eliminación de valores faltantes</h4>
+                        Para eliminar los valores faltantes, tan solo tenemos que utilizar la función dropna que nos proporciona Pandas. Sin embargo, esta opción no es recomendable para conjuntos de datos pequeños o con un alto procentaje de valores perdidos.
+                        <br />Para este caso, vamos a eliminar la columna Cabin debido a la tasa elevada de valores faltantes que contiene:
+                        <py-repl>
+                            titanic_copia.drop(['Cabin'], axis=1, inplace=True)
+                            # Comprobamos si se ha eliminado dicha columna
+                            display(titanic_copia)
+                        </py-repl>
+                        <h4>Imputación de valores faltantes</h4>
+                        Actualmente, existen 2 aproximaciones comúnmente usadas para la imputación de valores perdidos.
+                        <br />La primera técnica consiste en rellenar estos valores con la media o la mediana de los datos de la variable en caso de que se trate de una variable numérica.
+                        <br />Para el caso de variables categóricas imputamos los valores perdidos con la moda de la variable.
+                        <br />De nuevo Pandas nos ofrece funciones para calcular la media (mediante la función mean()), la mediana (mediante la función median()) y la moda (mediante la función mode()).
+                        <py-repl>
+                            # Aplicamos la mediana para rellenar los valores faltantes de la columna Age
+                            titanic_copia['Age'].fillna(titanic_copia['Age'].median(), inplace=True)
+                            # Comprobamos si se han relleando los valores faltantes
+                            display(titanic_copia.isnull().sum())
+                        </py-repl>
+                        <h3>Transformación de datos</h3>
+                        A continuación, veremos distintos métodos de transformación de datos.
+                        <h4>Categorías de datos</h4>
+                        Para analizar las categorías de los datos del dataset, Pandas nos proporciona la función info().
+                        <py-repl>
+                            display(titanic_copia.info())
+                        </py-repl>
+                        Observamos que este conjunto de datos tiene 3 tipos diferentes de datos:
+                        <ul>
+                            <li>float64(2), significa que el conjunto de datos tiene 2 columnas de valores flotantes (con decimales).</li>
+                            <li>int64(4), significa que el conjunto de datos tiene 4 columnas con valores enteros (sin decimales).</li>
+                            <li>object(1), significa que el conjunto de datos tiene 1 columnas con valores objeto</li>
+                        </ul>
+                        Para calcular y realizar análisis, no podemos usar datos de tipo objeto. Por tanto, debemos convertir los datos de tipo objeto en tipo flotante o entero.
+                        <br /> Existen diversos métodos para transformar los datos categóricos en numéricos. Pandas nos proporciona la función replace que permite modificar conjuntos de valores por otros.
+                        <py-repl>
+                            df = titanic_copia.copy()
+                            df['Sex'] = df['Sex'].replace(['female','male'],[0,1])
+                            display(df)
+                        </py-repl>
+                        Sin embargo, un método más cómodo para realizar dicha transformación es usando la función get_dummies() de Pandas.
+                        <py-repl>
+                            titanic_copia = pd.get_dummies(titanic_copia, columns = ["Sex"], prefix=["Sex"])
+                            display(titanic_copia.head())
+                        </py-repl>
+                        Podemos comprobar que se han añadido 2 nuevas columnas en el conjunto de datos, una para el sexo femenino y otra para el sexo masculino.
+                        <h4>Combinación de columnas</h4>
+                        Otra técnica de la transformación de datos consiste en combinar la información de las columnas del conjunto de datos. En nuestro caso, tenemos que las columnas SibSp y Parch representan la siguiente información:
+                        <ul>
+                            <li>SibSp, representa si el pasajero viaja con hermanos o no.</li>
+                            <li>Parch, representa si el pasajero viaja con padres o no.</li>
+                        </ul>
+                        Dicha información podemos unificarla creando una nueva columna que represente el tamaño de la familia del pasajero.
+                        <br />Para ello, creamos una nueva columna en nuestro conjunto de datos con dicha información y eliminaremos la información de las columnas SibSp y Parch.
+                        <py-repl>
+                            titanic_copia['FamilySize'] = titanic_copia['SibSp'] + titanic_copia['Parch'] + 1
+                            titanic_copia.drop(['SibSp','Parch'], axis=1, inplace=True)
+                            display(titanic_copia.head())
+                        </py-repl>
+                        <h4>Contenedores de datos</h4>
+                        Otra técnica que podemos aplicar es crear contenedores de datos, es decir, si tenemos datos con numeros valores podemos agruparlos en datos más sencillos como por ejemplo, en rangos de valores.
+                        En nuestro caso, podemos crear contenedores de datos para las columnas Age y Fare. Para realizar este proceso, Pandas nos aporte la función cut.
+                        <py-repl>
+                            # Contenedor de datos de la columna Age
+                            titanic_copia['Age_bin'] = pd.cut(titanic_copia['Age'], bins=[0,12,20,40,120], labels=['Children','Teenage','Adult','Elder'])
+                            # Contenedor de datos de la columna Fare
+                            titanic_copia['Fare_bin'] = pd.cut(titanic_copia['Fare'], bins=[0,7.91,14.45,31,120], labels=['Low_fare','median_fare','Average_fare','high_fare'])
+                            # Eliminamos las columnas Age y Fare
+                            titanic_copia.drop(['Age','Fare'], axis=1, inplace=True)
+                            # Mostramos el conjunto de datos
+                            display(titanic_copia.head())
+                        </py-repl>
+                        Si observamos el conjunto de datos, podemos comprobar que se han creado 2 nuevas columnas pero que contienen datos categóricos. Como vimos anteriormente con el Sexo, podemos transformar el tipo de objeto usando la función get_dummies
+                        <py-repl>
+                            titanic_copia = pd.get_dummies(titanic_copia, columns = ["Age_bin", 'Fare_bin'], prefix=["Age_type", 'Fare_type'])
+                            display(titanic_copia.head())
+                        </py-repl>
+                        <h3>Análisis de los datos</h3>
+                        Una vez aplicado el proceso de transformación de datos, podemos comenzar a analizar los datos. Para realizar este proceso, aplicaremos principalmente la libreria seaborn y analizaremos los resultados obtenidos enfocándonos a la meta establecida para el conjunto de datos
+                        <br />Nota: Este proceso se puede hacer en este momento o al final, al obtener conclusiones, debido a que se emplearán los métodos que se mostrarán a continuación para las conclusiones
+                        Lo primero que debemos hacer es detectar la característica principal del conjunto de datos. En nuestro caso, la característica principal será la información proporcionada por la columna Survived, pues su información indica si el pasajero sobrevivió o no.
+                        Al analizar un conjunto de datos, es importante comprobar si los datos están balanceados o desbalanceados. En el código a continuación veremos como comprobarlo:
+                        <py-repl>
+                            import seaborn as sns
+                            import matplotlib.pyplot as plt
+                            sns.countplot( x='Survived', data=titanic_copia)
+                            plt.title('Titanic Class')
+                            display(plt)
+                            plt.clf()
+                        </py-repl>
+                        Si analizamos el gráfico anterior, podemos comprobar que los datos están desbalanceados, habiendo más datos de pasajeros muertos que de pasajeros vivos.
+                        Teniendo en cuenta la meta establecida para este conjunto de datos, vamos a analizar aquellos pasajeros con mayor tasa de supervicencia en función del sexo.
+                        <py-repl>
+                            import seaborn as sns
+                            import matplotlib.pyplot as plt
+                            sns.catplot(x='Sex_female', hue='Survived', kind='count', data=titanic_copia)
+                        </py-repl>
+                        Si observamos la gráfica, podemos comprobar que sobrevivieron más mujeres que hombres en el hundimiento del titanic. 
+                        Otro estudio que podemos realizar es si el tipo de clase influyó en la supervivencia de los pasajeros.
+                        <py-repl>
+                            titanic_copia.Pclass[titanic_copia.Survived==1].value_counts(normalize=True).plot(kind='bar')
+                            display(plt)
+                            plt.clf()
+                        </py-repl>
+                        Si observamos el gráfico, podemos comprobar que tuvieron mayor tasa de supervivencia las personas con una clase de tiquet más elevado. 
+                        Otros posibles análisis a realizar, sería analizar si influye en la tasa de supervivencia la edad de la persona, si iban en familia o no, etc.
+                    </p>
+
+                </div>
                 <!--Paso 3: Algoritmos-->
                 <!--Paso 4: Conclusiones-->
 
+                <!--Ejercicios propuestos-->
+                <div id="EjerciciosPropuestos" style="display:none">
+                    <h1>Ejercicios propuestos</h1>
+                    <p>
+                        A continuación, se popondrán un conjunto de ejercicios a resolver por el usuario.
+                        <h3>Ejercicio 1. Aplica las etapas del proceso de minería de datos al siguiente conjunto de datos</h3>
+                        <py-repl>
+                            url_dataset = https://raw.githubusercontent.com/p72losaj/Datasets/main/wine.data
+                            col_names = ['class', 'Alcohol', 'Malic_acid', 'Ash', 'Alcalinity_of_ash', 'Magnesium', 'Total_phenols','Flavanoids', 'Nonflavanoid_phenols', 'Proanthocyanins', 'Color_intensity', 'Hue', 'OD280/OD315','Proline']
+                        </py-repl>
+                        <h3>Ejercicio 2. Aplica las etapas del proceso de minería de datos al siguiente conjunto de datos</h3>
+                        <py-repl>
+                            url_dataset = https://raw.githubusercontent.com/p72losaj/Datasets/main/diabetes.csv
+                            col_names = ['preg', 'plas','pres','skin','insu','mass','pedi','age','class']
+                        </py-repl>
+                        <h3>Ejercicio 3. Aplica las etapas del proceso de minería de datos al siguiente conjunto de datos</h3>
+                        <py-repl>
+                            url_dataset = https://raw.githubusercontent.com/p72losaj/Datasets/main/abalone.data
+                            col_names = ['Sex', 'Length', 'Diameter', 'Height', 'Whole weight', 'Shucked weight', 'Viscera weight', 'Shell weight', 'Rings/Class']
+                        </py-repl>
+                        <h3>Ejercicio 4. Aplica las etapas del proceso de minería de datos al siguiente conjunto de datos</h3>
+                        <py-repl>
+                            url_dataset = https://raw.githubusercontent.com/p72losaj/Datasets/main/glass.arff
+                        </py-repl>
+                        <h3>Ejercicio 5. Aplica las etapas del proceso de minería de datos al siguiente conjunto de datos</h3>
+                        <py-repl>
+                            url_dataset = https://raw.githubusercontent.com/p72losaj/Datasets/main/Dry_Bean_Dataset.arff
+                        </py-repl>
+                        <h3>Ejercicio 6. Aplica las etapas del proceso de minería de datos al siguiente conjunto de datos</h3>
+                        <py-repl>
+                            url_dataset = https://raw.githubusercontent.com/p72losaj/Datasets/main/car.data
+                            col_names = ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class']
+                        </py-repl>
+                        <h3>Ejercicio 7. Aplica las etapas del proceso de minería de datos al siguiente conjunto de datos</h3>
+                        <py-repl>
+                            url_dataset = https://raw.githubusercontent.com/p72losaj/Datasets/main/zoo.data
+                            col_names = ['animal_name', 'hair', 'feathers', 'eggs', 'milk', 'airzorne', 'aquatic', 'predator', 'toothed', 'backbone', 'breathes', 'venomous', 'fins', 'legs', 'tail', 'domestic', 'catsize', 'class']
+                        </py-repl>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -482,11 +636,7 @@
 
         <!-- Codigo python-->
         <py-script>
-            import pandas as pd
-            from pyodide.http import open_url
-            from scipy.io import arff
-            import seaborn as sns
-            import matplotlib.pyplot as plt
+            
             from sklearn.model_selection import cross_val_score
             from sklearn.tree import DecisionTreeClassifier
             from sklearn.ensemble import RandomForestClassifier
@@ -494,113 +644,6 @@
             from sklearn.svm import SVC
             from sklearn.metrics import confusion_matrix
 
-            def loadTitanic() -> pd.DataFrame:
-            """ Obtaining data from titanic dataset.
-            :return: Dataset
-            """
-            df = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/titanic.csv"))
-            return df
-
-            def loadIris() -> pd.DataFrame:
-            """ Obtaining data from iris dataset.
-            :return: Dataset iris
-            """
-            df = pd.read_csv(
-            open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),
-            header=None,
-            names = ["sepal length","sepal width","petal length","petal width","Species"])
-            return df
-
-            def loadSegmentChallenge() -> pd.DataFrame:
-            """ Obtaining data from Segment Challenge dataset.
-            :return: Dataset segment challenge
-            """
-            df = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
-            df['class'] = df['class'].str.decode('utf-8')
-            return df
-
-            def showTitanicSurvived(df):
-            """ Generate the survived graphic of dataset titanic
-            :param df: Dataset
-            """
-            sns.countplot( x='Survived', data=df)
-            plt.title('Titanic Class')
-            display(plt)
-            plt.clf()
-
-            def dropCols(df,cols) -> pd.DataFrame:
-            """ Delete columns from the dataset
-            :param df: Dataset
-            :param cols: Cols to remove
-            :return Dataset
-            """
-            df.drop(cols, axis=1, inplace=True)
-            return df
-
-            def ClearLostDataTitanic(df) -> pd.DataFrame:
-            """ Clear lost data of dataset titanic
-            :param: Dataset
-            :return: Dataset
-            """
-            df = df.interpolate(method ='linear', limit_direction ='backward')
-            return df
-
-            def deleteDuplicatedData(df) -> pd.DataFrame:
-            """ Delete duplicated data of dataset
-            :param: Dataset
-            :return: Dataset
-            """
-            # Detect duplicated rows
-            if df.duplicated(keep = 'last').sum() > 0:
-            df = df.drop_duplicates(keep='last')
-            return df
-
-            def transformSexTitanic(df) -> pd.DataFrame:
-            """ Transform col Sex of Dataset Titanic
-            :param df: Dataset
-            :return dataset
-            """
-            df['Sex'] = df['Sex'].replace(['female','male'],[0,1])
-            return df
-
-            def transformSibSpParchTitanic(df) -> pd.DataFrame:
-            """ Transform cols SibSp and Parch of Dataset Titanic
-            :param df: Dataset
-            :return dataset
-            """
-            df['Members_Family'] = df['SibSp'] + df['Parch']
-            df.pipe(dropCols, ['SibSp', 'Parch'])
-            return df
-
-            def transformAgeTitanic(df) -> pd.DataFrame:
-            """ Transform Age of dataset titanic into intervals
-            :param df: Dataset
-            return Dataset
-            """
-            df.loc[df['Age']<=20, 'Age'] = 0 # Child
-            df.loc[ (df['Age'] >20) & (df['Age'] <= 65), 'Age'] = 1 # Adult
-            df.loc[ df['Age'] > 65, 'Age'] = 2 # Elderly
-            df['Age'] = df['Age'].astype(int)
-            return df
-
-            def transformFareTitanic(df) -> pd.DataFrame:
-            """ Transform col Fare of dataset titanic into intervals
-            :param df: Dataset
-            :return Dataset
-            """
-            df.loc[ df['Fare'] <= 7.925, 'Fare'] = 0 # Fist Percentile
-            df.loc[ (df['Fare'] > 7.925) & ( df['Fare'] <= 15.2458), 'Fare' ] = 1 # Second Percentile
-            df.loc[ df['Fare'] > 15.2458,'Fare' ] = 2 # Third Percentile
-            df['Fare'] = df['Fare'].astype(int)
-            return df
-
-            def transformSurvivedTitanic(df) -> pd.DataFrame:
-            """ Transform col Survived of dataset titanic and show a graphic of data distribution
-            :param df: Dataframe
-            :return df
-            """
-            df['Survived'] = df['Survived'].replace([1,0],['Alive','Dead'])
-            return df
 
             def Classifiers(train_data, test_data):
             """ Apply classifier of mining data to dataset
@@ -629,17 +672,7 @@
             display(plt)
             plt.clf()
 
-            def showTitanicAgeSexSurvived(df):
-            """ Analysis of the survivors according to the age and sex of titanic dataset
-            :param df: Dataset titanic
-            """
-            df['Sex'] = df['Sex'].replace([0,1],['Female','Male'])
-            df.loc[ df['Age'] == 0, 'Age' ] = 'Young'
-            df.loc[ df['Age'] == 1, 'Age' ] = 'Adult'
-            df.loc[ df['Age'] == 2, 'Age' ] = 'Elderly'
-            sns.catplot(x='Age', hue='Survived', kind='count', col='Sex', data = df)
-            display(plt)
-            plt.clf()
+            
 
             def showTitanicFarePclassSurvived(df):
             """ Analysis of the survivors according to the fare and pclass of titanic dataset
@@ -668,10 +701,7 @@
             cm = confusion_matrix(test, classifier.predict(train))
             display(cm)
 
-
-
         </py-script>
-
         
         <!--Ejercicio 2-->
         <p>
