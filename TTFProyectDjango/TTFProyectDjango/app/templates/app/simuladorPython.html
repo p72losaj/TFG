@@ -703,21 +703,7 @@
 
         </py-script>
         
-        <!--Ejercicio 2-->
-        <p>
-            <em>Ejercicio 2: Aplica el método de preprocesamiento de datos que consideres necesario para cada dataset </em>
-        </p>
-        <py-repl>
-            # Analizamos el dataset titanic
-            display(titanic.info())
-            display(titanic.describe())
-        </py-repl>
-        <py-repl>
-            # Aplicamos el preprocesamiento de los datos del dataset titanic
-            titanic2 = titanic.copy().pipe(dropCols, ['PassengerId', 'Name', 'Ticket', 'Cabin', 'Embarked']).pipe(ClearLostDataTitanic).pipe(deleteDuplicatedData).pipe(
-            transformSexTitanic).pipe(transformSibSpParchTitanic).pipe(transformAgeTitanic).pipe(transformFareTitanic).pipe(transformSurvivedTitanic)
-            display(titanic2)
-        </py-repl>
+        
         <!--Ejercicio 3-->
         <p>
             <em>Ejercicio 3: Aplica los siguientes algoritmos a cada dataset: Arbol de Decision, Arbol de decision aleatorio, KNN, SVC </em>
