@@ -242,7 +242,7 @@
                             <li>Cabin: Representa el número de la cabina</li>
                             <li>Embarked: Representa el puerto de embarque</li>
                         </ul>
-                        <h4>Ejemplo 1</h4>
+                        En el código a continuación, veremos como obtener el conjunto de datos titanic a partir del enlace web:
                         <py-repl>
                             import pandas as pd
                             from pyodide.http import open_url
@@ -257,8 +257,8 @@
                             <li>sep="," significa que "," es usado como el separador entre las variables</li>
                         </ul>
                         Consejo: Si obtenemos un conjunto de datos con un número elevado de filas, podemos usar la función head(x) para mostrar las primeras x filas del conjunto de datos.
-                        Si no especificamos un valor de x, por defecto se muestran las primeras 5 filas del conjunto de datos.
-                        <h4>Ejemplo 2</h4>
+                        <br />Si no especificamos un valor de x, por defecto se muestran las primeras 5 filas del conjunto de datos.
+                        <br />En el código a continuación, veremos como mostrar las primeras 5 filas de un conjunto de datos:
                         <py-repl>
                             import pandas as pd
                             from pyodide.http import open_url
@@ -268,9 +268,15 @@
                             display(titanic.head())
                         </py-repl>
                         <h3>Conjunto de datos no etiquetado</h3>
-                        Para esta sección, se obtendrá el conjunto de datos iris.
-                        <br />El conjunto de datos iris contiene información de un estudio de 3 especies de Iris (Iris setosa, Iris Virginica e Iris versicolor).
-                        <br />De cada muestra se midieron 4 características: el largo y el ancho de los sépalos y pétalos, en centímetros.
+                        Para esta sección, se obtendrá el conjunto de datos iris. El conjunto de datos iris contiene información de un estudio de 3 especies de Iris (Iris setosa, Iris Virginica e Iris versicolor).
+                        <br />Dicho conjunto de datos aporta la siguiente información:
+                        <ul>
+                            <li>sepal length: Representa la longitud del sépalo, en centímetros.</li>
+                            <li>sepal width: Representa la anchura del sépalo, en centímetros.</li>
+                            <li>petal length: Representa la longitud del pétalo, en centímetros.</li>
+                            <li>petal width: Representa la anchura del pétalo, en centímetros.</li>
+                            <li>Species: Representa las especies de Iris</li>
+                        </ul>
                         <br />En el código a continuación, veremos un método para obtener dicho conjunto de datos.
                         <py-repl>
                             import pandas as pd
@@ -289,7 +295,6 @@
                             <li>sep="," significa que "," es usado como el separador entre las variables</li>
                             <li>names = ["sepal length","sepal width","petal length","petal width","Species"] significa la secuencia de etiquetado de las columnas del conjunto de datos a aplicar.</li>
                         </ul>
-
                     </p>
 
                     <h2>Archivos ARFF</h2>
