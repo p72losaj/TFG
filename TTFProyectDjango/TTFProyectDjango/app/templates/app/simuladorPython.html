@@ -298,10 +298,9 @@
                     </p>
 
                     <h2>Archivos ARFF</h2>
-
                     <p>
-                        En los ejemplos a continuación, veremos cómo obtener información a partir de archivos en formato arff.
-                        <h4>Ejemplo 4</h4>
+                        En esta sección, obtendremos el conjunto de datos segment_challenge. Al ser un archivo arff, toda la información referente al mismo se visualiza en el propio documento.
+                        <br />En el código a continuación, veremos como importar los datos de dicho conjunto de datos.
                         <py-repl>
                             import pandas as pd
                             from pyodide.http import open_url
@@ -315,34 +314,35 @@
                             <li>Nombramos el dataframe como segment_challenge</li>
                             <li>Usamos la funcion arff.loadarff para cargar el archivo arff.</li>
                             <li>Usamos la función DataFrame para transformar el archivo arff en un dataframe de pandas</li>
-                            Nota: Podemos comprobar al leer los datos que se produce un error de escritura en la columna "class". Para solucionar dicho error debemos aplicar una decodificación en dicha columna.
-                            <br />
-                            Nota: Al visualizar la información obtenida del conjunto de datos, podemos visualizar la información de una columna de dicho conjunto de datos.
                         </ul>
-                        <h4>Ejemplo 5</h4>
+                        Si visualizamos la información obtenida y la comparamos con la sección data del archivo, podemos observar que se ha producido un error de traducción en la columna class del conjunto de datos
+                        <br />Para corregir dicho error de codificación, emplearemos la función decode, tal y como vemos en el código a continuación:
                         <py-repl>
-                            import pandas as pd
-                            from pyodide.http import open_url
-                            from scipy.io import arff
-                            segment_challenge = pd.DataFrame(arff.loadarff(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/segment-challenge.arff"))[0])
                             segment_challenge['class'] = segment_challenge['class'].str.decode('utf-8')
                             display(segment_challenge['class'].head(10))
                         </py-repl>
-
                     </p>
 
                     <h2>Archivos Data</h2>
                     <p>
-                        A continuación, veremos cómo obtener información a partir de archivos en formato data.
-                        Nota: El procedimiento a seguir es similar al empleado en la obtención de archivos CSV
+                        En esta sección, obtendremos el conjunto de datos balance scale. Este conjunto de datos se generó para modelar resultados de experimentos psicológicos.
+                        <br />La información que aporta dicho conjunto de datos es la siguiente:
+                        <ul>
+                            <li>class: Representa el atributo de clase del conjunto de datos</li>
+                            <li>left_weight: Representa el peso a la izquierda de la balanza.</li>
+                            <li>left_distance: Representa la distancia a la izquierda de la balanza.</li>
+                            <li>right_weight: Representa el peso a la derecha de la balanza.</li>
+                            <li>right_distance: Representa la distancia a la derecha de la balanza.</li>
+                        </ul>
+                        En el código a continuación, veremos como obtener la información del conjunto de datos:
                         <h4>Ejemplo 6</h4>
                         <py-repl>
                             import pandas as pd
                             from pyodide.http import open_url
                             balance_scale = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/balance-scale.data"),
-                            header=None,
-                            sep=",",
-                            names = ['class', 'left_weight', 'left_distance', 'right_weight', 'right_distance'])
+                                header=None,
+                                sep=",",
+                                names = ['class', 'left_weight', 'left_distance', 'right_weight', 'right_distance'])
                             display(balance_scale.head())
                         </py-repl>
                     </p>
