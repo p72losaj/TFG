@@ -764,7 +764,7 @@
                         # Normalizamos los datos
                         X_normalized = preprocessing.normalize(X)
                         # Dividimos el dataset en datos de entrenamiento y de test
-                        X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=5)
+                        X_train, X_test, y_train, y_test = train_test_split(X_normalized, Y, test_size=0.4, random_state=5)
                         # Construimos el modelo
                         model = DecisionTreeClassifier(criterion='gini', max_depth=2, min_samples_leaf=1, min_samples_split=2)
                         # Entrenamos el modelo
@@ -772,7 +772,7 @@
                         # Calculamos la precision del modelo
                         display(metrics.accuracy_score(y_test, model.predict(X_test)))
                     </py-repl>
-                    Al ejecutar el código anterior, hemos obtenido una precisión del 95%. Sin embargo, en este caso tenemos el problema del sobreentramiento de los datos.
+                    Al ejecutar el código anterior, hemos obtenido una precisión del 92%. Sin embargo, en este caso tenemos el problema del sobreentramiento de los datos.
                     <h2>Validación cruzada</h2>
                     Como comentamos en el código anterior, se obtuvo una precisión alta pero con problemas de sobreentrenamiento. 
                     <br />Para solucionar dicho problema aplicaremos validación cruzada, tal y como vemos en el siguiente código:
@@ -827,6 +827,49 @@
                         <py-repl>
                             display('Mejores parametros: ', grid.best_params_)
                             display('Mejor resultado: ', grid.best_score_)
+                        </py-repl>
+                        A continuación, repetimos el estudio realizado anteriormente, usando los mejores hiperparámetros obtenidos en el código anterior (n_neighbors=3).
+                        <br />En el código a continuación, realizaremos el estudio sin aplicar validación cruzada:
+                        <py-repl>
+                            # Importamos las librerias necesarias
+                            from sklearn import preprocessing, metrics
+                            from sklearn.neighbors import KNeighborsClassifier
+                            from sklearn.model_selection import train_test_split
+                            # Construimos el modelo
+                            model = KNeighborsClassifier(n_neighbors=3)
+                            # Realizamos un estudio sobre los datos originales
+                            X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=5)
+                            model.fit(X_train,y_train)
+                            display('Precision original: ', metrics.accuracy_score(y_test, model.predict(X_test)))
+                            # Realizamos el estudio aplicando normalizacion
+                            X_normalized = preprocessing.normalize(X)
+                            X_train_normalized, X_test_normalized, y_train_normalized, y_test_normalized = train_test_split(X_normalized, Y, test_size=0.4, random_state=5)
+                            model.fit(X_train_normalized,y_train_normalized)
+                            display('Precision tras normalizacion: ', metrics.accuracy_score(y_test_normalized, model.predict(X_test_normalized)))
+                            # Realizamos el estudio aplicando estandarizacion
+                            X_estandarized = preprocessing.scale(X)
+                            X_train_estandarized, X_test_estandarized, y_train_estandarized, y_test_estandarized = train_test_split(X_estandarized, Y, test_size=0.4, random_state=5)
+                            model.fit(X_train_estandarized,y_train_estandarized)
+                            display('Precision tras estandarizacion: ', metrics.accuracy_score(y_test_estandarized, model.predict(X_test_estandarized)))
+                        </py-repl>
+                        A continuación, repetimos el estudio aplicando validación cruzada:
+                        <py-repl>
+                            # Importamos las librerias necesarias
+                            from sklearn import preprocessing, metrics
+                            from sklearn.neighbors import KNeighborsClassifier
+                            from sklearn.model_selection import cross_val_score, KFold
+                            # Construimos el modelo
+                            model = KNeighborsClassifier(n_neighbors=3)
+                            # Realizamos un estudio sobre los datos originales
+                            score = cross_val_score(model, X, Y, cv=KFold(n_splits=5))
+                            display('Precision media original: ', score.mean())
+                            # Realizamos el estudio aplicando normalizacion
+                            score_normalized = cross_val_score(model, X_normalized, Y, cv=KFold(n_splits=5))
+                            display('Precision media tras normalizacion: ', score_normalized.mean())
+                            # Realizamos el estudio aplicando estandarizacion
+                            score_estandarized = cross_val_score(model, X_estandarized, Y, cv=KFold(n_splits=5))
+                            display('Precision media tras estandarizacion: ', score_estandarized.mean())
+                            
                         </py-repl>
                     </p>
                 </div>
