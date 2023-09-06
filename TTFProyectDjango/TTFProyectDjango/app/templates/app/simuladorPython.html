@@ -100,31 +100,6 @@
                 from sklearn.svm import SVC
                 from sklearn.metrics import confusion_matrix
 
-                def showTitanicSurvived(df):
-                    """ Generate the survived graphic of dataset titanic
-                    :param df: Dataset
-                    """
-                    sns.countplot( x='Survived', data=df)
-                    plt.title('Titanic Class')
-                    display(plt)
-                    plt.clf()
-
-                def ClearLostDataTitanic(df) -> pd.DataFrame:
-                    """ Clear lost data of dataset titanic
-                    :param: Dataset
-                    :return: Dataset
-                    """
-                    df = df.interpolate(method ='linear', limit_direction ='backward')
-                    return df
-
-                def transformSurvivedTitanic(df) -> pd.DataFrame:
-                    """ Transform col Survived of dataset titanic and show a graphic of data distribution
-                    :param df: Dataframe
-                    :return df
-                    """
-                    df['Survived'] = df['Survived'].replace([1,0],['Alive','Dead'])
-                    return df
-
                 def Classifiers(train_data, test_data):
                     """ Apply classifier of mining data to dataset
                     :param train_data: Train Data of Dataset
@@ -151,34 +126,6 @@
                     plt.title('Classifier Accuracy')
                     plt.figsize(15)
                     sns.barplot(x=classifiers, y=log.Accuracy, data=log, color='b')
-                    display(plt)
-                    plt.clf()
-
-                def showTitanicAgeSexSurvived(df):
-                    """ Analysis of the survivors according to the age and Sex of titanic dataset
-                    :param df: Dataset titanic
-                    """
-                    df['Sex'] = df['Sex'].replace([0,1],['Female','Male'])
-                    df.loc[ df['Age'] == 0, 'Age' ] = 'Young'
-                    df.loc[ df['Age'] == 1, 'Age' ] = 'Adult'
-                    df.loc[ df['Age'] == 2, 'Age' ] = 'Elderly'
-                    sns.catplot(x='Age', hue='Survived', kind='count', col='Sex', data = df)
-                    display(plt)
-                    plt.clf()
-
-                def showTitanicFarePclassSurvived(df):
-                    """ Analysis of the survivors according to the fare and pclass of titanic dataset
-                    :param df: Dataset titanic
-                    """
-                    sns.catplot(x='Fare', hue='Survived', kind='count', col='Pclass', data=df)
-                    display(plt)
-                    plt.clf()
-
-                def showTitanicMembersFamilySurvived(df):
-                    """ Analysis of the survivors according to the member family of titanic dataset
-                    :param df: Dataset titanic
-                    """
-                    sns.catplot(x='Members_Family', hue='Survived', kind='count', data=df)
                     display(plt)
                     plt.clf()
 
@@ -806,7 +753,82 @@
                         display('Mejor resultado: ', grid.best_score_)
                     </py-repl>
                     Si ejecutamos el código anterior, podemos obtener un puntuación final superior al 90%, por lo que hemos obtenido unos buenos resultados.
-                    <h2></h2>
+                    <h2>Normalización de los datos</h2>
+                    La normalización es una técnica común a la hora de solucionar el problema de tener diferentes escalas en los valores de un atributo. 
+                    <br />El objetivo de esta técnica es que todos los valores de un atributo estén comprendidos en el intervalo [0,1].
+                    <br />En el código a continuación veremos el efecto de la normalización usando el árbol de decisión con los mejores hiperparámetros:
+                    <py-repl>
+                        from sklearn import preprocessing, metrics
+                        from sklearn.tree import DecisionTreeClassifier
+                        from sklearn.model_selection import GridSearchCV, train_test_split
+                        # Normalizamos los datos
+                        X_normalized = preprocessing.normalize(X)
+                        # Dividimos el dataset en datos de entrenamiento y de test
+                        X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=5)
+                        # Construimos el modelo
+                        model = DecisionTreeClassifier(criterion='gini', max_depth=2, min_samples_leaf=1, min_samples_split=2)
+                        # Entrenamos el modelo
+                        model.fit(X_train,y_train)
+                        # Calculamos la precision del modelo
+                        display(metrics.accuracy_score(y_test, model.predict(X_test)))
+                    </py-repl>
+                    Al ejecutar el código anterior, hemos obtenido una precisión del 95%. Sin embargo, en este caso tenemos el problema del sobreentramiento de los datos.
+                    <h2>Validación cruzada</h2>
+                    Como comentamos en el código anterior, se obtuvo una precisión alta pero con problemas de sobreentrenamiento. 
+                    <br />Para solucionar dicho problema aplicaremos validación cruzada, tal y como vemos en el siguiente código:
+                    <py-repl>
+                        from sklearn import preprocessing
+                        from sklearn.tree import DecisionTreeClassifier
+                        from sklearn.model_selection import cross_val_score, KFold
+                        # Normalizacion de los datos
+                        X_normalized = preprocessing.normalize(X)
+                        # Creamos el modelo
+                        model = DecisionTreeClassifier(criterion='gini', max_depth=2, min_samples_leaf=1, min_samples_split=2)
+                        # Calculamos la precision media del modelo al aplicar normalizacion
+                        score = cross_val_score(model, X_normalized, Y, cv=KFold(n_splits=5))
+                        display('Precision media obtenida con normalizacion: ',score.mean())
+                        score_original = cross_val_score(model, X, Y, cv=KFold(n_splits=5))
+                        display('Precision sin normalizar: ', score_original.mean())
+                    </py-repl>
+                    Al ejecutar el código anterior, podemos comprobar que se obtiene una precisión media superior al no aplicar normalización que aplicando normalización.
+                    <h2>Estandarización de los datos</h2>
+                    En el siguiente código, veremos como aplicar la estandarización de los datos:
+                    <py-repl>
+                        from sklearn import preprocessing
+                        from sklearn.tree import DecisionTreeClassifier
+                        from sklearn.model_selection import cross_val_score, KFold
+                        # Estandarizacion de los datos
+                        X_estandarized = preprocessing.scale(X)
+                        # Creamos el modelo
+                        model = DecisionTreeClassifier(criterion='gini', max_depth=2, min_samples_leaf=1, min_samples_split=2)
+                        # Calculamos la precision media del modelo
+                        score = cross_val_score(model, X_estandarized, Y, cv=KFold(n_splits=5))
+                        display('Precision media obtenida: ',score.mean())
+                    </py-repl>
+                    <h2>KNN</h2>
+                    <p>
+                        Se definen los algoritmos KNN como algoritmos de aprendizaje supervisado simples y fáciles de aplicar que pueden ser utilizados para resolver problemas
+                        <br />de clasificación y de regresión.
+                        En el siguiente código veremos como crear un algoritmo KNN y obtendremos los mejores hiperparámetros de dicho algoritmo para el conjunto de datos iris
+                        <py-repl>
+                            # Importamos las librerias necesarias
+                            from sklearn.neighbors import KNeighborsClassifier
+                            from sklearn.model_selection import GridSearchCV, train_test_split
+                            # Establecemos los parametros para gridsearchcv
+                            param_dict = { "n_neighbors": range(3,10) }
+                            # Encontramos el mejor hiperparámetro usando gridsearchCV
+                            grid = GridSearchCV(KNeighborsClassifier(), param_grid = param_dict, cv=5, verbose=1, n_jobs=-1)
+                            # Dividimos los datos en datos de entrenamiento y de test
+                            X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=5)
+                            # Entrenamos el modelo
+                            grid.fit(X_train,y_train)
+                        </py-repl>
+                        En el código a continuación, visualizamos los mejores hiperparámetros:
+                        <py-repl>
+                            display('Mejores parametros: ', grid.best_params_)
+                            display('Mejor resultado: ', grid.best_score_)
+                        </py-repl>
+                    </p>
                 </div>
                 
                 <!--Paso 4: Conclusiones-->
