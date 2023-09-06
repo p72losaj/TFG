@@ -336,7 +336,6 @@
                         <li>Evaluación de los datos: Llevar a cabo una evaluación de la calidad de los datos ayuda a establecer la solidez de los mismos.
                         <li>Limpieza de los datos: La limpieza de los datos tiene como objetivo crear conjuntos de datos sencillos y completos para que los programas ejecuten el análisis.</li>
                         <li>Integrar y transformar los datos: Se utiliza la transformación para convertir los datos en formatos adecuados que el software informático y el aprendizaje automático puedan leer e interpretar.</li>
-                        <li>Reducción de los datos: Se emplea la reducción de los datos para tener una representación más pequeña de los datos de su base de datos, permitiendo que su base de datos sea más rápida, menos costosa y más fácil de almacenar y recuperar.</li>
                     </ol>
                     <p>
                         Al evaluar los datos, es recomendable la realización de una búsqueda de los siguientes datos:
@@ -443,7 +442,7 @@
                         <br />Para eliminar las filas duplicadas, usaremos la función drop_duplicates.
                         <py-repl>
                             if titanic_copia.duplicated(keep = 'first').sum() > 0:
-                            titanic_copia = titanic_copia.drop_duplicates(keep='first')
+                                titanic_copia = titanic_copia.drop_duplicates(keep='first')
                             display(titanic_copia)
                         </py-repl>
                         <em>Explicación</em>
@@ -453,6 +452,8 @@
                             <li>En la función duplicated, keep='first' significa que marca como True las filas duplicadas, excepto la primera ocurrencia.</li>
                             <li>En la función drop_duplicates, keep='first' significa que elimina las filas duplicadas excepto la primera ocurrencia.</li>
                         </ul>
+                        Dada la información obtenida mediante el código anterior, podemos comprobar que se han reducido el número de filas del conjunto de datos.
+                        <br />Dicha reducción de filas significa que las filas duplicadas del conjunto de datos han sido eliminadas correctamente.
                         <h3>Datos perdidos o faltantes</h3>
                         Cuando cargamos un conjunto de datos usando Pandas, todos los datos perdidos se convierten automáticamente en valores "NaN". <br />
                         La manera más sencilla de detectar los valores pérdidos es usar la función insnull() de Pandas, que devuelve los siguientes 2 valores:
@@ -465,7 +466,7 @@
                             display(titanic_copia.isnull().sum())
                         </py-repl>
                         Si observamos los resultados obtenidos, podemos comprobar que la columna 'Age' tiene 177 datos perdidos, la columna 'Cabin' tiene 687 datos perdidos, y la columna 'Embarked' tiene 2 datos perdidos.
-                        Nota: Otra forma de visualizar los datos perdidos en un gráfico es usando los mapas de calor que proporciona la librería seaborn, tal y como veremos en el siguiente código:
+                        <br />Nota: Otra forma de visualizar los datos perdidos en un gráfico es usando los mapas de calor que proporciona la librería seaborn, tal y como veremos en el siguiente código:
                         <py-repl>
                             import seaborn as sns
                             import matplotlib.pyplot as plt
@@ -535,7 +536,7 @@
                         </py-repl>
                         <h4>Contenedores de datos</h4>
                         Otra técnica que podemos aplicar es crear contenedores de datos, es decir, si tenemos datos con numeros valores podemos agruparlos en datos más sencillos como por ejemplo, en rangos de valores.
-                        En nuestro caso, podemos crear contenedores de datos para las columnas Age y Fare. Para realizar este proceso, Pandas nos aporte la función cut.
+                        <br />En nuestro caso, podemos crear contenedores de datos para las columnas Age y Fare. Para realizar este proceso, Pandas nos aporte la función cut.
                         <py-repl>
                             # Contenedor de datos de la columna Age
                             titanic_copia['Age_bin'] = pd.cut(titanic_copia['Age'], bins=[0,12,20,40,120], labels=['Children','Teenage','Adult','Elder'])
@@ -555,27 +556,44 @@
                         Una vez aplicado el proceso de transformación de datos, podemos comenzar a analizar los datos. Para realizar este proceso, aplicaremos principalmente la libreria seaborn y analizaremos los resultados obtenidos enfocándonos a la meta establecida para el conjunto de datos
                         <br />Nota: Este proceso se puede hacer en este momento o al final, al obtener conclusiones, debido a que se emplearán los métodos que se mostrarán a continuación para las conclusiones
                         Lo primero que debemos hacer es detectar la característica principal del conjunto de datos. En nuestro caso, la característica principal será la información proporcionada por la columna Survived, pues su información indica si el pasajero sobrevivió o no.
+                        <h4>Datos balanceados y no desbalanceados</h4>
                         Al analizar un conjunto de datos, es importante comprobar si los datos están balanceados o desbalanceados. En el código a continuación veremos como comprobarlo:
                         <py-repl>
                             import seaborn as sns
                             import matplotlib.pyplot as plt
                             sns.countplot( x='Survived', data=titanic_copia)
-                            plt.title('Titanic Class')
+                            plt.title('Distribucion de supervivientes/muertos del titanic')
                             display(plt)
-                            plt.clf()
                         </py-repl>
-                        Si analizamos el gráfico anterior, podemos comprobar que los datos están desbalanceados, habiendo más datos de pasajeros muertos que de pasajeros vivos.
-                        Teniendo en cuenta la meta establecida para este conjunto de datos, vamos a analizar aquellos pasajeros con mayor tasa de supervicencia en función del sexo.
+                        <em>Explicación del código</em>
+                        <ul>
+                            <li>Usamos la función countplot de la librería seaborn para generar un gráfico de barras.</li>
+                            <li>x='Survived' significa que el eje X del gráfico representará la información correspondiente a la columna 'Survived'.</li>
+                            <li>data=titanic_copia significa que se empleará para generar el gráfico el conjunto de datos titanic_copia</li>
+                            <li>Usamos la función title de la librería matplotlib para añadir un título al gráfico generado.</li>
+                        </ul>
+                        Si analizamos el gráfico anterior, podemos comprobar que los datos están desbalanceados, habiendo más pasajeros muertos que pasajeros vivos.
+                        <br />En el código a continuación, vamos a analizar aquellos pasajeros con mayor tasa de supervicencia en función del sexo femenino.
                         <py-repl>
                             import seaborn as sns
                             import matplotlib.pyplot as plt
+                            # Generamos el grafico usando la funcion catplot de seaborn
                             sns.catplot(x='Sex_female', hue='Survived', kind='count', data=titanic_copia)
+                            # Mostramos el grafico generado
+                            display(plt)
+                            # Limpiamos el grafico generado
+                            plt.clf()
                         </py-repl>
                         Si observamos la gráfica, podemos comprobar que sobrevivieron más mujeres que hombres en el hundimiento del titanic. 
-                        Otro estudio que podemos realizar es si el tipo de clase influyó en la supervivencia de los pasajeros.
+                        <br />Otro estudio que podemos realizar es si el tipo de clase del pasajero influyó en la supervivencia de los pasajeros.
                         <py-repl>
-                            titanic_copia.Pclass[titanic_copia.Survived==1].value_counts(normalize=True).plot(kind='bar')
+                            import seaborn as sns
+                            import matplotlib.pyplot as plt
+                            # Generamos el grafico usando la funcion catplot de seaborn
+                            sns.catplot(x='Pclass', hue='Survived', kind='count', data=titanic_copia)
+                            # Mostramos el grafico generado
                             display(plt)
+                            # Limpiamos el grafico generado
                             plt.clf()
                         </py-repl>
                         Si observamos el gráfico, podemos comprobar que tuvieron mayor tasa de supervivencia las personas con una clase de tiquet más elevado. 
