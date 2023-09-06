@@ -638,9 +638,9 @@
                         import pandas as pd
                         from pyodide.http import open_url
                         iris = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),
-                            header=None,
-                            sep=",",
-                            names = ["sepal length","sepal width","petal length","petal width","Species"])
+                        header=None,
+                        sep=",",
+                        names = ["sepal length","sepal width","petal length","petal width","Species"])
                         display(iris.head())
                     </py-repl>
                     <h2>Preprocesamiento de datos</h2>
@@ -666,16 +666,113 @@
                         <li>El conjunto de datos no contiene valores perdidos.</li>
                         <li>El conjunto de datos está balanceado, es decir, las clases de iris tienen el mismo número de elementos.</li>
                         <li>Aunque existen valores atípicos, la cantidad de los mismos es muy reducida. En nuestro tutorial, vamos a optar por dejar dichos datos atípicos.</li>
-                        <li>Aunque existen datos duplicados, comprobamos que sólo existen 3 filas duplicadas. Por este motivo, y teniendo en cuenta que si eliminamos dichos datos se puede producir un desbalanceamiento de los datos
-                        , para este tutorial no vamos a eliminar dichos datos duplicados.</li>
+                        <li>
+                            Aunque existen datos duplicados, comprobamos que sólo existen 3 filas duplicadas. Por este motivo, y teniendo en cuenta que si eliminamos dichos datos se puede producir un desbalanceamiento de los datos
+                            , para este tutorial no vamos a eliminar dichos datos duplicados.
+                        </li>
                         <li>Si visualizamos la información del dataset, podemos comprobar que sólo tiene datos no numéricos el atributo de clase. En este caso, no vamos a transformar los datos categóricos en datos numéricos.</li>
                     </ul>
+                    <h2>Modelado de los datos</h2>
+                    Una vez realizado el preprocesamiento de los datos, debemos separar la información objetivo (característica de clase) del resto de información. Esto se conoce como modelado de datos.
+                    <br />En el código a continuación, aplicaremos la biblioteca scikit-learn para modelar los datos:
+                    <py-repl>
+                        # Dividimos la información
+                        X = iris.drop(['Species'], axis=1); Y = iris['Species']
+                        # Comprobamos que se ha dividido correctamente la informacion
+                        display(X.head()); display(Y.head())
+                    </py-repl>
+                    Si ejecutamos el código anterior, podemos comprobar la separación de la información de la etiqueta de clase del resto de información del conjunto de datos.
+                    <br />A continuación, podemos entrenar y realizar pruebas de los datos mediante distintos algoritmos de minería de datos. Tenemos 2 formas de hacerlo
+                    <ol>
+                        <li>Entrenamiento y test del mismo conjunto de datos: Existe riesgo de sobreentrenamiento de los datos.</li>
+                        <li>
+                            Dividiendo el conjunto de datos en datos de entrenamiento y datos de test: Permite asegurarnos de no usar las mismas observaciones en todos los datos
+                            de entrenamiento.
+                            <br /> Inconveniente: Las puntuaciones de precisión del conjunto de pruebas pueden variar según las observaciones que haya en el conjunto. Sin embargo, podemos solucionar este problema usando validación cruzada.
+                        </li>
+                    </ol>
+                    Nota: Al diseñar los algoritmos de mineria de datos, es recomendable realizar una búsqueda de los mejores parámetros de diseño del algoritmo. Para ello, un método eficaz es usando GridSearchCV.
+                    <br />Para este tutorial, diseñaremos los algoritmos aplicando los méjores parámetros.
                     <h2>Árbol de Decisión</h2>
-                    En esta sección, utilizaremos el conjunto de datos iris para diseñar el siguiente algoritmo de minería de datos: Árbol de decisión. 
+                    En esta sección, utilizaremos el conjunto de datos iris para diseñar el siguiente algoritmo de minería de datos: Árbol de decisión.
                     <br />Además, estudiaremos distintas técnicas a aplicar tanto al conjunto de datos y al algoritmo, con el objetivo de obtener los mejores resultados posibles.
                     <br />Un árbol de decisión es un algoritmo de aprendizaje supervisado no paramétrico, que se utiliza tanto para tareas de clasificación como de regresión.
+                    <br />Para el diseño de los árboles de decisión, podemos usar 2 criterios:
+                    <ul>
+                        <li>Índice gini: El índice Gini es la probabilidad de que una variable no clasifique correctamente si se eligió al azar.</li>
+                        <li>Entropía: La entropía es la medida de la impureza de un conjunto de datos; alternativamente, podemos pensar en esto como la medida de incertidumbre del grupo.</li>
+                    </ul>
 
+                    <h3>Mismo conjunto de datos</h3>
+                    En esta sección, diseñaremos distintos árboles de decisión aplicando el dataset iris sin división del mismo en datos de entrenamiento y de test.
+                    <br />En el código a continuación, diseñaremos un árbol de decisión sobre los datos originales del dataset iris:
+                    <py-repl>
+                        # Importamos las librerias necesarias
+                        from sklearn import metrics
+                        from sklearn.tree import DecisionTreeClassifier
+                        from sklearn.model_selection import GridSearchCV
+                        # Creamos el arbol de decision
+                        decision_tree = DecisionTreeClassifier()
+                        # Establecemos los parametros para gridsearchcv
+                        param_dict = {
+                            "criterion": ["gini", "entropy"],
+                            "max_depth": range(1,10),
+                            "min_samples_split": range(1,10),
+                            "min_samples_leaf": range(1,5)
+                        }
+                        # Encontramos el mejor hiperparámetro usando gridsearchCV
+                        grid = GridSearchCV(decision_tree,
+                                            param_grid = param_dict,
+                                            cv=5,
+                                            verbose=1,
+                                            n_jobs=-1
+                        )
+                        # Entrenamos el modelo
+                        grid.fit(X,Y)
+                    </py-repl>
+                    En el código a continuación, obtendremos los mejores resultados obtenidos:
+                    <py-repl>
+                        display('Mejores parámetros: ', grid_best_params_)
+                        display('Mejor estimador: ', grid_best_estimator_)
+                        display('Mejor resultado: ', grid_best_score_)
+                    </py-repl>
+                    Si ejecutamos el código anterior, podemos visualizar los hiperparámetros del mejor árbol de decisión posible para el conjunto de datos empleado.
+                    <br />Además, podemos comprobar un resultado final obtenido del 96.66%, con lo cuál tenemos un algoritmo muy bueno.
+                    <br />Nota: Al diseñar algoritmos usando GridSearchCV, es recomendable obtener un score superior al 80%.
+                    Otro tipo de árbol de decisión que podemos generar, es un árbol de decisión aleatorio. En el código a continuación, vamos a aplicar el mismo procedimiento aplicado anteriormente
+                    <br /> para un árbol de decisión aleatorio:
+                    <py-repl>
+                        # Importamos las librerias necesarias
+                        from sklearn import metrics
+                        from sklearn.ensemble import RandomForestClassifier
+                        from sklearn.model_selection import GridSearchCV
+                        # Creamos el arbol de decision
+                        decision_tree = RandomForestClassifier()
+                        # Establecemos los parametros para gridsearchcv
+                        param_dict = {
+                            "criterion": ["gini", "entropy"],
+                            "max_depth": range(1,10),
+                            "min_samples_split": range(1,10),
+                            "min_samples_leaf": range(1,5)
+                        }
+                        # Encontramos el mejor hiperparámetro usando gridsearchCV
+                        grid = GridSearchCV(decision_tree,
+                                            param_grid = param_dict,
+                                            cv=5,
+                                            verbose=1,
+                                            n_jobs=-1
+                        )
+                        # Entrenamos el modelo
+                        grid.fit(X,Y)
+                    </py-repl>
+                    En el código a continuación, visualizamos los mejores resultados obtenidos:
+                    <py-repl>
+                        display('Mejores parámetros: ', grid_best_params_)
+                        display('Mejor estimador: ', grid_best_estimator_)
+                        display('Mejor resultado: ', grid_best_score_)
+                    </py-repl>
                 </div>
+                
                 <!--Paso 4: Conclusiones-->
 
                 <!--Ejercicios propuestos-->
