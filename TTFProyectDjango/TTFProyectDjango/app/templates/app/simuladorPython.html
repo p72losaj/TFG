@@ -628,13 +628,52 @@
 
                 </div>
                 <!--Paso 3: Algoritmos-->
-                <div id="Algoritmos">
+                <div id="Algoritmos" style="">
                     <h1>Paso 3. Algoritmos</h1>
                     En esta sección veremos distintos métodos de implementar algoritmos de minería de datos, así como distintas métricas para analizar el los resultados obtenidos en dichos algoritmos.
                     <br />Para este tutorial, se utilizará el conjunto de datos iris.
                     <h2>Obtención del conjunto de datos</h2>
-                    
-                    En el código a continuación, se obtendrá el conjunto de datos breast cancer:
+                    En el código a continuación, obtendremos el conjunto de datos iris
+                    <py-repl>
+                        import pandas as pd
+                        from pyodide.http import open_url
+                        iris = pd.read_csv(open_url("https://raw.githubusercontent.com/p72losaj/Datasets/main/iris.data"),
+                            header=None,
+                            sep=",",
+                            names = ["sepal length","sepal width","petal length","petal width","Species"])
+                        display(iris.head())
+                    </py-repl>
+                    <h2>Preprocesamiento de datos</h2>
+                    Antes de comenzar a diseñar los distintos algoritmos de minería de datos, es recomendable realizar un análisis y, en caso de ser necesario, un preprocesamiento de los datos del dataset.
+                    <br />Nota: Se establecerá como meta final predecir las especies de iris
+                    <br />Si visualizamos el conjunto de datos, podemos comprobar que no existe información innecesaria, es decir, no podemos eliminar ninguna columna del conjunto de datos.
+                    <br />Este proceso lo veremos en el código a continuación:
+                    <py-repl>
+                        import seaborn as sns
+                        import matplotlib.pyplot as plt
+                        display('Comprobando la existencia de valores perdidos en el conjunto de datos iris'); display(iris.isnull().sum())
+                        display('Analizando el numero de elementos por clase del conjunto de datos'); display(iris['Species'].value_counts())
+                        # Comprobamos la existencia de datos atipicos
+                        sns.boxplot(x=iris['Species'],y=iris['sepal length']);plt.title('Datos atipicos sepal length');display(plt);plt.clf()
+                        sns.boxplot(x=iris['Species'],y=iris['sepal width']); plt.title('Datos atipicos sepal width'); display(plt);plt.clf()
+                        sns.boxplot(x=iris['Species'],y=iris['petal length']);plt.title('Datos atipicos petal length');display(plt);plt.clf()
+                        sns.boxplot(x=iris['Species'],y=iris['petal width']); plt.title('Datos atipicos petal width'); display(plt);plt.clf()
+                        # Comprobamos la existencia de datos duplicados
+                        display('Numero de datos duplicados: ', iris.duplicated(keep='first').sum())
+                    </py-repl>
+                    A partir del código anterior, observamos la siguiente información:
+                    <ul>
+                        <li>El conjunto de datos no contiene valores perdidos.</li>
+                        <li>El conjunto de datos está balanceado, es decir, las clases de iris tienen el mismo número de elementos.</li>
+                        <li>Aunque existen valores atípicos, la cantidad de los mismos es muy reducida. En nuestro tutorial, vamos a optar por dejar dichos datos atípicos.</li>
+                        <li>Aunque existen datos duplicados, comprobamos que sólo existen 3 filas duplicadas. Por este motivo, y teniendo en cuenta que si eliminamos dichos datos se puede producir un desbalanceamiento de los datos
+                        , para este tutorial no vamos a eliminar dichos datos duplicados.</li>
+                        <li>Si visualizamos la información del dataset, podemos comprobar que sólo tiene datos no numéricos el atributo de clase. En este caso, no vamos a transformar los datos categóricos en datos numéricos.</li>
+                    </ul>
+                    <h2>Árbol de Decisión</h2>
+                    En esta sección, utilizaremos el conjunto de datos iris para diseñar el siguiente algoritmo de minería de datos: Árbol de decisión. 
+                    <br />Además, estudiaremos distintas técnicas a aplicar tanto al conjunto de datos y al algoritmo, con el objetivo de obtener los mejores resultados posibles.
+                    <br />Un árbol de decisión es un algoritmo de aprendizaje supervisado no paramétrico, que se utiliza tanto para tareas de clasificación como de regresión.
 
                 </div>
                 <!--Paso 4: Conclusiones-->
