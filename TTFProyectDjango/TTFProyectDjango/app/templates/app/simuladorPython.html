@@ -82,77 +82,20 @@
             </ul>
         </nav>
     </div>
-
-    <!--Mostrar informacion de interes-->
-    <div class="informacion">   
-        
-        <!--Mostramos codigo-->
-        <div id="codigoPython" style="display:none">
-            <!--Python Packages-->
-            <pre>
-                
-                import seaborn as sns
-                import matplotlib.pyplot as plt
-                from sklearn.model_selection import cross_val_score
-                from sklearn.tree import DecisionTreeClassifier
-                from sklearn.ensemble import RandomForestClassifier
-                from sklearn.neighbors import KNeighborsClassifier
-                from sklearn.svm import SVC
-                from sklearn.metrics import confusion_matrix
-
-                def Classifiers(train_data, test_data):
-                    """ Apply classifier of mining data to dataset
-                    :param train_data: Train Data of Dataset
-                    :param test_data: Test data of Dataset
-                    """
-                    # Create models
-                    models = [DecisionTreeClassifier(), KNeighborsClassifier(n_neighbors=3), RandomForestClassifier(), SVC(probability = True)]
-                    classifiers = ['DecisionTree', 'KNN', 'RandomForest', 'SVC']
-                    log_cols = ["Classifier", "Accuracy"]
-                    log = pd.DataFrame(columns=log_cols)
-                    acc_dict = {}
-                    # train and test
-                    i=0
-                    for model in models:
-                        name = model.__class__.__name__
-                        acc = cross_val_score(model, train_data, test_data, cv=5, scoring='accuracy').mean()
-                        log.loc[i, log_cols[0]] = models[i]
-                        log.loc[i, log_cols[1]] = acc
-                        i += 1
-                    # Show result
-                    display(log)
-                    
-                    plt.xlabel('Classifiers')
-                    plt.title('Classifier Accuracy')
-                    plt.figsize(15)
-                    sns.barplot(x=classifiers, y=log.Accuracy, data=log, color='b')
-                    display(plt)
-                    plt.clf()
-
-                def generate_confusion_matrix(train,test,classifier):
-                    """ Generate a confusion matrix
-                    :param train: Data train
-                    :param test: Data test
-                    :classifier: Mining Data Classifier
-                    """
-                    classifier.fit(train,test)
-                    cm = confusion_matrix(test, classifier.predict(train))
-                    display(cm)
-
-            </pre>
-        </div>
-    </div>
     
     <!--Contenedor de fluido-->
     <div class="container-fluid">
         <div class="row">
             <!--Añadimos un menu de filtro-->
-            <div class="col-sm-3" style="">
+            <div class="col-sm-10">
                 <em>Etapas del proceso de mineria de datos</em>
-                <button onclick="$('#ObtencionDatos').show(); $('#PreprocesamientoDatos').hide(), $('#EjerciciosPropuestos').hide(), $('#Algoritmos').hide()">Paso 1. Obtención de Datos</button>
-                <button onclick="$('#PreprocesamientoDatos').show();$('#ObtencionDatos').hide(), $('#EjerciciosPropuestos').hide(), $('#Algoritmos').hide()">Paso 2. Preprocesamiento de Datos</button>
-                <button onclick="$('#Algoritmos').show(),$('#PreprocesamientoDatos').hide();$('#ObtencionDatos').hide(), $('#EjerciciosPropuestos').hide()">Paso 3. Algoritmos</button>
-                <button onclick="$('#EjerciciosPropuestos').show(), $('#PreprocesamientoDatos').hide(), $('#ObtencionDatos').hide(),$('#Algoritmos').hide()">Ejercicios propuestos</button>
+                <br />
+                <button onclick="$('#ObtencionDatos').show(); $('#PreprocesamientoDatos').hide(), $('#EjerciciosPropuestos').hide(), $('#Algoritmos').hide(), $('#conclusiones').hide()">Paso 1. Obtención de Datos</button>
+                <button onclick="$('#PreprocesamientoDatos').show();$('#ObtencionDatos').hide(), $('#EjerciciosPropuestos').hide(), $('#Algoritmos').hide(), $('#conclusiones').hide()">Paso 2. Preprocesamiento de Datos</button>
+                <button onclick="$('#Algoritmos').show(),$('#PreprocesamientoDatos').hide();$('#ObtencionDatos').hide(), $('#EjerciciosPropuestos').hide(), $('#conclusiones').hide()">Paso 3. Algoritmos de minería de datos</button>
+                <button onclick="$('#conclusiones').show(),$('#EjerciciosPropuestos').hide(), $('#PreprocesamientoDatos').hide(), $('#ObtencionDatos').hide(),$('#Algoritmos').hide()">Paso 4. Conclusiones</button>
+                <button onclick="$('#EjerciciosPropuestos').show(), $('#PreprocesamientoDatos').hide(), $('#ObtencionDatos').hide(),$('#Algoritmos').hide(), $('#conclusiones').hide()">Ejercicios propuestos</button>
+
             </div>
             
             <div class="col-sm-10">
@@ -282,7 +225,6 @@
                             <li>right_distance: Representa la distancia a la derecha de la balanza.</li>
                         </ul>
                         En el código a continuación, veremos como obtener la información del conjunto de datos:
-                        <h4>Ejemplo 6</h4>
                         <py-repl>
                             import pandas as pd
                             from pyodide.http import open_url
@@ -546,6 +488,7 @@
                             <li>Usamos la función title de la librería matplotlib para añadir un título al gráfico generado.</li>
                         </ul>
                         Si analizamos el gráfico anterior, podemos comprobar que los datos están desbalanceados, habiendo más pasajeros muertos que pasajeros vivos.
+                        <h4>Gráficos categóricos</h4>
                         <br />En el código a continuación, vamos a analizar aquellos pasajeros con mayor tasa de supervicencia en función del sexo femenino.
                         <py-repl>
                             import seaborn as sns
@@ -575,7 +518,7 @@
 
                 </div>
                 <!--Paso 3: Algoritmos-->
-                <div id="Algoritmos" style="">
+                <div id="Algoritmos" style="display:none">
                     <h1>Paso 3. Algoritmos</h1>
                     En esta sección veremos distintos métodos de implementar algoritmos de minería de datos, así como distintas métricas para analizar el los resultados obtenidos en dichos algoritmos.
                     <br />Para este tutorial, se utilizará el conjunto de datos iris.
@@ -628,7 +571,7 @@
                         # Comprobamos que se ha dividido correctamente la informacion
                         display(X.head()); display(Y.head())
                     </py-repl>
-                    Si ejecutamos el código anterior, podemos comprobar la separación de la información de la etiqueta de clase del resto de información del conjunto de datos.
+
                     <br />A continuación, podemos entrenar y realizar pruebas de los datos mediante distintos algoritmos de minería de datos. Tenemos 2 formas de hacerlo
                     <ol>
                         <li>Entrenamiento y test del mismo conjunto de datos: Existe riesgo de sobreentrenamiento de los datos.</li>
@@ -636,245 +579,388 @@
                             Dividiendo el conjunto de datos en datos de entrenamiento y datos de test: Permite asegurarnos de no usar las mismas observaciones en todos los datos
                             de entrenamiento.
                             <br /> Inconveniente: Las puntuaciones de precisión del conjunto de pruebas pueden variar según las observaciones que haya en el conjunto.
+
                         </li>
                     </ol>
+                    Un método común utilizado para evitar el problema del sobreentrenamiento de los datos es la validación cruzada.
+                    La validación cruzada es una técnica utilizada para evaluar los resultados de un análisis estadístico y garantizar que son independientes de la partición
+                    entre datos de entrenamiento y de prueba.
+                    <br />
                     Nota: Al diseñar los algoritmos de mineria de datos, es recomendable realizar una búsqueda de los mejores parámetros de diseño del algoritmo. Para ello, un método eficaz es usando GridSearchCV.
-                    <br />Para este tutorial, diseñaremos los algoritmos aplicando los méjores parámetros.
+                    <br />
+                    GridSearchCV es un método de python que usa la técnica de Validación Cruzada para darte los mejores hiperparametros de un algoritmo de Aprendizaje Automático.
+                    <br />Para este tutorial, diseñaremos los algoritmos buscando los mejores hiperparámetros
                     <h2>Árbol de Decisión</h2>
                     En esta sección, utilizaremos el conjunto de datos iris para diseñar el siguiente algoritmo de minería de datos: Árbol de decisión.
-                    <br />Además, estudiaremos distintas técnicas a aplicar tanto al conjunto de datos y al algoritmo, con el objetivo de obtener los mejores resultados posibles.
+                    <br />Además, estudiaremos distintas técnicas de modelado de los datos, con el objetivo de obtener los mejores resultados posibles.
                     <br />Un árbol de decisión es un algoritmo de aprendizaje supervisado no paramétrico, que se utiliza tanto para tareas de clasificación como de regresión.
                     <br />Para el diseño de los árboles de decisión, podemos usar 2 criterios:
                     <ul>
                         <li>Índice gini: El índice Gini es la probabilidad de que una variable no clasifique correctamente si se eligió al azar.</li>
                         <li>Entropía: La entropía es la medida de la impureza de un conjunto de datos; alternativamente, podemos pensar en esto como la medida de incertidumbre del grupo.</li>
                     </ul>
-
-                    <h3>Mismo conjunto de datos</h3>
-                    En esta sección, diseñaremos distintos árboles de decisión aplicando el dataset iris sin división del mismo en datos de entrenamiento y de test.
-                    <br />En el código a continuación, diseñaremos un árbol de decisión sobre los datos originales del dataset iris:
+                    <h3>Diseño del método GridSearchCV</h3>
+                    En el código a continuacuón, diseñaremos el método gridSearchCV usando como modelo un árbol de decisión:
                     <py-repl>
                         # Importamos las librerias necesarias
-                        from sklearn import metrics
                         from sklearn.tree import DecisionTreeClassifier
                         from sklearn.model_selection import GridSearchCV
-                        # Creamos el arbol de decision
-                        decision_tree = DecisionTreeClassifier()
                         # Establecemos los parametros para gridsearchcv
                         param_dict = {
-                            "criterion": ["gini", "entropy"],
-                            "max_depth": range(1,10),
-                            "min_samples_split": range(1,10),
-                            "min_samples_leaf": range(1,5)
+                        "criterion": ["gini", "entropy"],
+                        "max_depth": range(1,10),
+                        "min_samples_split": range(1,10),
+                        "min_samples_leaf": range(1,5)
                         }
-                        # Encontramos el mejor hiperparámetro usando gridsearchCV
-                        grid = GridSearchCV(decision_tree,
-                                param_grid = param_dict,
-                                cv=5,
-                                verbose=1,
-                                n_jobs=-1
-                        )
+                        # Encontramos el mejor hiperparámetro usando gridsearchCV y como modelo un árbol de decisión
+                        grid = GridSearchCV(DecisionTreeClassifier(), param_grid = param_dict, cv=5, verbose=1, n_jobs=-1)
+                    </py-repl>
+                    Nota: Tener en cuenta que en código que veremos a continuación, se producirá error al ejecutar el código si no habéis ejecutado el código anterior.
+                    <h3>Mismo conjunto de datos</h3>
+                    En el código a continuación
+                    <py-repl>
                         # Entrenamos el modelo
                         grid.fit(X,Y)
-                    </py-repl>
-                    En el código a continuación, obtendremos los mejores resultados obtenidos:
-                    <py-repl>
+                        # Obtenemos los mejores parámetros
                         display('Mejores parámetros: ', grid.best_params_)
-                        display('Mejor estimador: ', grid.best_estimator_)
+                        # Obtenemos el mejor resultado
                         display('Mejor resultado: ', grid.best_score_)
                     </py-repl>
-                    Si ejecutamos el código anterior, podemos visualizar los hiperparámetros del mejor árbol de decisión posible para el conjunto de datos empleado.
-                    <br />Además, podemos comprobar un resultado final obtenido del 90%, con lo cuál tenemos un algoritmo muy bueno.
-                    <br />Nota: Al diseñar algoritmos usando GridSearchCV, es recomendable obtener un score superior al 80%.
-                    <br />Otro tipo de árbol de decisión que podemos generar, es un árbol de decisión aleatorio. En el código a continuación, vamos a generar un arbol aleatorio:
+                    <ul>
+                        <li>Se ha aplicado como criterio el índice gini.</li>
+                        <li>La profundidad máxima del árbol es 3.</li>
+                        <li>El mínimo de hojas de muestras ha sido 1.</li>
+                        <li>La división mínima de muestras ha sido 3.</li>
+                        <li>El mejor resultado obtenido ha sido del 97.33%</li>
+                    </ul>
+                    <h3>Dividiendo el conjunto de datos en datos de entrenamiento y de test</h3>
+                    En el código a continuación, repetiremos el proceso anterior pero aplicando la división del conjunto de datos en datos de entrenamiento y de test.
+                    <py-repl>
+                        # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
+                        X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=5)
+                        # Entrenamos el modelo
+                        grid.fit(X_train,y_train)
+                        # Visualizamos los mejores hiperparámetros del árbol de decisión
+                        display('Mejores parámetros: ', grid.best_params_)
+                        # Visualizamos la mejor puntuación obtenida
+                        display('Mejor resultado: ', grid.best_score_)
+                    </py-repl>
+
+                    <ul>
+                        <li>Se ha aplicado como criterio el índice gini.</li>
+                        <li>La profundidad máxima del árbol es 2.</li>
+                        <li>El mínimo de hojas de muestras ha sido 1.</li>
+                        <li>La división mínima de muestras ha sido 2.</li>
+                        <li>El mejor resultado obtenido ha sido del 95.55%</li>
+                    </ul>
+                    <br />
+                    Dado que los resultados obtenidos al dividir el conjunto de datos son bastante buenos, vamos a aplicar la división del conjunto de datos
+                    para el resto del tutorial.
+
+                    <h3>Normalización de los datos</h3>
+                    La normalización es una técnica común a la hora de solucionar el problema de tener diferentes escalas en los valores de un atributo.
+                    <br />El objetivo de esta técnica es que todos los valores de un atributo estén comprendidos en el intervalo [0,1].
+                    <br />En el código a continuación, repetiremos el estudio del código anterior aplicando la normalización de los datos
+                    <py-repl>
+                        from sklearn import preprocessing
+                        from sklearn.model_selection train_test_split
+                        # Normalizamos los datos
+                        X_normalized = preprocessing.normalize(X)
+                        # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
+                        X_train, X_test, y_train, y_test = train_test_split(X_normalized, Y, test_size=0.4, random_state=5)
+                        # Entrenamos el modelo
+                        grid.fit(X_train,y_train)
+                        # Visualizamos los mejores hiperparámetros del árbol de decisión
+                        display('Mejores hiperparámetros: ', grid.best_params_)
+                        # Visualizamos la mejor puntuación obtenida
+                        display('Mejor resultado: ', grid.best_score_)
+                    </py-repl>
+
+                    <ul>
+                        <li>Se ha aplicado como criterio el índice gini.</li>
+                        <li>La profundidad máxima del árbol es 6.</li>
+                        <li>El mínimo de hojas de muestras ha sido 2.</li>
+                        <li>La división mínima de muestras ha sido 5.</li>
+                        <li>El mejor resultado obtenido ha sido del 94.44%</li>
+                    </ul>
+
+                    <h3>Estandarización de los datos</h3>
+                    En el código a continuación, aplicaremos el estudio anterior utilizando la estandarización de los datos:
+                    <py-repl>
+                        from sklearn import preprocessing
+                        from sklearn.model_selection import train_test_split
+                        # Estandarizamos los datos
+                        X_estandarized = preprocessing.scale(X)
+                        # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
+                        X_train, X_test, y_train, y_test = train_test_split(X_estandarized, Y, test_size=0.4, random_state=5)
+                        # Entrenamos el modelo
+                        grid.fit(X_train,y_train)
+                        # Visualizamos los mejores hiperparámetros del árbol de decisión
+                        display('Mejores hiperparámetros: ', grid.best_params_)
+                        # Visualizamos la mejor puntuación obtenida
+                        display('Mejor resultado: ', grid.best_score_)
+                    </py-repl>
+                    Si ejecutamos el código anterior, obtenemos los siguientes resultados:
+                    <ul>
+                        <li>Se ha aplicado como criterio el índice gini.</li>
+                        <li>La profundidad máxima del árbol es 2.</li>
+                        <li>El mínimo de hojas de muestras ha sido 1.</li>
+                        <li>La división mínima de muestras ha sido 2.</li>
+                        <li>El mejor resultado obtenido ha sido del 95.55%</li>
+                    </ul>
+                    <h2>KNN</h2>
+                    <p>
+                        Se definen los algoritmos KNN como algoritmos de aprendizaje supervisado simples y fáciles de aplicar que pueden ser utilizados para resolver problemas
+                        <br />de clasificación y de regresión.
+                        <br />
+                        En el siguiente código diseñaremos el modelo KNN usando gridsearchCV
+                        <py-repl>
+                            # Importamos las librerias necesarias
+                            from sklearn.model_selection import GridSearchCV
+                            from sklearn.neighbors import KNeighborsClassifier
+                            # Establecemos los parametros para gridsearchcv
+                            param_dict = { "n_neighbors": range(3,10) }
+                            # Encontramos el mejor hiperparámetro usando gridsearchCV
+                            grid = GridSearchCV(KNeighborsClassifier(), param_grid = param_dict, cv=5, verbose=1, n_jobs=-1)
+                        </py-repl>
+                        A continuación, repetimos los procesos anteriores al conjunto de datos original (dividiendo el dataset en datos de entrenamiento y de test)
+                        <br />
+                        Nota: Tened en cuenta que si no ejecutáis el código anterior os dará error al ejecutar las sentencias de código a continuación:
+                        <br />
+                        En el siguiente código, aplicamos el algoritmo KNN sobre los datos originales
+                        <py-repl>
+                            # Importamos las librerias necesarias
+                            from sklearn.model_selection import train_test_split
+                            # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
+                            X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=5)
+                            # Entrenamos el modelo
+                            grid.fit(X_train,y_train)
+                            # Visualizamos los mejores hiperparámetros del árbol de decisión
+                            display('Mejores hiperparámetros: ', grid.best_params_)
+                            # Visualizamos la mejor puntuación obtenida
+                            display('Mejor resultado: ', grid.best_score_)
+                        </py-repl>
+                        Si ejecutamos el código, obtenemos un resultado del 96.66% con el hiperparámetro n_neighbors=3
+                        <br />
+                        En el siguiente código, realizamos el estudio aplicando normalización de los datos
+                        <py-repl>
+                            # Importamos las librerias necesarias
+                            from sklearn.model_selection import train_test_split
+                            from sklearn import preprocessing
+                            # Normalizamos los datos
+                            X_normalized = preprocessing.normalize(X)
+                            # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
+                            X_train, X_test, y_train, y_test = train_test_split(X_normalized, Y, test_size=0.4, random_state=5)
+                            # Entrenamos el modelo
+                            grid.fit(X_train,y_train)
+                            # Visualizamos los mejores hiperparámetros del árbol de decisión
+                            display('Mejores hiperparámetros: ', grid.best_params_)
+                            # Visualizamos la mejor puntuación obtenida
+                            display('Mejor resultado: ', grid.best_score_)
+                        </py-repl>
+                        Al ejecutar el código, hemos obtenido como mejor resultado un 98.89% con n_neighbors=7.
+                        <br />
+                        A continuación, repetimos el proceso aplicando estandarización de los datos
+                        <py-repl>
+                            # Importamos las librerias necesarias
+                            from sklearn.model_selection import train_test_split
+                            from sklearn import preprocessing
+                            # Estandarizamos los datos
+                            X_estandarized = preprocessing.scale(X)
+                            # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
+                            X_train, X_test, y_train, y_test = train_test_split(X_estandarized, Y, test_size=0.4, random_state=5)
+                            # Entrenamos el modelo
+                            grid.fit(X_train,y_train)
+                            # Visualizamos los mejores hiperparámetros del árbol de decisión
+                            display('Mejores hiperparámetros: ', grid.best_params_)
+                            # Visualizamos la mejor puntuación obtenida
+                            display('Mejor resultado: ', grid.best_score_)
+                        </py-repl>
+                        Al ejecutar el código, hemos obtenido un resultado del 96.66% con n_neighbors=5
+                    </p>
+
+                    <h2>Árbol de Decisión Aleatorio</h2>
+                    <br />Otro tipo de árbol de decisión que podemos generar, es un árbol de decisión aleatorio.
+                    <br /> Un árbol de decisión aleatorio (RandomForest) es una combinación de árboles predictores tal que cada árbol depende de los valores
+                    <br /> de un vector aleatorio probado independientemente y con la misma distribución para cada uno de estos.
+                    <br />En el código a continuación, diseñaremos un árbol de decisión aleatorio usando GridSearchCV
                     <br />Aviso: Debido a la búsqueda de hiperparámetros, puede producirse un fallo de página al emplear la búsqueda GridSearchCV.
                     <py-repl>
                         # Importamos las librerias necesarias
-                        from sklearn import metrics
                         from sklearn.ensemble import RandomForestClassifier
                         from sklearn.model_selection import GridSearchCV
                         # Establecemos los parametros para gridsearchcv
                         param_dict = {
-                        "criterion": ["gini","entropy"],
+                        "criterion": ["gini","entropy", 'log_loss'],
                         "max_depth": range(1,3),
                         "min_samples_split": range(2,5),
                         "min_samples_leaf": range(1,3)
                         }
                         # Encontramos el mejor hiperparámetro usando gridsearchCV
-                        grid = GridSearchCV(RandomForestClassifier(),
-                        param_grid = param_dict,
-                        cv=5,
-                        verbose=1,
-                        n_jobs=-1
-                        )
-                        # Entrenamos el modelo
-                        grid.fit(X,Y)
+                        grid = GridSearchCV(RandomForestClassifier(),param_grid = param_dict,cv=5,verbose=1,n_jobs=-1)
                     </py-repl>
-                    En el código a continuación, visualizamos los mejores resultados obtenidos:
-                    <py-repl>
-                        display('Mejores parámetros: ', grid.best_params_)
-                        display('Mejor estimador: ', grid.best_estimator_)
-                        display('Mejor resultado: ', grid.best_score_)
-                    </py-repl>
-                    Nota: Tener en cuenta que al ser un árbol aleatorio el mejor resultado puede cambiar. Por ello, es recomendable ejecutar el código una cierta cantidad de veces.
-                    <h3>Dividiendo el conjunto de datos en datos de entrenamiento y de test</h3>
-                    En esta sección, diseñaremos distintos árboles de decisión aplicando el dataset iris aplicando división del mismo en datos de entrenamiento y de test.
-                    <br />En el código a continuación, diseñaremos un árbol de decisión sobre los datos originales del dataset iris:
+                    En el código a continuación, realizaremos un estudio sobre los datos originales tras su división en 60% datos de entrenamiento y 40% datos de test.
                     <py-repl>
                         # Importamos las librerias necesarias
-                        from sklearn import metrics
-                        from sklearn.tree import DecisionTreeClassifier
-                        from sklearn.model_selection import GridSearchCV, train_test_split
-                        # Creamos el arbol de decision
-                        decision_tree = DecisionTreeClassifier()
-                        # Establecemos los parametros para gridsearchcv
-                        param_dict = {
-                            "criterion": ["gini", "entropy"],
-                            "max_depth": range(1,10),
-                            "min_samples_split": range(1,10),
-                            "min_samples_leaf": range(1,5)
-                        }
-                        # Encontramos el mejor hiperparámetro usando gridsearchCV
-                        grid = GridSearchCV(decision_tree,
-                                param_grid = param_dict,
-                                cv=5,
-                                verbose=1,
-                                n_jobs=-1
-                        )
-                        # Dividimos los datos en datos de entrenamiento y de test
+                        from sklearn.model_selection import train_test_split
+                        # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
                         X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=5)
                         # Entrenamos el modelo
                         grid.fit(X_train,y_train)
-                    </py-repl>
-                    En el código a continuación, visualizamos los mejores resultados obtenidos:
-                    <py-repl>
-                        display('Mejores parámetros: ', grid.best_params_)
-                        display('Mejor estimador: ', grid.best_estimator_)
+                        # Visualizamos los mejores hiperparámetros del árbol de decisión
+                        display('Mejores hiperparámetros: ', grid.best_params_)
+                        # Visualizamos la mejor puntuación obtenida
                         display('Mejor resultado: ', grid.best_score_)
                     </py-repl>
-                    Si ejecutamos el código anterior, podemos obtener un puntuación final superior al 90%, por lo que hemos obtenido unos buenos resultados.
-                    <h2>Normalización de los datos</h2>
-                    La normalización es una técnica común a la hora de solucionar el problema de tener diferentes escalas en los valores de un atributo. 
-                    <br />El objetivo de esta técnica es que todos los valores de un atributo estén comprendidos en el intervalo [0,1].
-                    <br />En el código a continuación veremos el efecto de la normalización usando el árbol de decisión con los mejores hiperparámetros:
+                    Si ejecutamos el código anterior, obtenemos los siguientes resultados:
+                    <ul>
+                        <li>Se ha aplicado como criterio la entropía</li>
+                        <li>La profundidad máxima del árbol es 2.</li>
+                        <li>El mínimo de hojas de muestras ha sido 1.</li>
+                        <li>La división mínima de muestras ha sido 4.</li>
+                        <li>El mejor resultado obtenido ha sido del 96%</li>
+                    </ul>
+                    En el código a continuación, realizamos el estudio de los datos tras aplicar normalización
                     <py-repl>
-                        from sklearn import preprocessing, metrics
-                        from sklearn.tree import DecisionTreeClassifier
-                        from sklearn.model_selection import GridSearchCV, train_test_split
+                        # Importamos las librerias necesarias
+                        from sklearn.model_selection import train_test_split
+                        from sklearn import preprocessing
                         # Normalizamos los datos
                         X_normalized = preprocessing.normalize(X)
-                        # Dividimos el dataset en datos de entrenamiento y de test
+                        # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
                         X_train, X_test, y_train, y_test = train_test_split(X_normalized, Y, test_size=0.4, random_state=5)
-                        # Construimos el modelo
-                        model = DecisionTreeClassifier(criterion='gini', max_depth=2, min_samples_leaf=1, min_samples_split=2)
                         # Entrenamos el modelo
-                        model.fit(X_train,y_train)
-                        # Calculamos la precision del modelo
-                        display(metrics.accuracy_score(y_test, model.predict(X_test)))
+                        grid.fit(X_train,y_train)
+                        # Visualizamos los mejores hiperparámetros del árbol de decisión
+                        display('Mejores hiperparámetros: ', grid.best_params_)
+                        # Visualizamos la mejor puntuación obtenida
+                        display('Mejor resultado: ', grid.best_score_)
                     </py-repl>
-                    Al ejecutar el código anterior, hemos obtenido una precisión del 92%. Sin embargo, en este caso tenemos el problema del sobreentramiento de los datos.
-                    <h2>Validación cruzada</h2>
-                    Como comentamos en el código anterior, se obtuvo una precisión alta pero con problemas de sobreentrenamiento. 
-                    <br />Para solucionar dicho problema aplicaremos validación cruzada, tal y como vemos en el siguiente código:
+                    Si ejecutamos el código anterior, obtenemos los siguientes resultados:
+                    <ul>
+                        <li>Se ha aplicado como criterio el índice gini</li>
+                        <li>La profundidad máxima del árbol es 2.</li>
+                        <li>El mínimo de hojas de muestras ha sido 2.</li>
+                        <li>La división mínima de muestras ha sido 2.</li>
+                        <li>El mejor resultado obtenido ha sido del 93.33%</li>
+                    </ul>
+                    En el código a continuación, realizamos el estudio de los datos aplicando la estandarización de los datos
                     <py-repl>
+                        # Importamos las librerias necesarias
+                        from sklearn.model_selection import train_test_split
                         from sklearn import preprocessing
-                        from sklearn.tree import DecisionTreeClassifier
-                        from sklearn.model_selection import cross_val_score, KFold
-                        # Normalizacion de los datos
-                        X_normalized = preprocessing.normalize(X)
-                        # Creamos el modelo
-                        model = DecisionTreeClassifier(criterion='gini', max_depth=2, min_samples_leaf=1, min_samples_split=2)
-                        # Calculamos la precision media del modelo al aplicar normalizacion
-                        score = cross_val_score(model, X_normalized, Y, cv=KFold(n_splits=5))
-                        display('Precision media obtenida con normalizacion: ',score.mean())
-                        score_original = cross_val_score(model, X, Y, cv=KFold(n_splits=5))
-                        display('Precision sin normalizar: ', score_original.mean())
-                    </py-repl>
-                    Al ejecutar el código anterior, podemos comprobar que se obtiene una precisión media superior al no aplicar normalización que aplicando normalización.
-                    <h2>Estandarización de los datos</h2>
-                    En el siguiente código, veremos como aplicar la estandarización de los datos:
-                    <py-repl>
-                        from sklearn import preprocessing
-                        from sklearn.tree import DecisionTreeClassifier
-                        from sklearn.model_selection import cross_val_score, KFold
-                        # Estandarizacion de los datos
+                        # Estandarizamos los datos
                         X_estandarized = preprocessing.scale(X)
-                        # Creamos el modelo
-                        model = DecisionTreeClassifier(criterion='gini', max_depth=2, min_samples_leaf=1, min_samples_split=2)
-                        # Calculamos la precision media del modelo
-                        score = cross_val_score(model, X_estandarized, Y, cv=KFold(n_splits=5))
-                        display('Precision media obtenida: ',score.mean())
+                        # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
+                        X_train, X_test, y_train, y_test = train_test_split(X_estandarized, Y, test_size=0.4, random_state=5)
+                        # Entrenamos el modelo
+                        grid.fit(X_train,y_train)
+                        # Visualizamos los mejores hiperparámetros del árbol de decisión
+                        display('Mejores hiperparámetros: ', grid.best_params_)
+                        # Visualizamos la mejor puntuación obtenida
+                        display('Mejor resultado: ', grid.best_score_)
                     </py-repl>
-                    <h2>KNN</h2>
+                    Si ejecutamos el código anterior, obtenemos los siguientes resultados:
+                    <ul>
+                        <li>Se ha aplicado como criterio el índice gini</li>
+                        <li>La profundidad máxima del árbol es 2.</li>
+                        <li>El mínimo de hojas de muestras ha sido 1.</li>
+                        <li>La división mínima de muestras ha sido 4.</li>
+                        <li>El mejor resultado obtenido ha sido del 96.66%</li>
+                    </ul>
+                    <h2>SVM</h2>
                     <p>
-                        Se definen los algoritmos KNN como algoritmos de aprendizaje supervisado simples y fáciles de aplicar que pueden ser utilizados para resolver problemas
-                        <br />de clasificación y de regresión.
-                        En el siguiente código veremos como crear un algoritmo KNN y obtendremos los mejores hiperparámetros de dicho algoritmo para el conjunto de datos iris
+                        Un algoritmo SVM (Máquinas de Vectores Soporte) es un algoritmo de clasificación y regresión basado en el concepto del hiperplano.
+                        <br />
+                        En el código anterior, diseñaremos un modelo SVM de tipo rbf o lineal, y realizaremos una búsqueda de los mejores hiperparámetros mediante GridSearchCV.
                         <py-repl>
                             # Importamos las librerias necesarias
-                            from sklearn.neighbors import KNeighborsClassifier
-                            from sklearn.model_selection import GridSearchCV, train_test_split
+                            from sklearn import svm
+                            from sklearn.model_selection import GridSearchCV
                             # Establecemos los parametros para gridsearchcv
-                            param_dict = { "n_neighbors": range(3,10) }
-                            # Encontramos el mejor hiperparámetro usando gridsearchCV
-                            grid = GridSearchCV(KNeighborsClassifier(), param_grid = param_dict, cv=5, verbose=1, n_jobs=-1)
-                            # Dividimos los datos en datos de entrenamiento y de test
+                            param_dict = {
+                            "kernel": ['linear','rbf'],
+                            "C": [0.01, 0.1, 1, 10, 100, 1000, 10000],
+                            "gamma": [0.02, 0.2, 2, 20, 200, 2000, 20000, "auto"]
+                            }
+                            # Encontramos el mejor hiperparámetro usando gridsearchC
+                            grid = GridSearchCV(svm.SVC(),param_grid = param_dict,cv=5,verbose=1,n_jobs=-1)
+                        </py-repl>
+                        En el código a continuación, realizaremos un estudio sobre los datos originales tras su visión en 60% datos de entrenamiento y 40% datos de test
+                        <py-repl>
+                            # Importamos las librerias necesarias
+                            from sklearn.model_selection import train_test_split
+                            # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
                             X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=5)
                             # Entrenamos el modelo
                             grid.fit(X_train,y_train)
-                        </py-repl>
-                        En el código a continuación, visualizamos los mejores hiperparámetros:
-                        <py-repl>
-                            display('Mejores parametros: ', grid.best_params_)
+                            # Visualizamos los mejores hiperparámetros del árbol de decisión
+                            display('Mejores hiperparámetros: ', grid.best_params_)
+                            # Visualizamos la mejor puntuación obtenida
                             display('Mejor resultado: ', grid.best_score_)
                         </py-repl>
-                        A continuación, repetimos el estudio realizado anteriormente, usando los mejores hiperparámetros obtenidos en el código anterior (n_neighbors=3).
-                        <br />En el código a continuación, realizaremos el estudio sin aplicar validación cruzada:
+                        Si ejecutamos el código anterior, obtenemos los siguientes resultados.
+                        <ol>
+                            <li>Se ha aplicado un algoritmo SVC lineal.</li>
+                            <li>Valor del parámetro C: 1.</li>
+                            <li>Valor del parámetro gamma: 0.02</li>
+                            <li>Se ha obtenido un resultado del 98.89%</li>
+                        </ol>
+                        A continuación, realizamos el estudio de los datos usando normalización:
                         <py-repl>
                             # Importamos las librerias necesarias
-                            from sklearn import preprocessing, metrics
-                            from sklearn.neighbors import KNeighborsClassifier
                             from sklearn.model_selection import train_test_split
-                            # Construimos el modelo
-                            model = KNeighborsClassifier(n_neighbors=3)
-                            # Realizamos un estudio sobre los datos originales
-                            X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.4, random_state=5)
-                            model.fit(X_train,y_train)
-                            display('Precision original: ', metrics.accuracy_score(y_test, model.predict(X_test)))
-                            # Realizamos el estudio aplicando normalizacion
+                            from sklearn import preprocessing
+                            # Normalizamos los datos
                             X_normalized = preprocessing.normalize(X)
-                            X_train_normalized, X_test_normalized, y_train_normalized, y_test_normalized = train_test_split(X_normalized, Y, test_size=0.4, random_state=5)
-                            model.fit(X_train_normalized,y_train_normalized)
-                            display('Precision tras normalizacion: ', metrics.accuracy_score(y_test_normalized, model.predict(X_test_normalized)))
-                            # Realizamos el estudio aplicando estandarizacion
-                            X_estandarized = preprocessing.scale(X)
-                            X_train_estandarized, X_test_estandarized, y_train_estandarized, y_test_estandarized = train_test_split(X_estandarized, Y, test_size=0.4, random_state=5)
-                            model.fit(X_train_estandarized,y_train_estandarized)
-                            display('Precision tras estandarizacion: ', metrics.accuracy_score(y_test_estandarized, model.predict(X_test_estandarized)))
+                            # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
+                            X_train, X_test, y_train, y_test = train_test_split(X_normalized, Y, test_size=0.4, random_state=5)
+                            # Entrenamos el modelo
+                            grid.fit(X_train,y_train)
+                            # Visualizamos los mejores hiperparámetros del árbol de decisión
+                            display('Mejores hiperparámetros: ', grid.best_params_)
+                            # Visualizamos la mejor puntuación obtenida
+                            display('Mejor resultado: ', grid.best_score_)
                         </py-repl>
-                        A continuación, repetimos el estudio aplicando validación cruzada:
+                        Si ejecutamos el código anterior, obtenemos los siguientes resultados.
+                        <ol>
+                            <li>Se ha aplicado un algoritmo SVC de tipo rbf.</li>
+                            <li>Valor del parámetro C: 0.1</li>
+                            <li>Valor del parámetro gamma: 200</li>
+                            <li>Se ha obtenido un resultado del 98.89%</li>
+                        </ol>
+                        A continuación, realizamos el estudio de los datos usando estandarización:
                         <py-repl>
                             # Importamos las librerias necesarias
-                            from sklearn import preprocessing, metrics
-                            from sklearn.neighbors import KNeighborsClassifier
-                            from sklearn.model_selection import cross_val_score, KFold
-                            # Construimos el modelo
-                            model = KNeighborsClassifier(n_neighbors=3)
-                            # Realizamos un estudio sobre los datos originales
-                            score = cross_val_score(model, X, Y, cv=KFold(n_splits=5))
-                            display('Precision media original: ', score.mean())
-                            # Realizamos el estudio aplicando normalizacion
-                            score_normalized = cross_val_score(model, X_normalized, Y, cv=KFold(n_splits=5))
-                            display('Precision media tras normalizacion: ', score_normalized.mean())
-                            # Realizamos el estudio aplicando estandarizacion
-                            score_estandarized = cross_val_score(model, X_estandarized, Y, cv=KFold(n_splits=5))
-                            display('Precision media tras estandarizacion: ', score_estandarized.mean())
-                            
+                            from sklearn.model_selection import train_test_split
+                            from sklearn import preprocessing
+                            # Estandarizamos los datos
+                            X_estandarized = preprocessing.scale(X)
+                            # Dividimos los datos en datos de entrenamiento y de test, dividiendo el dataset en 40% datos de test y 60% datos de entrenamiento
+                            X_train, X_test, y_train, y_test = train_test_split(X_estandarized, Y, test_size=0.4, random_state=5)
+                            # Entrenamos el modelo
+                            grid.fit(X_train,y_train)
+                            # Visualizamos los mejores hiperparámetros del árbol de decisión
+                            display('Mejores hiperparámetros: ', grid.best_params_)
+                            # Visualizamos la mejor puntuación obtenida
+                            display('Mejor resultado: ', grid.best_score_)
                         </py-repl>
+                        Si ejecutamos el código anterior, obtenemos los siguientes resultados.
+                        <ol>
+                            <li>Se ha aplicado un algoritmo SVC de tipo lineal.</li>
+                            <li>Valor del parámetro C: 10</li>
+                            <li>Valor del parámetro gamma: 0.02</li>
+                            <li>Se ha obtenido un resultado del 97.78%</li>
+                        </ol>
                     </p>
                 </div>
                 
                 <!--Paso 4: Conclusiones-->
+                <div id="conclusiones" style="display:none">
+                    <h1>Paso 4. Conclusiones</h1>
+                    Este paso consiste en redactar un informe explicativo de los resultados obtenidos durante todo el proceso de minería de datos realizado, las decisiones
+                    tomadas durante el mismo y las conclusiones finales.
+                </div> 
 
                 <!--Ejercicios propuestos-->
                 <div id="EjerciciosPropuestos" style="display:none">
@@ -919,109 +1005,6 @@
             </div>
         </div>
     </div>
-
-    
-    <!--Py-script-->
-    <div class="pyscript">
-
-        <!-- Codigo python-->
-        <py-script>
-            
-            from sklearn.model_selection import cross_val_score
-            from sklearn.tree import DecisionTreeClassifier
-            from sklearn.ensemble import RandomForestClassifier
-            from sklearn.neighbors import KNeighborsClassifier
-            from sklearn.svm import SVC
-            from sklearn.metrics import confusion_matrix
-
-
-            def Classifiers(train_data, test_data):
-            """ Apply classifier of mining data to dataset
-            :param train_data: Train Data of Dataset
-            :param test_data: Test data of Dataset
-            """
-            # Create models
-            models = [KNeighborsClassifier(n_neighbors=3), , SVC(probability = True)]
-            classifiers = ['DecisionTree', 'KNN', 'RandomForest', 'SVC']
-            log_cols = ["Classifier", "Accuracy"]
-            log = pd.DataFrame(columns=log_cols)
-            acc_dict = {}
-            # train and test
-            i=0
-            for model in models:
-            name = model.__class__.__name__
-            acc = cross_val_score(model, train_data, test_data, cv=5, scoring='accuracy').mean()
-            log.loc[i, log_cols[0]] = models[i]
-            log.loc[i, log_cols[1]] = acc
-            i += 1
-            # Show result
-            display(log)
-            plt.xlabel('Classifiers')
-            plt.title('Classifier Accuracy')
-            sns.barplot(x=classifiers, y=log.Accuracy, data=log, color='b')
-            display(plt)
-            plt.clf()
-
-            
-
-            def showTitanicFarePclassSurvived(df):
-            """ Analysis of the survivors according to the fare and pclass of titanic dataset
-            :param df: Dataset titanic
-            """
-            sns.catplot(x='Fare', hue='Survived', kind='count', col='Pclass', data=df)
-            display(plt)
-            plt.clf()
-
-            def showTitanicMembersFamilySurvived(df):
-            """ Analysis of the survivors according to the member family of titanic dataset
-            :param df: Dataset titanic
-            """
-            sns.catplot(x='Members_Family', hue='Survived', kind='count', data=df)
-            display(plt)
-            plt.clf()
-
-            def generate_confusion_matrix(train,test,classifier):
-            """ Generate a confusion matrix
-            :param train: Data train
-            :param test: Data test
-            :classifier: Mining Data Classifier
-            """
-            classifier.fit(train,test)
-            display(test.unique())
-            cm = confusion_matrix(test, classifier.predict(train))
-            display(cm)
-
-        </py-script>
-        
-        
-        <!--Ejercicio 3-->
-        <p>
-            <em>Ejercicio 3: Aplica los siguientes algoritmos a cada dataset: Arbol de Decision, Arbol de decision aleatorio, KNN, SVC </em>
-        </p>
-        <py-repl>
-            # Datos de entrenamiento del dataset titanic
-            train_titanic = titanic2.drop(['Survived'], axis=1)
-            # Datos de test del dataset titanic
-            test_titanic = titanic2['Survived']
-            # Aplicamos algoritmos de mineria de datos para el dataset titanic
-            Classifiers(train_titanic, test_titanic)
-        </py-repl>
-        <!--Ejercicio 4-->
-        <p>
-            <em>Ejercicio 4: Utiliza la informacion obtenida en los ejercicios anteriores y saca conclusiones </em>
-        </p>
-        <py-repl>
-            # Analysis dataset titanic
-            generate_confusion_matrix(train_titanic, test_titanic, SVC(probability=True))
-            showTitanicSurvived(titanic2)
-            showTitanicAgeSexSurvived(titanic2)
-            showTitanicFarePclassSurvived(titanic2)
-            showTitanicMembersFamilySurvived(titanic2)
-        </py-repl>
-
-    </div>
-
-
 
 </body>
 </html>
